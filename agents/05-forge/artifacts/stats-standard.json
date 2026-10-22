@@ -1,0 +1,434 @@
+{
+ "_meta": {
+  "dir": "/home/user/neurobrain/data/forge",
+  "ok": true,
+  "profile": "standard",
+  "seed": 23,
+  "tokenizer": "/home/user/neurobrain/data/tokenizer.json",
+  "vocab_size": 2052
+ },
+ "code": {
+  "balance": {
+   "_share": {
+    "_share": 0.0,
+    "alpha": 0.38065,
+    "byte": 0.01346,
+    "digit": 0.04728,
+    "punct": 0.23008,
+    "space": 0.32828,
+    "special": 0.00025
+   },
+   "alpha": 5413318,
+   "byte": 191349,
+   "digit": 672426,
+   "punct": 3272055,
+   "space": 4668456,
+   "special": 3558
+  },
+  "dataset": "code",
+  "doc_len": {
+   "max": 461923,
+   "mean": 4010.9,
+   "p50": 754,
+   "p99": 44797
+  },
+  "docs": 3558,
+  "duplicates": {
+   "exact_rate": 0.0,
+   "near_rate": 0.0,
+   "sampled": 3106
+  },
+  "files": [
+   "code_train.bin",
+   "code_val.bin"
+  ],
+  "kind": "token_streams",
+  "n": 3558,
+  "profile": "standard",
+  "ranges": {
+   "ok": true,
+   "overrides": {},
+   "violations": []
+  },
+  "seed": 23,
+  "tokens": 14221162,
+  "top_tokens": [
+   {
+    "id": 95,
+    "share": 0.03908,
+    "text": "_"
+   },
+   {
+    "id": 44,
+    "share": 0.03652,
+    "text": ","
+   },
+   {
+    "id": 46,
+    "share": 0.03069,
+    "text": "."
+   },
+   {
+    "id": 264,
+    "share": 0.01913,
+    "text": "\n       "
+   },
+   {
+    "id": 40,
+    "share": 0.019,
+    "text": "("
+   },
+   {
+    "id": 269,
+    "share": 0.0159,
+    "text": "\n   "
+   },
+   {
+    "id": 115,
+    "share": 0.01521,
+    "text": "s"
+   },
+   {
+    "id": 41,
+    "share": 0.01167,
+    "text": ")"
+   }
+  ],
+  "units": "docs",
+  "vocab_used": 1983
+ },
+ "drive": {
+  "balance": {
+   "_share": {
+    "_share": 0.0,
+    "alpha": 0.4761,
+    "byte": 0.0,
+    "digit": 0.05286,
+    "punct": 0.23701,
+    "space": 0.22463,
+    "special": 0.00939
+   },
+   "alpha": 101518917,
+   "byte": 0,
+   "digit": 11272158,
+   "punct": 50536269,
+   "space": 47898506,
+   "special": 2002360
+  },
+  "dataset": "drive",
+  "doc_len": {
+   "max": 397,
+   "mean": 213.2,
+   "p50": 190,
+   "p99": 377
+  },
+  "docs": 1000000,
+  "duplicates": {
+   "exact_rate": 0.000333,
+   "near_rate": 0.000333,
+   "sampled": 6000
+  },
+  "files": [
+   "drive_train.bin",
+   "drive_val.bin"
+  ],
+  "invariants": {
+   "bad_retries": 0,
+   "episodes": 1000000,
+   "failure_fraction": 1.0,
+   "failures": {
+    "retry_gap": [],
+    "terminal": []
+   },
+   "mean_retries": 1.47,
+   "mix": {
+    "code": 0.401,
+    "plan": 0.1492,
+    "ui": 0.4497
+   },
+   "retry_after_failure_rate": 1.0,
+   "terminal_missing": 0,
+   "terminal_over": 0,
+   "terminal_rate": 1.0,
+   "tokens": 213228210,
+   "tokens_per_episode": 213.2,
+   "violations": []
+  },
+  "kind": "token_streams",
+  "n": 1000000,
+  "profile": "standard",
+  "ranges": {
+   "ok": true,
+   "overrides": {
+    "vocab_used_min": 380
+   },
+   "violations": []
+  },
+  "seed": 23,
+  "tokens": 213228210,
+  "top_tokens": [
+   {
+    "id": 285,
+    "share": 0.07173,
+    "text": "|>"
+   },
+   {
+    "id": 284,
+    "share": 0.06156,
+    "text": "<|"
+   },
+   {
+    "id": 115,
+    "share": 0.02043,
+    "text": "s"
+   },
+   {
+    "id": 44,
+    "share": 0.01939,
+    "text": ","
+   },
+   {
+    "id": 292,
+    "share": 0.01756,
+    "text": " the"
+   },
+   {
+    "id": 95,
+    "share": 0.01624,
+    "text": "_"
+   },
+   {
+    "id": 112,
+    "share": 0.01451,
+    "text": "p"
+   },
+   {
+    "id": 40,
+    "share": 0.01433,
+    "text": "("
+   }
+  ],
+  "units": "docs",
+  "vocab_used": 613
+ },
+ "ui_protocol": {
+  "balance": {
+   "_share": {
+    "_share": 0.0,
+    "alpha": 0.23943,
+    "byte": 0.0,
+    "digit": 0.25746,
+    "punct": 0.46353,
+    "space": 0.02209,
+    "special": 0.0175
+   },
+   "alpha": 4104976,
+   "byte": 0,
+   "digit": 4414122,
+   "punct": 7947228,
+   "space": 378682,
+   "special": 300000
+  },
+  "dataset": "ui_protocol",
+  "doc_len": {
+   "max": 148,
+   "mean": 114.3,
+   "p50": 114,
+   "p99": 145
+  },
+  "docs": 150000,
+  "duplicates": {
+   "exact_rate": 0.0,
+   "near_rate": 0.0,
+   "sampled": 6000
+  },
+  "files": [
+   "ui_train.bin",
+   "ui_val.bin"
+  ],
+  "kind": "token_streams",
+  "n": 150000,
+  "profile": "standard",
+  "ranges": {
+   "ok": true,
+   "overrides": {
+    "alpha_share_min": 0.15,
+    "vocab_used_min": 150
+   },
+   "violations": []
+  },
+  "seed": 23,
+  "tokens": 17145008,
+  "top_tokens": [
+   {
+    "id": 44,
+    "share": 0.16617,
+    "text": ","
+   },
+   {
+    "id": 263,
+    "share": 0.05247,
+    "text": "el"
+   },
+   {
+    "id": 62,
+    "share": 0.05247,
+    "text": ">"
+   },
+   {
+    "id": 91,
+    "share": 0.05247,
+    "text": "["
+   },
+   {
+    "id": 308,
+    "share": 0.05247,
+    "text": "]{"
+   },
+   {
+    "id": 328,
+    "share": 0.04373,
+    "text": "}<"
+   },
+   {
+    "id": 285,
+    "share": 0.03499,
+    "text": "|>"
+   },
+   {
+    "id": 593,
+    "share": 0.03187,
+    "text": "300"
+   }
+  ],
+  "units": "docs",
+  "vocab_used": 212
+ },
+ "ui_seed": {
+  "action_balance": {
+   "balanced": 0.5728,
+   "counts": [
+    14179,
+    3580,
+    3611,
+    3630
+   ],
+   "entropy": 1.673,
+   "entropy_ratio": 0.8365,
+   "max_share": 0.56716,
+   "min_share": 0.1432,
+   "n_labels": 4
+  },
+  "coordinate": {
+   "cells_used": 72,
+   "entropy": 5.7205,
+   "entropy_ratio": 0.9272,
+   "max_cell_share": 0.04608,
+   "offset_clipped": 0.52108,
+   "offset_mean": [
+    -0.259,
+    -0.3711
+   ],
+   "offset_mean_abs": 0.5779,
+   "offset_std": [
+    0.5903,
+    0.6015
+   ]
+  },
+  "dataset": "ui_seed",
+  "duplicates": {
+   "exact_rate": 0.0,
+   "near_rate": 0.0015,
+   "sampled": 2000
+  },
+  "image_entropy": {
+   "black_share": 0.0,
+   "mean": 2.2749,
+   "sampled": 2000,
+   "std": 0.1935
+  },
+  "instruction": {
+   "mean_used_chars": 18.8,
+   "padding_share": 0.608
+  },
+  "kind": "ui_shards",
+  "label_balance": {
+   "balanced": 0.9427,
+   "counts": [
+    1088,
+    1080,
+    1012,
+    1030,
+    1077,
+    1021,
+    1013,
+    1008,
+    1045,
+    1042,
+    1081,
+    1009,
+    1076,
+    1051,
+    1065,
+    1021,
+    1014,
+    1010,
+    1060,
+    1025,
+    1045,
+    1083,
+    1062,
+    982
+   ],
+   "entropy": 4.5844,
+   "entropy_ratio": 0.9999,
+   "max_share": 0.04352,
+   "min_share": 0.03928,
+   "n_labels": 24
+  },
+  "n": 25000,
+  "profile": "standard",
+  "ranges": {
+   "ok": true,
+   "overrides": {
+    "entropy_bits_min": 2.0,
+    "heat_cells_used_min": 60,
+    "heat_entropy_ratio_min": 0.45,
+    "offset_clipped_max": 0.6,
+    "offset_mean_abs_max": 0.65
+   },
+   "violations": []
+  },
+  "role_balance": {
+   "balanced": 0.973,
+   "counts": [
+    3595,
+    3580,
+    3611,
+    3506,
+    3603,
+    3475,
+    3630
+   ],
+   "entropy": 2.8072,
+   "entropy_ratio": 0.9999,
+   "max_share": 0.1452,
+   "min_share": 0.139,
+   "n_labels": 7
+  },
+  "seed": 23,
+  "shards": 5,
+  "theme_balance": {
+   "balanced": 0.993,
+   "counts": [
+    12413,
+    12587
+   ],
+   "entropy": 1.0,
+   "entropy_ratio": 1.0,
+   "max_share": 0.50348,
+   "min_share": 0.49652,
+   "n_labels": 2
+  }
+ }
+}

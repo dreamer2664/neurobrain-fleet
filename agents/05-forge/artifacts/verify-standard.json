@@ -1,0 +1,38 @@
+{
+ "datasets": {
+  "code": {
+   "bytes": 28442324,
+   "hashes_ok": true,
+   "shards": 2
+  },
+  "drive": {
+   "bytes": 426456420,
+   "hashes_ok": true,
+   "invariants": {
+    "episodes": 1000000,
+    "failure_fraction": 1.0,
+    "mean_retries": 1.47,
+    "mix": {
+     "code": 0.401,
+     "plan": 0.1492,
+     "ui": 0.4497
+    },
+    "retry_after_failure_rate": 1.0,
+    "terminal_rate": 1.0
+   },
+   "shards": 2
+  },
+  "ui_protocol": {
+   "bytes": 34290016,
+   "hashes_ok": true,
+   "shards": 2
+  },
+  "ui_seed": {
+   "bytes": 12641771,
+   "hashes_ok": true,
+   "shards": 5
+  }
+ },
+ "dir": "/home/user/neurobrain/data/forge",
+ "ok": true
+}

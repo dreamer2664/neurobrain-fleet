@@ -1,0 +1,32 @@
+{
+ "proof": "two independent builds, same seed+profile",
+ "profile": "standard",
+ "seed": 23,
+ "build_a": "/home/user/neurobrain/data/forge",
+ "build_b": "/tmp/det-b",
+ "shards_compared": 11,
+ "identical": true,
+ "build_seconds": 211.4,
+ "peak_rss_mb": 659.5,
+ "shards": {
+  "code": [
+   "faae3bbf5a4a2278..",
+   "1c45afd8a1061872.."
+  ],
+  "drive": [
+   "b229be8c26865fa6..",
+   "e33a33bf3bba3c5c.."
+  ],
+  "ui_protocol": [
+   "da44e04514f165d6..",
+   "71cda5e160de8fa8.."
+  ],
+  "ui_seed": [
+   "bb83146e5eef5b98..",
+   "75e0b9afc2b745a5..",
+   "6665ee78f6553b22..",
+   "ff8e2890d884dcda..",
+   "6c46ba70bc279daf.."
+  ]
+ }
+}
