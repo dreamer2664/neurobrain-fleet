@@ -92,8 +92,8 @@ Improve anything, keep nothing sacred.
    steps, hit rate, centre error, latency, RSS, failure modes.
 6. **Exports for the runtime.** Provide `export_grounder.py` producing a
    checkpoint directory per `specs/model_io.md` and an int8 variant with the
-   measured accuracy delta (coordinate with agent 01's budget, but do not
-   block on them).
+   measured accuracy delta (coordiante with agent 07's budget but do not block
+   on them).
 
 ## Milestones
 
@@ -105,25 +105,12 @@ Improve anything, keep nothing sacred.
 - **M4:** two-stage refine crop; report gain per stage.
 - **M5:** 75% → 85% via hard-negative mining and curriculum.
 - **M6:** ≥ 90% hard-world, ≥ 60 px-level (≤ 8 px centre error), ≤ 60 ms/frame.
-- **M7:** 60-task UI suite live and green as a harness (the tasks run, pass or
-  fail honestly), scoreboard publishing every cycle.
-
-7. **The UI eval suite (you own `specs/eval_suite.md`).** 60 scripted UI tasks
-   across file-manager / editor / settings / crowded-screen / recovery
-   categories, each with a deterministic starting layout, a scripted environment
-   (Xvfb + tkinter, or your own renderer), and a code-checked success
-   condition. One command runs all of them and writes
-   `agents/03-eyes/scoreboard.json`: per-category success, median steps, median
-   seconds, failure strips. This is the number the whole fleet is judged on.
-   Agent 01 consumes it for the end-to-end run; keep the format identical to the
-   spec.
 
 ## Definition of done
 
 A checkpoint card with ≥ 90% widget hit on the hard world, a generalisation
-table (fonts/themes/sizes unseen in training), a failure gallery under 10%,
-`export_grounder.py` producing the runtime format, and a 60-task UI suite whose
-scoreboard anyone can reproduce with one command. Then you start on the next
+table (fonts/themes/sizes unseen in training), a failure gallery under 10%, and
+`export_grounder.py` producing the runtime format. Then you start on the next
 frontier: multi-monitor, DPI scaling, dark mode, and instructions that refer to
 relative position ("the button under the search bar").
 

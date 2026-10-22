@@ -70,7 +70,7 @@ orchestrator to call.
    structs and calls are well-formed.
 2. **The demo app.** Write a tkinter app (`deskhands/demo_app.py`) that mimics a
    small file manager: list, buttons, an entry field, a checkbox, a dialog.
-   It is your test rig and agent 03's eval rig. Make it scriptable: a JSON
+   It is your test rig and agent 06's eval rig. Make it scriptable: a JSON
    description in, a deterministic window out.
 3. **Window enumeration & focus.** List windows (title, geometry, pid) via X11;
    `focus_window` by title substring; report the focused window.

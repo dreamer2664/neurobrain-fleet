@@ -30,7 +30,7 @@ tests", leaves the house, and the machine does it. It runs in **≤ 4 GB RAM**,
 CPU only, no cloud, no pretrained weights: every model is trained from scratch
 inside https://github.com/dreamer2664/neurobrain.
 
-Five agents, five pieces. You own the container everything else plugs into, the loop that makes it act, and the budget that lets it run on a normal PC.
+Eight agents, eight pieces. You own the container everything else plugs into.
 
 ## Hard rules
 
@@ -94,20 +94,6 @@ Requirements you own:
    login on Windows (Task Scheduler) and Linux (systemd --user), plus a
    `--watch` mode that polls an inbox folder of task JSON files. The user leaves
    the house; the machine keeps working.
-7. **Compression and the RAM governor.** You own `specs/budget.md`. Weight-only
-   int8 quantization for both brains, KV-cache trimming, frozen/compiled
-   inference, lazy loading, and a governor that refuses work above 3.8 GB.
-   Every compression step reports its accuracy delta and its RSS delta. A model
-   that does not fit is not shippable, no matter how good its loss.
-8. **The conductor.** The task loop that turns one instruction into a sequence
-   of grounded actions: plan (call the local language brain via `/generate`) →
-   ground (call `/ground` on the current screenshot) → act (call `deskhands`) →
-   observe → verify → repeat or recover. You own
-   `specs/task_schema.md` and the end-to-end runner that executes agent 03's
-   task suite and writes the scoreboard. If the language brain or the grounder
-   is missing or weak, the conductor still runs: deterministic fallback plan,
-   heuristic element hints, explicit `failed` verdicts. No silent crashes and
-   no infinite loops — every task has a step and time budget.
 
 ## Milestones (each one is shippable on its own)
 
@@ -126,24 +112,16 @@ Requirements you own:
   from a clean venv in under 60 s; document Windows install.
 - **M6:** autostart + inbox watcher + crash recovery (kill -9 mid-task, restart,
   task is marked `failed` in history, machine is not left with a stuck process).
-- **M7:** int8 quantization + governor; publish the RSS/accuracy table; reach
-  ≤ 3.0 GB peak with the real checkpoints.
-- **M8:** the conductor on a 20-task end-to-end suite (agent 03's), with the
-  deterministic fallback first and the neural policy second. Publish success
-  rate, median steps, median seconds.
-- **M9:** the "leave the house" mode: inbox watcher + queue + run log + undo
-  trail, tested for 2 hours of unattended execution with a fake task stream.
 
 ## Definition of done
 
 `brainbox doctor && brainbox bench && brainbox run "..."` works on a clean
 sandbox from clone to task record, peak RSS under 1.6 GB in-sandbox (3.0 GB
-target on the real machine), boot under 20 s, and a 20-task suite actually
-executes with a published success rate. Every command documented in
+target on the real machine), boot under 20 s, and every command is documented in
 `agents/01-runtime/README.md` with real terminal output pasted in.
 
-Then you keep raising the end-to-end score: better planning prompts, recovery
-policies, retry budgets, and a queue that survives reboots.
+Then you start M7: watch the bus for what the other seven agents need from the
+host, and give it to them before they ask.
 
 ## Every cycle
 
