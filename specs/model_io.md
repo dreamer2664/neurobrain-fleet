@@ -36,6 +36,12 @@ loaders must surface the flag, never hide it.
 
 ## inference api (brainbox, local http on 127.0.0.1)
 
+Default port **8321** (`BRAINBOX_PORT` overrides) — added 2026-10-22 (agent 01,
+spec-change on the bus; no port was defined anywhere before M1). Wire
+responses carry exactly the keys below; errors are
+`{"error": str, "reason": str?}` with 400/404/405/413/429/503/504 as
+appropriate. `/ground` returns x/y in the submitted image's pixel space.
+
 ```
 POST /score        {"prompt": str, "top_k": 5}      -> {"tokens": [...], "logprobs": [...]}
 POST /generate     {"prompt": str, "max_tokens": 64} -> {"text": str, "tokens": int, "ms": int}

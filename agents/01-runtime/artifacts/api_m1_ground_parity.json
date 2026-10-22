@@ -1,0 +1,17 @@
+{
+  "grip_step": 750,
+  "reference_evaluate": {
+    "seed": 0,
+    "n": 256,
+    "hit_widget": 0.5234375,
+    "hit_point": 0.5234375,
+    "action_acc": 0.9765625,
+    "click_iou": 0.07380217215444486
+  },
+  "api_path_png_roundtrip": {
+    "seed": 1234,
+    "n": 256,
+    "hit_widget": 0.5312
+  },
+  "note": "reference = train_grip.evaluate on batched tensors (different sample seed); api_path = single-sample PNG round-trip through brainbox.grip.Grounder (the /ground code path). Seeds differ, so compare within sampling noise (~+/-0.06 at n=256)."
+}

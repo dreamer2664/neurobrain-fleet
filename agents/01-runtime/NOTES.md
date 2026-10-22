@@ -105,3 +105,65 @@ HTTP API on 127.0.0.1 (`/generate`, `/score`, `/ground` stubbed until a grip
 checkpoint exists, `/health` <50 ms), request queue in front of `BrainHost`,
 429 from the governor, 200-sequential-request leak test (>20 MB growth fails).
 Tests first, same ritual.
+
+## Cycle 3 — 2026-10-22 — M1: local API + 200-request leak test
+
+Fast-forwarded `agent-01` onto merged main first (deskhands, e2e_demo,
+restore_data.sh are in-tree now). `spec-change` published before editing:
+default API port 8321 (none was defined anywhere).
+
+### What landed
+
+- `brainbox/server.py` — stdlib `ThreadingHTTPServer`, hard-bound 127.0.0.1.
+  One worker thread drains a job queue (peak model concurrency asserted == 1
+  in tests under 8-way parallel load); `/health` bypasses the queue. Wire
+  responses are spec-exact: `/generate {text,tokens,ms}`, `/score
+  {tokens,logprobs}` (token strings; `token_ids` stayed host-internal —
+  say so on the bus if you need ids on the wire, agent 04), `/ground
+  {x,y,action}` in the *submitted image's* pixels, `/health {ok,rss_mb,step}`.
+  Errors: 400 bad json/fields/base64, 404, 405, 413 (>12 MB body / >8 MB
+  image), 429 governor (with `reason`), 503 missing grip checkpoint, 504 job
+  timeout 120 s. `/generate` also accepts optional temperature/top_k/seed.
+- `brainbox/grip.py` — real GripNet hosting. Preprocessing copied from
+  training (`ui_world.encode_task`, /127.5−1, BILINEAR→128²), `click_xy`
+  scaled back to input pixels. Loads legacy `grip_best.pt` (step 750) now,
+  checkpoint dirs in M2. Defensively `model.eval()` per call (see below).
+- `brainbox serve [--port 8321] [--checkpoint] [--grip-checkpoint]
+  [--ram-cap-mb]`; boots LM + grip eagerly, grip failure degrades to
+  `/ground` 503 instead of killing the server.
+- `scripts/api_stress.py` — M1 acceptance harness (fresh server subprocess,
+  real checkpoints; mix generate×100/score×50/ground×50, /health prober
+  thread, RSS from both `/health` and `/proc/<pid>/status` incl. VmHWM).
+- Tests: `tests/test_brainbox_m1.py` (10 tests; tiny stub LM + random GripNet
+  injected — wire contract under test, not weights). 21/21 overall
+  (`artifacts/tests_m1.txt`).
+
+### Measured (`artifacts/api_m1_stress.json`)
+
+| metric | value | bound |
+|---|---|---|
+| RSS growth over 200 seq. requests | **+0.3 MB** (/proc), +0 MB (/health) | ≤ 20 MB |
+| /health during load (n=208) | p50 1.2 ms, p95 2.1 ms, max 9.1 ms | < 50 ms |
+| /generate 16 tok (n=100) | p50 97 ms | — |
+| /score (n=50) | p50 5.0 ms | — |
+| /ground (n=50 unique screens) | p50 15.0 ms, hit 0.40 | — |
+| server peak RSS (VmHWM) | 299.5 MB (LM+grip resident) | < 1600 MB |
+
+### Grounding parity (a false alarm, documented so nobody repeats it)
+
+First stress reported hit 0.20 vs the lab's ~0.48–0.52. Two artifacts of my
+own harness, not the API: (1) `grounds[i % 10]` with ground slots at
+`i % 4 == 3` only ever requested 5 of 10 screens — and only 1 of those 5 is
+a hit for this checkpoint; (2) in my follow-up diagnostic,
+`train_grip.evaluate()` helpfully leaves the model in `train()` mode, so
+BatchNorm ran on single-image batch stats. Clean check
+(`artifacts/api_m1_ground_parity.json`): reference `evaluate` 0.523 (n=256,
+seed 0) vs PNG-round-trip API path **0.531** (n=256, seed 1234). The /ground
+path is faithful. Stress now uses 50 unique screens (hit 0.40 at n=50 — same
+checkpoint, sampling noise; use the n=256 number for comparisons, agent 03).
+
+### Next cycle: M2
+
+Checkpoint directories for both current `.pt` files (LM done in M0; grip dir
++ `doctor` reporting both + migration manifest). Then M4 undo (drive loop
+needs trash before it deletes anything), then M3.

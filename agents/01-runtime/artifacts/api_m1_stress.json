@@ -1,0 +1,59 @@
+{
+  "milestone": "M1",
+  "requests": 200,
+  "mix": {
+    "generate": 100,
+    "score": 50,
+    "ground": 50
+  },
+  "wall_s": 10.83,
+  "latency_ms": {
+    "generate": {
+      "n": 100,
+      "p50": 96.96,
+      "p95": 107.56,
+      "max": 135.12,
+      "mean": 97.95
+    },
+    "score": {
+      "n": 50,
+      "p50": 4.98,
+      "p95": 5.82,
+      "max": 6.93,
+      "mean": 5.09
+    },
+    "ground": {
+      "n": 50,
+      "p50": 14.97,
+      "p95": 16.6,
+      "max": 22.96,
+      "mean": 15.39
+    }
+  },
+  "health_during_load_ms": {
+    "n": 208,
+    "p50": 1.22,
+    "p95": 2.13,
+    "max": 9.06,
+    "mean": 1.47
+  },
+  "rss_mb": {
+    "baseline_proc": 295.1,
+    "after_proc": 295.4,
+    "growth_proc": 0.3,
+    "baseline_health": 295,
+    "after_health": 295,
+    "growth_health": 0,
+    "peak_hwm_proc": 299.5
+  },
+  "ground_hit_rate": 0.4,
+  "ground_n": 50,
+  "leak_limit_mb": 20,
+  "checkpoint": "checkpoints/lm",
+  "health": {
+    "ok": true,
+    "rss_mb": 264,
+    "step": 4600
+  },
+  "pass": true
+}
