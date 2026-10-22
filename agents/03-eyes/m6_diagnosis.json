@@ -1,0 +1,2134 @@
+{
+  "step_2600_seen_hit": 0.941,
+  "step_2600_med_err_px": 0.74,
+  "crnn40_3550_k7_w035": {
+    "seen": {
+      "n": 1000,
+      "hit_widget": 0.98,
+      "hit_point_6px": 0.94,
+      "hit_point_8px": 0.959,
+      "action_acc": 1.0,
+      "median_center_err_px": 0.68,
+      "mean_center_err_px": 2.76,
+      "p90_center_err_px": 2.03,
+      "n_misses": 20,
+      "miss_taxonomy": {
+        "same_role_wrong_label": 20,
+        "wrong_role_widget": 0,
+        "near_miss_border": 0,
+        "background_far": 0
+      },
+      "worst_confusions": {
+        "top_3_pair_confusions": [
+          [
+            "menu:play -> menu:inbox",
+            2
+          ],
+          [
+            "field:inbox -> field:delete",
+            2
+          ],
+          [
+            "tab:cancel -> tab:settings",
+            1
+          ]
+        ],
+        "top_10_pair_confusions": [
+          [
+            "menu:play -> menu:inbox",
+            2
+          ],
+          [
+            "field:inbox -> field:delete",
+            2
+          ],
+          [
+            "tab:cancel -> tab:settings",
+            1
+          ],
+          [
+            "icon:archive -> icon:cancel",
+            1
+          ],
+          [
+            "checkbox:logout -> checkbox:home",
+            1
+          ],
+          [
+            "menu:inbox -> menu:delete",
+            1
+          ],
+          [
+            "menu:submit -> menu:upload",
+            1
+          ],
+          [
+            "slider:cancel -> slider:archive",
+            1
+          ],
+          [
+            "menu:cancel -> menu:search",
+            1
+          ],
+          [
+            "icon:rename -> icon:logout",
+            1
+          ]
+        ],
+        "label_confusions": [
+          [
+            "inbox -> delete",
+            3
+          ],
+          [
+            "cancel -> archive",
+            2
+          ],
+          [
+            "play -> inbox",
+            2
+          ],
+          [
+            "cancel -> settings",
+            1
+          ],
+          [
+            "archive -> cancel",
+            1
+          ],
+          [
+            "logout -> home",
+            1
+          ],
+          [
+            "submit -> upload",
+            1
+          ],
+          [
+            "cancel -> search",
+            1
+          ],
+          [
+            "rename -> logout",
+            1
+          ],
+          [
+            "print -> logout",
+            1
+          ]
+        ],
+        "role_confusions": [
+          [
+            "icon -> icon",
+            6
+          ],
+          [
+            "menu -> menu",
+            5
+          ],
+          [
+            "checkbox -> checkbox",
+            3
+          ],
+          [
+            "slider -> slider",
+            2
+          ],
+          [
+            "field -> field",
+            2
+          ],
+          [
+            "tab -> tab",
+            1
+          ],
+          [
+            "button -> button",
+            1
+          ]
+        ]
+      },
+      "by_role": {
+        "button": {
+          "n": 181,
+          "hit_widget": 0.9945,
+          "median_err_px": 0.72
+        },
+        "checkbox": {
+          "n": 97,
+          "hit_widget": 0.9691,
+          "median_err_px": 0.8
+        },
+        "field": {
+          "n": 105,
+          "hit_widget": 0.981,
+          "median_err_px": 0.79
+        },
+        "icon": {
+          "n": 152,
+          "hit_widget": 0.9605,
+          "median_err_px": 0.66
+        },
+        "menu": {
+          "n": 196,
+          "hit_widget": 0.9745,
+          "median_err_px": 0.68
+        },
+        "slider": {
+          "n": 91,
+          "hit_widget": 0.978,
+          "median_err_px": 0.77
+        },
+        "tab": {
+          "n": 178,
+          "hit_widget": 0.9944,
+          "median_err_px": 0.52
+        }
+      },
+      "by_label": {
+        "archive": {
+          "n": 42,
+          "hit_widget": 0.9762,
+          "median_err_px": 0.52
+        },
+        "cancel": {
+          "n": 42,
+          "hit_widget": 0.9048,
+          "median_err_px": 0.72
+        },
+        "cart": {
+          "n": 43,
+          "hit_widget": 1.0,
+          "median_err_px": 0.78
+        },
+        "delete": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.64
+        },
+        "download": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.82
+        },
+        "export": {
+          "n": 39,
+          "hit_widget": 0.9744,
+          "median_err_px": 0.71
+        },
+        "filter": {
+          "n": 47,
+          "hit_widget": 1.0,
+          "median_err_px": 0.61
+        },
+        "help": {
+          "n": 39,
+          "hit_widget": 1.0,
+          "median_err_px": 0.76
+        },
+        "home": {
+          "n": 46,
+          "hit_widget": 1.0,
+          "median_err_px": 0.62
+        },
+        "inbox": {
+          "n": 50,
+          "hit_widget": 0.94,
+          "median_err_px": 0.69
+        },
+        "login": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.51
+        },
+        "logout": {
+          "n": 40,
+          "hit_widget": 0.975,
+          "median_err_px": 0.73
+        },
+        "pause": {
+          "n": 32,
+          "hit_widget": 1.0,
+          "median_err_px": 0.68
+        },
+        "play": {
+          "n": 44,
+          "hit_widget": 0.9545,
+          "median_err_px": 0.65
+        },
+        "print": {
+          "n": 46,
+          "hit_widget": 0.9783,
+          "median_err_px": 0.65
+        },
+        "profile": {
+          "n": 44,
+          "hit_widget": 1.0,
+          "median_err_px": 0.78
+        },
+        "refresh": {
+          "n": 52,
+          "hit_widget": 1.0,
+          "median_err_px": 0.61
+        },
+        "rename": {
+          "n": 29,
+          "hit_widget": 0.8966,
+          "median_err_px": 0.8
+        },
+        "save": {
+          "n": 29,
+          "hit_widget": 1.0,
+          "median_err_px": 0.61
+        },
+        "search": {
+          "n": 50,
+          "hit_widget": 1.0,
+          "median_err_px": 0.63
+        },
+        "settings": {
+          "n": 40,
+          "hit_widget": 0.975,
+          "median_err_px": 0.62
+        },
+        "share": {
+          "n": 36,
+          "hit_widget": 0.9722,
+          "median_err_px": 0.71
+        },
+        "submit": {
+          "n": 46,
+          "hit_widget": 0.9565,
+          "median_err_px": 0.66
+        },
+        "upload": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.68
+        }
+      },
+      "by_theme": {
+        "dark": {
+          "n": 351,
+          "hit_widget": 0.9715,
+          "median_err_px": 0.68
+        },
+        "high_contrast": {
+          "n": 331,
+          "hit_widget": 0.9728,
+          "median_err_px": 0.69
+        },
+        "light": {
+          "n": 318,
+          "hit_widget": 0.9969,
+          "median_err_px": 0.66
+        }
+      },
+      "by_size": {
+        "small": {
+          "n": 733,
+          "hit_widget": 0.9823,
+          "median_err_px": 0.62
+        },
+        "medium": {
+          "n": 197,
+          "hit_widget": 0.9645,
+          "median_err_px": 0.88
+        },
+        "large": {
+          "n": 70,
+          "hit_widget": 1.0,
+          "median_err_px": 0.88
+        }
+      },
+      "latency_ms_per_frame": 28.36,
+      "latency_mean_ms": 28.61,
+      "peak_rss_mb": 1585.7,
+      "params_stage1": 882460,
+      "params_stage2": 686032,
+      "params_active": 1568492,
+      "use_stage2": true,
+      "multi_scale": false
+    },
+    "ood": {
+      "n": 500,
+      "hit_widget": 0.91,
+      "hit_point_6px": 0.88,
+      "hit_point_8px": 0.882,
+      "action_acc": 1.0,
+      "median_center_err_px": 0.83,
+      "mean_center_err_px": 7.7,
+      "p90_center_err_px": 18.09,
+      "n_misses": 45,
+      "miss_taxonomy": {
+        "same_role_wrong_label": 36,
+        "wrong_role_widget": 9,
+        "near_miss_border": 0,
+        "background_far": 0
+      },
+      "worst_confusions": {
+        "top_3_pair_confusions": [
+          [
+            "button:cart -> button:save",
+            2
+          ],
+          [
+            "menu:search -> menu:cancel",
+            2
+          ],
+          [
+            "button:cart -> button:profile",
+            1
+          ]
+        ],
+        "top_10_pair_confusions": [
+          [
+            "button:cart -> button:save",
+            2
+          ],
+          [
+            "menu:search -> menu:cancel",
+            2
+          ],
+          [
+            "button:cart -> button:profile",
+            1
+          ],
+          [
+            "tab:profile -> tab:print",
+            1
+          ],
+          [
+            "button:archive -> slider:submit",
+            1
+          ],
+          [
+            "tab:search -> tab:cancel",
+            1
+          ],
+          [
+            "tab:settings -> tab:cancel",
+            1
+          ],
+          [
+            "field:inbox -> field:login",
+            1
+          ],
+          [
+            "slider:pause -> slider:upload",
+            1
+          ],
+          [
+            "tab:cart -> tab:save",
+            1
+          ]
+        ],
+        "label_confusions": [
+          [
+            "cart -> save",
+            4
+          ],
+          [
+            "search -> cancel",
+            3
+          ],
+          [
+            "refresh -> archive",
+            2
+          ],
+          [
+            "cart -> profile",
+            1
+          ],
+          [
+            "profile -> print",
+            1
+          ],
+          [
+            "archive -> submit",
+            1
+          ],
+          [
+            "settings -> cancel",
+            1
+          ],
+          [
+            "inbox -> login",
+            1
+          ],
+          [
+            "pause -> upload",
+            1
+          ],
+          [
+            "submit -> login",
+            1
+          ]
+        ],
+        "role_confusions": [
+          [
+            "button -> button",
+            9
+          ],
+          [
+            "tab -> tab",
+            7
+          ],
+          [
+            "menu -> menu",
+            7
+          ],
+          [
+            "slider -> slider",
+            5
+          ],
+          [
+            "button -> icon",
+            4
+          ],
+          [
+            "checkbox -> checkbox",
+            3
+          ],
+          [
+            "icon -> icon",
+            3
+          ],
+          [
+            "field -> field",
+            2
+          ],
+          [
+            "button -> slider",
+            1
+          ],
+          [
+            "button -> tab",
+            1
+          ]
+        ]
+      },
+      "by_role": {
+        "button": {
+          "n": 90,
+          "hit_widget": 0.8111,
+          "median_err_px": 0.99
+        },
+        "checkbox": {
+          "n": 44,
+          "hit_widget": 0.9318,
+          "median_err_px": 0.81
+        },
+        "field": {
+          "n": 53,
+          "hit_widget": 0.9623,
+          "median_err_px": 0.74
+        },
+        "icon": {
+          "n": 67,
+          "hit_widget": 0.9552,
+          "median_err_px": 0.86
+        },
+        "menu": {
+          "n": 102,
+          "hit_widget": 0.9216,
+          "median_err_px": 0.78
+        },
+        "slider": {
+          "n": 50,
+          "hit_widget": 0.9,
+          "median_err_px": 1.09
+        },
+        "tab": {
+          "n": 94,
+          "hit_widget": 0.9255,
+          "median_err_px": 0.63
+        }
+      },
+      "by_label": {
+        "archive": {
+          "n": 20,
+          "hit_widget": 0.85,
+          "median_err_px": 0.78
+        },
+        "cancel": {
+          "n": 23,
+          "hit_widget": 0.9565,
+          "median_err_px": 0.73
+        },
+        "cart": {
+          "n": 21,
+          "hit_widget": 0.7143,
+          "median_err_px": 1.07
+        },
+        "delete": {
+          "n": 22,
+          "hit_widget": 0.8636,
+          "median_err_px": 0.61
+        },
+        "download": {
+          "n": 17,
+          "hit_widget": 0.9412,
+          "median_err_px": 0.63
+        },
+        "export": {
+          "n": 13,
+          "hit_widget": 1.0,
+          "median_err_px": 1.2
+        },
+        "filter": {
+          "n": 17,
+          "hit_widget": 0.9412,
+          "median_err_px": 0.74
+        },
+        "help": {
+          "n": 17,
+          "hit_widget": 1.0,
+          "median_err_px": 0.89
+        },
+        "home": {
+          "n": 17,
+          "hit_widget": 1.0,
+          "median_err_px": 0.92
+        },
+        "inbox": {
+          "n": 29,
+          "hit_widget": 0.931,
+          "median_err_px": 0.93
+        },
+        "login": {
+          "n": 21,
+          "hit_widget": 1.0,
+          "median_err_px": 0.57
+        },
+        "logout": {
+          "n": 24,
+          "hit_widget": 0.9583,
+          "median_err_px": 0.8
+        },
+        "pause": {
+          "n": 22,
+          "hit_widget": 0.9091,
+          "median_err_px": 0.74
+        },
+        "play": {
+          "n": 18,
+          "hit_widget": 0.9444,
+          "median_err_px": 0.77
+        },
+        "print": {
+          "n": 26,
+          "hit_widget": 1.0,
+          "median_err_px": 0.93
+        },
+        "profile": {
+          "n": 18,
+          "hit_widget": 0.8333,
+          "median_err_px": 0.99
+        },
+        "refresh": {
+          "n": 21,
+          "hit_widget": 0.6667,
+          "median_err_px": 1.25
+        },
+        "rename": {
+          "n": 23,
+          "hit_widget": 1.0,
+          "median_err_px": 0.88
+        },
+        "save": {
+          "n": 17,
+          "hit_widget": 0.9412,
+          "median_err_px": 0.69
+        },
+        "search": {
+          "n": 30,
+          "hit_widget": 0.8333,
+          "median_err_px": 0.97
+        },
+        "settings": {
+          "n": 22,
+          "hit_widget": 0.8636,
+          "median_err_px": 0.72
+        },
+        "share": {
+          "n": 20,
+          "hit_widget": 0.9,
+          "median_err_px": 0.58
+        },
+        "submit": {
+          "n": 26,
+          "hit_widget": 0.8846,
+          "median_err_px": 0.7
+        },
+        "upload": {
+          "n": 16,
+          "hit_widget": 1.0,
+          "median_err_px": 0.78
+        }
+      },
+      "by_theme": {
+        "high_contrast_amber": {
+          "n": 159,
+          "hit_widget": 0.8931,
+          "median_err_px": 0.85
+        },
+        "nord_slate": {
+          "n": 150,
+          "hit_widget": 0.92,
+          "median_err_px": 0.95
+        },
+        "solarized_light": {
+          "n": 191,
+          "hit_widget": 0.9162,
+          "median_err_px": 0.71
+        }
+      },
+      "by_size": {
+        "small": {
+          "n": 372,
+          "hit_widget": 0.9194,
+          "median_err_px": 0.8
+        },
+        "medium": {
+          "n": 91,
+          "hit_widget": 0.8681,
+          "median_err_px": 1.01
+        },
+        "large": {
+          "n": 37,
+          "hit_widget": 0.9189,
+          "median_err_px": 0.97
+        }
+      },
+      "latency_ms_per_frame": 30.64,
+      "latency_mean_ms": 31.07,
+      "peak_rss_mb": 1585.7,
+      "params_stage1": 882460,
+      "params_stage2": 686032,
+      "params_active": 1568492,
+      "use_stage2": true,
+      "multi_scale": false
+    }
+  },
+  "crnn40_3550_k7_w050": {
+    "seen": {
+      "n": 1000,
+      "hit_widget": 0.98,
+      "hit_point_6px": 0.946,
+      "hit_point_8px": 0.965,
+      "action_acc": 1.0,
+      "median_center_err_px": 0.68,
+      "mean_center_err_px": 2.65,
+      "p90_center_err_px": 1.87,
+      "n_misses": 20,
+      "miss_taxonomy": {
+        "same_role_wrong_label": 20,
+        "wrong_role_widget": 0,
+        "near_miss_border": 0,
+        "background_far": 0
+      },
+      "worst_confusions": {
+        "top_3_pair_confusions": [
+          [
+            "menu:play -> menu:inbox",
+            2
+          ],
+          [
+            "field:inbox -> field:delete",
+            2
+          ],
+          [
+            "tab:cancel -> tab:settings",
+            1
+          ]
+        ],
+        "top_10_pair_confusions": [
+          [
+            "menu:play -> menu:inbox",
+            2
+          ],
+          [
+            "field:inbox -> field:delete",
+            2
+          ],
+          [
+            "tab:cancel -> tab:settings",
+            1
+          ],
+          [
+            "icon:archive -> icon:cancel",
+            1
+          ],
+          [
+            "checkbox:logout -> checkbox:home",
+            1
+          ],
+          [
+            "menu:inbox -> menu:delete",
+            1
+          ],
+          [
+            "menu:submit -> menu:upload",
+            1
+          ],
+          [
+            "slider:cancel -> slider:archive",
+            1
+          ],
+          [
+            "menu:cancel -> menu:search",
+            1
+          ],
+          [
+            "icon:rename -> icon:logout",
+            1
+          ]
+        ],
+        "label_confusions": [
+          [
+            "inbox -> delete",
+            3
+          ],
+          [
+            "cancel -> archive",
+            2
+          ],
+          [
+            "play -> inbox",
+            2
+          ],
+          [
+            "cancel -> settings",
+            1
+          ],
+          [
+            "archive -> cancel",
+            1
+          ],
+          [
+            "logout -> home",
+            1
+          ],
+          [
+            "submit -> upload",
+            1
+          ],
+          [
+            "cancel -> search",
+            1
+          ],
+          [
+            "rename -> logout",
+            1
+          ],
+          [
+            "print -> logout",
+            1
+          ]
+        ],
+        "role_confusions": [
+          [
+            "icon -> icon",
+            6
+          ],
+          [
+            "menu -> menu",
+            5
+          ],
+          [
+            "checkbox -> checkbox",
+            3
+          ],
+          [
+            "slider -> slider",
+            2
+          ],
+          [
+            "field -> field",
+            2
+          ],
+          [
+            "tab -> tab",
+            1
+          ],
+          [
+            "button -> button",
+            1
+          ]
+        ]
+      },
+      "by_role": {
+        "button": {
+          "n": 181,
+          "hit_widget": 0.9945,
+          "median_err_px": 0.7
+        },
+        "checkbox": {
+          "n": 97,
+          "hit_widget": 0.9691,
+          "median_err_px": 0.8
+        },
+        "field": {
+          "n": 105,
+          "hit_widget": 0.981,
+          "median_err_px": 0.78
+        },
+        "icon": {
+          "n": 152,
+          "hit_widget": 0.9605,
+          "median_err_px": 0.66
+        },
+        "menu": {
+          "n": 196,
+          "hit_widget": 0.9745,
+          "median_err_px": 0.68
+        },
+        "slider": {
+          "n": 91,
+          "hit_widget": 0.978,
+          "median_err_px": 0.77
+        },
+        "tab": {
+          "n": 178,
+          "hit_widget": 0.9944,
+          "median_err_px": 0.52
+        }
+      },
+      "by_label": {
+        "archive": {
+          "n": 42,
+          "hit_widget": 0.9762,
+          "median_err_px": 0.52
+        },
+        "cancel": {
+          "n": 42,
+          "hit_widget": 0.9048,
+          "median_err_px": 0.72
+        },
+        "cart": {
+          "n": 43,
+          "hit_widget": 1.0,
+          "median_err_px": 0.78
+        },
+        "delete": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.61
+        },
+        "download": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.82
+        },
+        "export": {
+          "n": 39,
+          "hit_widget": 0.9744,
+          "median_err_px": 0.71
+        },
+        "filter": {
+          "n": 47,
+          "hit_widget": 1.0,
+          "median_err_px": 0.58
+        },
+        "help": {
+          "n": 39,
+          "hit_widget": 1.0,
+          "median_err_px": 0.76
+        },
+        "home": {
+          "n": 46,
+          "hit_widget": 1.0,
+          "median_err_px": 0.62
+        },
+        "inbox": {
+          "n": 50,
+          "hit_widget": 0.94,
+          "median_err_px": 0.69
+        },
+        "login": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.5
+        },
+        "logout": {
+          "n": 40,
+          "hit_widget": 0.975,
+          "median_err_px": 0.73
+        },
+        "pause": {
+          "n": 32,
+          "hit_widget": 1.0,
+          "median_err_px": 0.71
+        },
+        "play": {
+          "n": 44,
+          "hit_widget": 0.9545,
+          "median_err_px": 0.65
+        },
+        "print": {
+          "n": 46,
+          "hit_widget": 0.9783,
+          "median_err_px": 0.65
+        },
+        "profile": {
+          "n": 44,
+          "hit_widget": 1.0,
+          "median_err_px": 0.78
+        },
+        "refresh": {
+          "n": 52,
+          "hit_widget": 1.0,
+          "median_err_px": 0.61
+        },
+        "rename": {
+          "n": 29,
+          "hit_widget": 0.8966,
+          "median_err_px": 0.8
+        },
+        "save": {
+          "n": 29,
+          "hit_widget": 1.0,
+          "median_err_px": 0.61
+        },
+        "search": {
+          "n": 50,
+          "hit_widget": 1.0,
+          "median_err_px": 0.63
+        },
+        "settings": {
+          "n": 40,
+          "hit_widget": 0.975,
+          "median_err_px": 0.62
+        },
+        "share": {
+          "n": 36,
+          "hit_widget": 0.9722,
+          "median_err_px": 0.71
+        },
+        "submit": {
+          "n": 46,
+          "hit_widget": 0.9565,
+          "median_err_px": 0.64
+        },
+        "upload": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.68
+        }
+      },
+      "by_theme": {
+        "dark": {
+          "n": 351,
+          "hit_widget": 0.9715,
+          "median_err_px": 0.68
+        },
+        "high_contrast": {
+          "n": 331,
+          "hit_widget": 0.9728,
+          "median_err_px": 0.69
+        },
+        "light": {
+          "n": 318,
+          "hit_widget": 0.9969,
+          "median_err_px": 0.64
+        }
+      },
+      "by_size": {
+        "small": {
+          "n": 733,
+          "hit_widget": 0.9823,
+          "median_err_px": 0.62
+        },
+        "medium": {
+          "n": 197,
+          "hit_widget": 0.9645,
+          "median_err_px": 0.88
+        },
+        "large": {
+          "n": 70,
+          "hit_widget": 1.0,
+          "median_err_px": 0.84
+        }
+      },
+      "latency_ms_per_frame": 30.34,
+      "latency_mean_ms": 30.66,
+      "peak_rss_mb": 1585.7,
+      "params_stage1": 882460,
+      "params_stage2": 686032,
+      "params_active": 1568492,
+      "use_stage2": true,
+      "multi_scale": false
+    },
+    "ood": {
+      "n": 500,
+      "hit_widget": 0.91,
+      "hit_point_6px": 0.894,
+      "hit_point_8px": 0.896,
+      "action_acc": 1.0,
+      "median_center_err_px": 0.81,
+      "mean_center_err_px": 7.21,
+      "p90_center_err_px": 14.9,
+      "n_misses": 45,
+      "miss_taxonomy": {
+        "same_role_wrong_label": 36,
+        "wrong_role_widget": 9,
+        "near_miss_border": 0,
+        "background_far": 0
+      },
+      "worst_confusions": {
+        "top_3_pair_confusions": [
+          [
+            "button:cart -> button:save",
+            2
+          ],
+          [
+            "menu:search -> menu:cancel",
+            2
+          ],
+          [
+            "button:cart -> button:profile",
+            1
+          ]
+        ],
+        "top_10_pair_confusions": [
+          [
+            "button:cart -> button:save",
+            2
+          ],
+          [
+            "menu:search -> menu:cancel",
+            2
+          ],
+          [
+            "button:cart -> button:profile",
+            1
+          ],
+          [
+            "tab:profile -> tab:print",
+            1
+          ],
+          [
+            "button:archive -> slider:submit",
+            1
+          ],
+          [
+            "tab:search -> tab:cancel",
+            1
+          ],
+          [
+            "tab:settings -> tab:cancel",
+            1
+          ],
+          [
+            "field:inbox -> field:login",
+            1
+          ],
+          [
+            "slider:pause -> slider:upload",
+            1
+          ],
+          [
+            "tab:cart -> tab:save",
+            1
+          ]
+        ],
+        "label_confusions": [
+          [
+            "cart -> save",
+            4
+          ],
+          [
+            "search -> cancel",
+            3
+          ],
+          [
+            "refresh -> cancel",
+            2
+          ],
+          [
+            "refresh -> archive",
+            2
+          ],
+          [
+            "cart -> profile",
+            1
+          ],
+          [
+            "profile -> print",
+            1
+          ],
+          [
+            "archive -> submit",
+            1
+          ],
+          [
+            "settings -> cancel",
+            1
+          ],
+          [
+            "inbox -> login",
+            1
+          ],
+          [
+            "pause -> upload",
+            1
+          ]
+        ],
+        "role_confusions": [
+          [
+            "button -> button",
+            9
+          ],
+          [
+            "tab -> tab",
+            7
+          ],
+          [
+            "menu -> menu",
+            7
+          ],
+          [
+            "slider -> slider",
+            5
+          ],
+          [
+            "button -> icon",
+            4
+          ],
+          [
+            "checkbox -> checkbox",
+            3
+          ],
+          [
+            "icon -> icon",
+            3
+          ],
+          [
+            "field -> field",
+            2
+          ],
+          [
+            "button -> slider",
+            1
+          ],
+          [
+            "button -> tab",
+            1
+          ]
+        ]
+      },
+      "by_role": {
+        "button": {
+          "n": 90,
+          "hit_widget": 0.8111,
+          "median_err_px": 0.99
+        },
+        "checkbox": {
+          "n": 44,
+          "hit_widget": 0.9318,
+          "median_err_px": 0.76
+        },
+        "field": {
+          "n": 53,
+          "hit_widget": 0.9623,
+          "median_err_px": 0.69
+        },
+        "icon": {
+          "n": 67,
+          "hit_widget": 0.9552,
+          "median_err_px": 0.86
+        },
+        "menu": {
+          "n": 102,
+          "hit_widget": 0.9216,
+          "median_err_px": 0.78
+        },
+        "slider": {
+          "n": 50,
+          "hit_widget": 0.9,
+          "median_err_px": 1.07
+        },
+        "tab": {
+          "n": 94,
+          "hit_widget": 0.9255,
+          "median_err_px": 0.61
+        }
+      },
+      "by_label": {
+        "archive": {
+          "n": 20,
+          "hit_widget": 0.85,
+          "median_err_px": 0.78
+        },
+        "cancel": {
+          "n": 23,
+          "hit_widget": 0.9565,
+          "median_err_px": 0.73
+        },
+        "cart": {
+          "n": 21,
+          "hit_widget": 0.7143,
+          "median_err_px": 1.07
+        },
+        "delete": {
+          "n": 22,
+          "hit_widget": 0.8636,
+          "median_err_px": 0.61
+        },
+        "download": {
+          "n": 17,
+          "hit_widget": 0.9412,
+          "median_err_px": 0.63
+        },
+        "export": {
+          "n": 13,
+          "hit_widget": 1.0,
+          "median_err_px": 1.2
+        },
+        "filter": {
+          "n": 17,
+          "hit_widget": 0.9412,
+          "median_err_px": 0.74
+        },
+        "help": {
+          "n": 17,
+          "hit_widget": 1.0,
+          "median_err_px": 0.82
+        },
+        "home": {
+          "n": 17,
+          "hit_widget": 1.0,
+          "median_err_px": 0.92
+        },
+        "inbox": {
+          "n": 29,
+          "hit_widget": 0.931,
+          "median_err_px": 0.93
+        },
+        "login": {
+          "n": 21,
+          "hit_widget": 1.0,
+          "median_err_px": 0.57
+        },
+        "logout": {
+          "n": 24,
+          "hit_widget": 0.9583,
+          "median_err_px": 0.77
+        },
+        "pause": {
+          "n": 22,
+          "hit_widget": 0.9545,
+          "median_err_px": 0.74
+        },
+        "play": {
+          "n": 18,
+          "hit_widget": 0.9444,
+          "median_err_px": 0.72
+        },
+        "print": {
+          "n": 26,
+          "hit_widget": 1.0,
+          "median_err_px": 0.88
+        },
+        "profile": {
+          "n": 18,
+          "hit_widget": 0.8333,
+          "median_err_px": 0.92
+        },
+        "refresh": {
+          "n": 21,
+          "hit_widget": 0.619,
+          "median_err_px": 1.25
+        },
+        "rename": {
+          "n": 23,
+          "hit_widget": 1.0,
+          "median_err_px": 0.88
+        },
+        "save": {
+          "n": 17,
+          "hit_widget": 0.9412,
+          "median_err_px": 0.69
+        },
+        "search": {
+          "n": 30,
+          "hit_widget": 0.8333,
+          "median_err_px": 0.97
+        },
+        "settings": {
+          "n": 22,
+          "hit_widget": 0.8636,
+          "median_err_px": 0.72
+        },
+        "share": {
+          "n": 20,
+          "hit_widget": 0.9,
+          "median_err_px": 0.58
+        },
+        "submit": {
+          "n": 26,
+          "hit_widget": 0.8846,
+          "median_err_px": 0.7
+        },
+        "upload": {
+          "n": 16,
+          "hit_widget": 1.0,
+          "median_err_px": 0.67
+        }
+      },
+      "by_theme": {
+        "high_contrast_amber": {
+          "n": 159,
+          "hit_widget": 0.8868,
+          "median_err_px": 0.85
+        },
+        "nord_slate": {
+          "n": 150,
+          "hit_widget": 0.9267,
+          "median_err_px": 0.92
+        },
+        "solarized_light": {
+          "n": 191,
+          "hit_widget": 0.9162,
+          "median_err_px": 0.7
+        }
+      },
+      "by_size": {
+        "small": {
+          "n": 372,
+          "hit_widget": 0.9194,
+          "median_err_px": 0.79
+        },
+        "medium": {
+          "n": 91,
+          "hit_widget": 0.8791,
+          "median_err_px": 0.9
+        },
+        "large": {
+          "n": 37,
+          "hit_widget": 0.8919,
+          "median_err_px": 0.93
+        }
+      },
+      "latency_ms_per_frame": 28.42,
+      "latency_mean_ms": 28.32,
+      "peak_rss_mb": 1585.7,
+      "params_stage1": 882460,
+      "params_stage2": 686032,
+      "params_active": 1568492,
+      "use_stage2": true,
+      "multi_scale": false
+    }
+  },
+  "crnn40_3550_multiscale": {
+    "seen": {
+      "n": 1000,
+      "hit_widget": 0.98,
+      "hit_point_6px": 0.943,
+      "hit_point_8px": 0.963,
+      "action_acc": 1.0,
+      "median_center_err_px": 0.67,
+      "mean_center_err_px": 2.71,
+      "p90_center_err_px": 1.89,
+      "n_misses": 20,
+      "miss_taxonomy": {
+        "same_role_wrong_label": 20,
+        "wrong_role_widget": 0,
+        "near_miss_border": 0,
+        "background_far": 0
+      },
+      "worst_confusions": {
+        "top_3_pair_confusions": [
+          [
+            "menu:play -> menu:inbox",
+            2
+          ],
+          [
+            "field:inbox -> field:delete",
+            2
+          ],
+          [
+            "tab:cancel -> tab:settings",
+            1
+          ]
+        ],
+        "top_10_pair_confusions": [
+          [
+            "menu:play -> menu:inbox",
+            2
+          ],
+          [
+            "field:inbox -> field:delete",
+            2
+          ],
+          [
+            "tab:cancel -> tab:settings",
+            1
+          ],
+          [
+            "icon:archive -> icon:cancel",
+            1
+          ],
+          [
+            "checkbox:logout -> checkbox:home",
+            1
+          ],
+          [
+            "menu:inbox -> menu:delete",
+            1
+          ],
+          [
+            "menu:submit -> menu:upload",
+            1
+          ],
+          [
+            "slider:cancel -> slider:archive",
+            1
+          ],
+          [
+            "menu:cancel -> menu:search",
+            1
+          ],
+          [
+            "icon:rename -> icon:logout",
+            1
+          ]
+        ],
+        "label_confusions": [
+          [
+            "inbox -> delete",
+            3
+          ],
+          [
+            "cancel -> archive",
+            2
+          ],
+          [
+            "play -> inbox",
+            2
+          ],
+          [
+            "cancel -> settings",
+            1
+          ],
+          [
+            "archive -> cancel",
+            1
+          ],
+          [
+            "logout -> home",
+            1
+          ],
+          [
+            "submit -> upload",
+            1
+          ],
+          [
+            "cancel -> search",
+            1
+          ],
+          [
+            "rename -> logout",
+            1
+          ],
+          [
+            "print -> logout",
+            1
+          ]
+        ],
+        "role_confusions": [
+          [
+            "icon -> icon",
+            6
+          ],
+          [
+            "menu -> menu",
+            5
+          ],
+          [
+            "checkbox -> checkbox",
+            3
+          ],
+          [
+            "slider -> slider",
+            2
+          ],
+          [
+            "field -> field",
+            2
+          ],
+          [
+            "tab -> tab",
+            1
+          ],
+          [
+            "button -> button",
+            1
+          ]
+        ]
+      },
+      "by_role": {
+        "button": {
+          "n": 181,
+          "hit_widget": 0.9945,
+          "median_err_px": 0.68
+        },
+        "checkbox": {
+          "n": 97,
+          "hit_widget": 0.9691,
+          "median_err_px": 0.86
+        },
+        "field": {
+          "n": 105,
+          "hit_widget": 0.981,
+          "median_err_px": 0.77
+        },
+        "icon": {
+          "n": 152,
+          "hit_widget": 0.9605,
+          "median_err_px": 0.66
+        },
+        "menu": {
+          "n": 196,
+          "hit_widget": 0.9745,
+          "median_err_px": 0.65
+        },
+        "slider": {
+          "n": 91,
+          "hit_widget": 0.978,
+          "median_err_px": 0.77
+        },
+        "tab": {
+          "n": 178,
+          "hit_widget": 0.9944,
+          "median_err_px": 0.52
+        }
+      },
+      "by_label": {
+        "archive": {
+          "n": 42,
+          "hit_widget": 0.9762,
+          "median_err_px": 0.52
+        },
+        "cancel": {
+          "n": 42,
+          "hit_widget": 0.9048,
+          "median_err_px": 0.72
+        },
+        "cart": {
+          "n": 43,
+          "hit_widget": 1.0,
+          "median_err_px": 0.78
+        },
+        "delete": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.61
+        },
+        "download": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.8
+        },
+        "export": {
+          "n": 39,
+          "hit_widget": 0.9744,
+          "median_err_px": 0.81
+        },
+        "filter": {
+          "n": 47,
+          "hit_widget": 1.0,
+          "median_err_px": 0.58
+        },
+        "help": {
+          "n": 39,
+          "hit_widget": 1.0,
+          "median_err_px": 0.69
+        },
+        "home": {
+          "n": 46,
+          "hit_widget": 1.0,
+          "median_err_px": 0.62
+        },
+        "inbox": {
+          "n": 50,
+          "hit_widget": 0.94,
+          "median_err_px": 0.69
+        },
+        "login": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.5
+        },
+        "logout": {
+          "n": 40,
+          "hit_widget": 0.975,
+          "median_err_px": 0.69
+        },
+        "pause": {
+          "n": 32,
+          "hit_widget": 1.0,
+          "median_err_px": 0.71
+        },
+        "play": {
+          "n": 44,
+          "hit_widget": 0.9545,
+          "median_err_px": 0.65
+        },
+        "print": {
+          "n": 46,
+          "hit_widget": 0.9783,
+          "median_err_px": 0.65
+        },
+        "profile": {
+          "n": 44,
+          "hit_widget": 1.0,
+          "median_err_px": 0.75
+        },
+        "refresh": {
+          "n": 52,
+          "hit_widget": 1.0,
+          "median_err_px": 0.61
+        },
+        "rename": {
+          "n": 29,
+          "hit_widget": 0.8966,
+          "median_err_px": 0.8
+        },
+        "save": {
+          "n": 29,
+          "hit_widget": 1.0,
+          "median_err_px": 0.63
+        },
+        "search": {
+          "n": 50,
+          "hit_widget": 1.0,
+          "median_err_px": 0.61
+        },
+        "settings": {
+          "n": 40,
+          "hit_widget": 0.975,
+          "median_err_px": 0.62
+        },
+        "share": {
+          "n": 36,
+          "hit_widget": 0.9722,
+          "median_err_px": 0.71
+        },
+        "submit": {
+          "n": 46,
+          "hit_widget": 0.9565,
+          "median_err_px": 0.64
+        },
+        "upload": {
+          "n": 41,
+          "hit_widget": 1.0,
+          "median_err_px": 0.68
+        }
+      },
+      "by_theme": {
+        "dark": {
+          "n": 351,
+          "hit_widget": 0.9715,
+          "median_err_px": 0.68
+        },
+        "high_contrast": {
+          "n": 331,
+          "hit_widget": 0.9728,
+          "median_err_px": 0.67
+        },
+        "light": {
+          "n": 318,
+          "hit_widget": 0.9969,
+          "median_err_px": 0.63
+        }
+      },
+      "by_size": {
+        "small": {
+          "n": 733,
+          "hit_widget": 0.9823,
+          "median_err_px": 0.61
+        },
+        "medium": {
+          "n": 197,
+          "hit_widget": 0.9645,
+          "median_err_px": 0.89
+        },
+        "large": {
+          "n": 70,
+          "hit_widget": 1.0,
+          "median_err_px": 0.84
+        }
+      },
+      "latency_ms_per_frame": 45.46,
+      "latency_mean_ms": 47.0,
+      "peak_rss_mb": 1585.7,
+      "params_stage1": 882460,
+      "params_stage2": 686032,
+      "params_active": 1568492,
+      "use_stage2": true,
+      "multi_scale": true
+    },
+    "ood": {
+      "n": 500,
+      "hit_widget": 0.912,
+      "hit_point_6px": 0.874,
+      "hit_point_8px": 0.88,
+      "action_acc": 1.0,
+      "median_center_err_px": 0.82,
+      "mean_center_err_px": 7.57,
+      "p90_center_err_px": 15.73,
+      "n_misses": 44,
+      "miss_taxonomy": {
+        "same_role_wrong_label": 37,
+        "wrong_role_widget": 7,
+        "near_miss_border": 0,
+        "background_far": 0
+      },
+      "worst_confusions": {
+        "top_3_pair_confusions": [
+          [
+            "tab:search -> tab:cancel",
+            2
+          ],
+          [
+            "button:cart -> button:save",
+            2
+          ],
+          [
+            "menu:search -> menu:cancel",
+            2
+          ]
+        ],
+        "top_10_pair_confusions": [
+          [
+            "tab:search -> tab:cancel",
+            2
+          ],
+          [
+            "button:cart -> button:save",
+            2
+          ],
+          [
+            "menu:search -> menu:cancel",
+            2
+          ],
+          [
+            "button:cart -> button:profile",
+            1
+          ],
+          [
+            "tab:profile -> tab:print",
+            1
+          ],
+          [
+            "tab:settings -> tab:cancel",
+            1
+          ],
+          [
+            "field:inbox -> field:login",
+            1
+          ],
+          [
+            "slider:pause -> slider:upload",
+            1
+          ],
+          [
+            "tab:cart -> tab:save",
+            1
+          ],
+          [
+            "button:submit -> button:login",
+            1
+          ]
+        ],
+        "label_confusions": [
+          [
+            "search -> cancel",
+            4
+          ],
+          [
+            "cart -> save",
+            4
+          ],
+          [
+            "cancel -> search",
+            2
+          ],
+          [
+            "refresh -> archive",
+            2
+          ],
+          [
+            "cart -> profile",
+            1
+          ],
+          [
+            "profile -> print",
+            1
+          ],
+          [
+            "settings -> cancel",
+            1
+          ],
+          [
+            "inbox -> login",
+            1
+          ],
+          [
+            "pause -> upload",
+            1
+          ],
+          [
+            "submit -> login",
+            1
+          ]
+        ],
+        "role_confusions": [
+          [
+            "button -> button",
+            9
+          ],
+          [
+            "tab -> tab",
+            9
+          ],
+          [
+            "menu -> menu",
+            7
+          ],
+          [
+            "slider -> slider",
+            4
+          ],
+          [
+            "button -> icon",
+            4
+          ],
+          [
+            "checkbox -> checkbox",
+            3
+          ],
+          [
+            "icon -> icon",
+            3
+          ],
+          [
+            "field -> field",
+            2
+          ],
+          [
+            "button -> tab",
+            1
+          ],
+          [
+            "button -> menu",
+            1
+          ]
+        ]
+      },
+      "by_role": {
+        "button": {
+          "n": 90,
+          "hit_widget": 0.8333,
+          "median_err_px": 1.0
+        },
+        "checkbox": {
+          "n": 44,
+          "hit_widget": 0.9318,
+          "median_err_px": 0.76
+        },
+        "field": {
+          "n": 53,
+          "hit_widget": 0.9623,
+          "median_err_px": 0.74
+        },
+        "icon": {
+          "n": 67,
+          "hit_widget": 0.9552,
+          "median_err_px": 0.86
+        },
+        "menu": {
+          "n": 102,
+          "hit_widget": 0.9216,
+          "median_err_px": 0.78
+        },
+        "slider": {
+          "n": 50,
+          "hit_widget": 0.92,
+          "median_err_px": 1.12
+        },
+        "tab": {
+          "n": 94,
+          "hit_widget": 0.9043,
+          "median_err_px": 0.6
+        }
+      },
+      "by_label": {
+        "archive": {
+          "n": 20,
+          "hit_widget": 0.9,
+          "median_err_px": 0.78
+        },
+        "cancel": {
+          "n": 23,
+          "hit_widget": 0.913,
+          "median_err_px": 0.73
+        },
+        "cart": {
+          "n": 21,
+          "hit_widget": 0.7143,
+          "median_err_px": 1.07
+        },
+        "delete": {
+          "n": 22,
+          "hit_widget": 0.8636,
+          "median_err_px": 0.61
+        },
+        "download": {
+          "n": 17,
+          "hit_widget": 0.9412,
+          "median_err_px": 0.55
+        },
+        "export": {
+          "n": 13,
+          "hit_widget": 1.0,
+          "median_err_px": 1.2
+        },
+        "filter": {
+          "n": 17,
+          "hit_widget": 0.9412,
+          "median_err_px": 0.74
+        },
+        "help": {
+          "n": 17,
+          "hit_widget": 1.0,
+          "median_err_px": 0.89
+        },
+        "home": {
+          "n": 17,
+          "hit_widget": 1.0,
+          "median_err_px": 0.92
+        },
+        "inbox": {
+          "n": 29,
+          "hit_widget": 0.931,
+          "median_err_px": 0.93
+        },
+        "login": {
+          "n": 21,
+          "hit_widget": 1.0,
+          "median_err_px": 0.57
+        },
+        "logout": {
+          "n": 24,
+          "hit_widget": 0.9583,
+          "median_err_px": 0.79
+        },
+        "pause": {
+          "n": 22,
+          "hit_widget": 0.9545,
+          "median_err_px": 0.78
+        },
+        "play": {
+          "n": 18,
+          "hit_widget": 0.9444,
+          "median_err_px": 0.77
+        },
+        "print": {
+          "n": 26,
+          "hit_widget": 1.0,
+          "median_err_px": 0.87
+        },
+        "profile": {
+          "n": 18,
+          "hit_widget": 0.8333,
+          "median_err_px": 0.92
+        },
+        "refresh": {
+          "n": 21,
+          "hit_widget": 0.7143,
+          "median_err_px": 1.25
+        },
+        "rename": {
+          "n": 23,
+          "hit_widget": 1.0,
+          "median_err_px": 0.88
+        },
+        "save": {
+          "n": 17,
+          "hit_widget": 0.9412,
+          "median_err_px": 0.69
+        },
+        "search": {
+          "n": 30,
+          "hit_widget": 0.8,
+          "median_err_px": 0.97
+        },
+        "settings": {
+          "n": 22,
+          "hit_widget": 0.8636,
+          "median_err_px": 0.72
+        },
+        "share": {
+          "n": 20,
+          "hit_widget": 0.9,
+          "median_err_px": 0.58
+        },
+        "submit": {
+          "n": 26,
+          "hit_widget": 0.8846,
+          "median_err_px": 0.7
+        },
+        "upload": {
+          "n": 16,
+          "hit_widget": 1.0,
+          "median_err_px": 0.78
+        }
+      },
+      "by_theme": {
+        "high_contrast_amber": {
+          "n": 159,
+          "hit_widget": 0.8994,
+          "median_err_px": 0.84
+        },
+        "nord_slate": {
+          "n": 150,
+          "hit_widget": 0.9333,
+          "median_err_px": 0.95
+        },
+        "solarized_light": {
+          "n": 191,
+          "hit_widget": 0.9058,
+          "median_err_px": 0.71
+        }
+      },
+      "by_size": {
+        "small": {
+          "n": 372,
+          "hit_widget": 0.914,
+          "median_err_px": 0.78
+        },
+        "medium": {
+          "n": 91,
+          "hit_widget": 0.9011,
+          "median_err_px": 1.01
+        },
+        "large": {
+          "n": 37,
+          "hit_widget": 0.9189,
+          "median_err_px": 1.1
+        }
+      },
+      "latency_ms_per_frame": 41.92,
+      "latency_mean_ms": 42.81,
+      "peak_rss_mb": 1585.7,
+      "params_stage1": 882460,
+      "params_stage2": 686032,
+      "params_active": 1568492,
+      "use_stage2": true,
+      "multi_scale": true
+    }
+  }
+}

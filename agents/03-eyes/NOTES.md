@@ -104,5 +104,30 @@ Out of **550 misses** (from-scratch baseline; **497 misses** on `ckpt-1022`):
   - `Stage 1` Top-7 recall on `val_seen` is **`99.8%` (`499 / 500`)**!
   - Narrow `icon` (`68.4%`) abbreviates labels to 3 characters (`"ref"` vs `"ren"`) + an `8x8 px` mini-icon, which `4x` horizontal downsampling (`160 -> 40`, `4.0 px/col`) squeezed into 3 columns. Upgrading `c8` to `stride=(2, 1)` (`8x80` = **`2.0 px/col`**) + Phase-B listwise softmax training directly over real Stage-1 Top-7 candidates resolves every single character and mini-icon!
 
+---
+
+## Cycle 4 (M5-85% + M6 Complete) — `98.0%` Seen (`0.68 px` Med Err), `91.2%` Unseen OOD, `28.3 ms/frame` INT8 Runtime Export (`3.81x` Smaller)
+
+### 1. Diagnostic Lesson: Recurrent Horizon (`40` cols vs `80` cols) + Multi-Bank Diversity Scaling
+
+- Testing `stride=(2, 1)` (`80` horizontal columns) revealed a classic 1-layer GRU horizon tradeoff: doubling recurrent steps from `24 -> 48` between a wide widget's left-aligned label (`x=12`) and its centre anchor (`cx=120`) slowed convergence (`65.3%` @ 1600 steps vs `80.2%` for `40` columns).
+- Resuming our proven `40`-column `Stage2RefineNet` (`m5_crnn40_1700.pt`) across two additional fresh `2,250`-screen native banks (`8,700` total unique rendered screens = `~71,000` unique widgets, `~1.05M` in-screen sibling OCR pairs) produced a smooth, monotonic breakthrough:
+  - **Step `1,700`**: `seen = 80.2%` (`0.93 px`), `OOD = 73.4%` (`M5 >= 75%`)
+  - **Step `2,600`**: **`seen = 94.1%` (`0.74 px`, `lat = 27.56 ms`)** (`M5 >= 85%` & `M6 >= 90%` cleared!)
+  - **Step `3,550` (`eyes_crnn40_3550.pt` → exported to `checkpoints/grip_v2/`)**:
+    - **Seen Hard World (`N=1000`)**: **`hit_widget = 98.00%` (`980 / 1000`, only `20` misses = `2.0%` failure gallery!)**, **`median_center_err = 0.68 px`** (`p90 = 1.87 px`), **`action_acc = 100.00%`**, **`lat = 28.36–31.54 ms/frame`** on 2 threads!
+      - Every single role exceeds `96%`: `button = 99.45%` (`0.70 px`), `tab = 99.44%` (`0.52 px`), `field = 98.10%` (`0.78 px`), `slider = 97.80%` (`0.77 px`), `menu = 97.45%` (`0.68 px`), `checkbox = 96.91%` (`0.80 px`), `icon = 96.05%` (`0.66 px`).
+    - **Unseen OOD Fonts + Themes (`N=500`)**: **`hit_widget = 91.00%` single-scale / `91.20%` multi-scale** (`+0.20 pts` multi-scale gain on unseen fonts), **`median_center_err = 0.81 px`**!
+
+### 2. Runtime Export (`neurobrain/export_grounder.py` → `checkpoints/grip_v2/`) & INT8 Quantization Delta
+
+- Emits spec-compliant `checkpoints/grip_v2/{config.json, weights.pt, weights.int8.pt, tokenizer.json, card.md}` verified by `brainbox.checkpoints.verify_checkpoint_dir`.
+- **Measured FP32 vs INT8 Deltas (`m6_export_int8_delta.json`)**:
+  - `fp32` (`6.34 MB`): `seen = 98.00%` (`0.68 px`), `ood = 91.00%` (`0.81 px`), `lat = 31.54 ms`
+  - `int8_storage` (`1.67 MB`, **`3.81x` compression**): `seen = 98.00%` (`+0.00 pts`, `0.69 px`), `ood = 91.00%` (`+0.00 pts`), `lat = 31.49 ms` (`-0.05 ms`)
+  - `int8_dynamic` (`1.67 MB`, **`3.81x` compression**): **`seen = 98.10%` (`+0.10 pts`, `0.68 px`)**, `ood = 91.00%` (`+0.00 pts`), **`lat = 28.26 ms` (`-3.28 ms` faster than fp32!)**
+- **Recovery-Conditioned `exclude_box` (`N=250`)**: **`96.8%`** excluded-box avoidance & **`96.8%`** target hit when masking a distractor widget.
+
+
 
 

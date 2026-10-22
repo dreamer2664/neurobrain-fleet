@@ -1,0 +1,577 @@
+{
+  "config": {
+    "kind": "grip",
+    "arch": "eyes_two_stage_crnn",
+    "char_vocab": 40,
+    "max_len": 48,
+    "d": 112,
+    "d_stage2": 112,
+    "grid": 32,
+    "top_k": 7,
+    "nms_radius_cells": 1,
+    "stage1_weight": 0.5,
+    "step": 3550,
+    "stub": false,
+    "char_vocab_string": "abcdefghijklmnopqrstuvwxyz0123456789 -",
+    "params": 1568492,
+    "params_stage1": 882460,
+    "params_stage2": 686032,
+    "weights_bytes": 6343935,
+    "weights_int8_bytes": 1666382,
+    "compression_ratio": 3.807,
+    "tokenizer_sha256": "3e3b791bff96ca507b10a962d36d1712cf4e703984ced3c195be7eb41273e5f6",
+    "weights_sha256": "4ad34c76cc8712ba866b3ed7714bd1567aef985a4a45234078a24b020f580187",
+    "weights_int8_sha256": "e066b836a5b842498b4fc4099f5905d5e41b1290a0a8fa62f066666adbde7c49"
+  },
+  "precision_eval": {
+    "fp32": {
+      "seen_hit_widget": 0.98,
+      "seen_med_err_px": 0.68,
+      "seen_p90_err_px": 1.87,
+      "seen_action_acc": 1.0,
+      "ood_hit_widget": 0.91,
+      "ood_med_err_px": 0.81,
+      "latency_ms_per_frame": 31.54,
+      "peak_rss_mb": 585.88,
+      "seen_by_role": {
+        "button": {
+          "n": 181,
+          "hit_widget": 0.9945,
+          "median_err_px": 0.7
+        },
+        "checkbox": {
+          "n": 97,
+          "hit_widget": 0.9691,
+          "median_err_px": 0.8
+        },
+        "field": {
+          "n": 105,
+          "hit_widget": 0.981,
+          "median_err_px": 0.78
+        },
+        "icon": {
+          "n": 152,
+          "hit_widget": 0.9605,
+          "median_err_px": 0.66
+        },
+        "menu": {
+          "n": 196,
+          "hit_widget": 0.9745,
+          "median_err_px": 0.68
+        },
+        "slider": {
+          "n": 91,
+          "hit_widget": 0.978,
+          "median_err_px": 0.77
+        },
+        "tab": {
+          "n": 178,
+          "hit_widget": 0.9944,
+          "median_err_px": 0.52
+        }
+      },
+      "seen_by_theme": {
+        "dark": {
+          "n": 351,
+          "hit_widget": 0.9715,
+          "median_err_px": 0.68
+        },
+        "high_contrast": {
+          "n": 331,
+          "hit_widget": 0.9728,
+          "median_err_px": 0.69
+        },
+        "light": {
+          "n": 318,
+          "hit_widget": 0.9969,
+          "median_err_px": 0.64
+        }
+      },
+      "seen_by_size": {
+        "small": {
+          "n": 733,
+          "hit_widget": 0.9823,
+          "median_err_px": 0.62
+        },
+        "medium": {
+          "n": 197,
+          "hit_widget": 0.9645,
+          "median_err_px": 0.88
+        },
+        "large": {
+          "n": 70,
+          "hit_widget": 1.0,
+          "median_err_px": 0.84
+        }
+      },
+      "ood_by_role": {
+        "button": {
+          "n": 90,
+          "hit_widget": 0.8111,
+          "median_err_px": 0.99
+        },
+        "checkbox": {
+          "n": 44,
+          "hit_widget": 0.9318,
+          "median_err_px": 0.76
+        },
+        "field": {
+          "n": 53,
+          "hit_widget": 0.9623,
+          "median_err_px": 0.69
+        },
+        "icon": {
+          "n": 67,
+          "hit_widget": 0.9552,
+          "median_err_px": 0.86
+        },
+        "menu": {
+          "n": 102,
+          "hit_widget": 0.9216,
+          "median_err_px": 0.78
+        },
+        "slider": {
+          "n": 50,
+          "hit_widget": 0.9,
+          "median_err_px": 1.07
+        },
+        "tab": {
+          "n": 94,
+          "hit_widget": 0.9255,
+          "median_err_px": 0.61
+        }
+      },
+      "ood_by_theme": {
+        "high_contrast_amber": {
+          "n": 159,
+          "hit_widget": 0.8868,
+          "median_err_px": 0.85
+        },
+        "nord_slate": {
+          "n": 150,
+          "hit_widget": 0.9267,
+          "median_err_px": 0.92
+        },
+        "solarized_light": {
+          "n": 191,
+          "hit_widget": 0.9162,
+          "median_err_px": 0.7
+        }
+      },
+      "ood_by_size": {
+        "small": {
+          "n": 372,
+          "hit_widget": 0.9194,
+          "median_err_px": 0.79
+        },
+        "medium": {
+          "n": 91,
+          "hit_widget": 0.8791,
+          "median_err_px": 0.9
+        },
+        "large": {
+          "n": 37,
+          "hit_widget": 0.8919,
+          "median_err_px": 0.93
+        }
+      }
+    },
+    "int8_storage": {
+      "seen_hit_widget": 0.98,
+      "seen_med_err_px": 0.69,
+      "seen_p90_err_px": 1.91,
+      "seen_action_acc": 1.0,
+      "ood_hit_widget": 0.91,
+      "ood_med_err_px": 0.81,
+      "latency_ms_per_frame": 31.49,
+      "peak_rss_mb": 590.3,
+      "seen_by_role": {
+        "button": {
+          "n": 181,
+          "hit_widget": 0.9945,
+          "median_err_px": 0.71
+        },
+        "checkbox": {
+          "n": 97,
+          "hit_widget": 0.9691,
+          "median_err_px": 0.83
+        },
+        "field": {
+          "n": 105,
+          "hit_widget": 0.981,
+          "median_err_px": 0.78
+        },
+        "icon": {
+          "n": 152,
+          "hit_widget": 0.9605,
+          "median_err_px": 0.66
+        },
+        "menu": {
+          "n": 196,
+          "hit_widget": 0.9745,
+          "median_err_px": 0.7
+        },
+        "slider": {
+          "n": 91,
+          "hit_widget": 0.978,
+          "median_err_px": 0.74
+        },
+        "tab": {
+          "n": 178,
+          "hit_widget": 0.9944,
+          "median_err_px": 0.51
+        }
+      },
+      "seen_by_theme": {
+        "dark": {
+          "n": 351,
+          "hit_widget": 0.9715,
+          "median_err_px": 0.7
+        },
+        "high_contrast": {
+          "n": 331,
+          "hit_widget": 0.9728,
+          "median_err_px": 0.69
+        },
+        "light": {
+          "n": 318,
+          "hit_widget": 0.9969,
+          "median_err_px": 0.66
+        }
+      },
+      "seen_by_size": {
+        "small": {
+          "n": 733,
+          "hit_widget": 0.9823,
+          "median_err_px": 0.63
+        },
+        "medium": {
+          "n": 197,
+          "hit_widget": 0.9645,
+          "median_err_px": 0.87
+        },
+        "large": {
+          "n": 70,
+          "hit_widget": 1.0,
+          "median_err_px": 0.85
+        }
+      },
+      "ood_by_role": {
+        "button": {
+          "n": 90,
+          "hit_widget": 0.8111,
+          "median_err_px": 1.01
+        },
+        "checkbox": {
+          "n": 44,
+          "hit_widget": 0.9091,
+          "median_err_px": 0.78
+        },
+        "field": {
+          "n": 53,
+          "hit_widget": 0.9623,
+          "median_err_px": 0.7
+        },
+        "icon": {
+          "n": 67,
+          "hit_widget": 0.9552,
+          "median_err_px": 0.82
+        },
+        "menu": {
+          "n": 102,
+          "hit_widget": 0.9216,
+          "median_err_px": 0.8
+        },
+        "slider": {
+          "n": 50,
+          "hit_widget": 0.92,
+          "median_err_px": 1.0
+        },
+        "tab": {
+          "n": 94,
+          "hit_widget": 0.9255,
+          "median_err_px": 0.59
+        }
+      },
+      "ood_by_theme": {
+        "high_contrast_amber": {
+          "n": 159,
+          "hit_widget": 0.8868,
+          "median_err_px": 0.82
+        },
+        "nord_slate": {
+          "n": 150,
+          "hit_widget": 0.9267,
+          "median_err_px": 0.93
+        },
+        "solarized_light": {
+          "n": 191,
+          "hit_widget": 0.9162,
+          "median_err_px": 0.72
+        }
+      },
+      "ood_by_size": {
+        "small": {
+          "n": 372,
+          "hit_widget": 0.9167,
+          "median_err_px": 0.78
+        },
+        "medium": {
+          "n": 91,
+          "hit_widget": 0.8791,
+          "median_err_px": 0.88
+        },
+        "large": {
+          "n": 37,
+          "hit_widget": 0.9189,
+          "median_err_px": 0.92
+        }
+      }
+    },
+    "int8_dynamic": {
+      "seen_hit_widget": 0.981,
+      "seen_med_err_px": 0.68,
+      "seen_p90_err_px": 1.9,
+      "seen_action_acc": 1.0,
+      "ood_hit_widget": 0.91,
+      "ood_med_err_px": 0.82,
+      "latency_ms_per_frame": 28.26,
+      "peak_rss_mb": 596.13,
+      "seen_by_role": {
+        "button": {
+          "n": 181,
+          "hit_widget": 0.9945,
+          "median_err_px": 0.71
+        },
+        "checkbox": {
+          "n": 97,
+          "hit_widget": 0.9691,
+          "median_err_px": 0.83
+        },
+        "field": {
+          "n": 105,
+          "hit_widget": 0.981,
+          "median_err_px": 0.82
+        },
+        "icon": {
+          "n": 152,
+          "hit_widget": 0.9671,
+          "median_err_px": 0.65
+        },
+        "menu": {
+          "n": 196,
+          "hit_widget": 0.9745,
+          "median_err_px": 0.69
+        },
+        "slider": {
+          "n": 91,
+          "hit_widget": 0.978,
+          "median_err_px": 0.72
+        },
+        "tab": {
+          "n": 178,
+          "hit_widget": 0.9944,
+          "median_err_px": 0.55
+        }
+      },
+      "seen_by_theme": {
+        "dark": {
+          "n": 351,
+          "hit_widget": 0.9715,
+          "median_err_px": 0.69
+        },
+        "high_contrast": {
+          "n": 331,
+          "hit_widget": 0.9758,
+          "median_err_px": 0.68
+        },
+        "light": {
+          "n": 318,
+          "hit_widget": 0.9969,
+          "median_err_px": 0.68
+        }
+      },
+      "seen_by_size": {
+        "small": {
+          "n": 733,
+          "hit_widget": 0.9836,
+          "median_err_px": 0.64
+        },
+        "medium": {
+          "n": 197,
+          "hit_widget": 0.9645,
+          "median_err_px": 0.87
+        },
+        "large": {
+          "n": 70,
+          "hit_widget": 1.0,
+          "median_err_px": 0.82
+        }
+      },
+      "ood_by_role": {
+        "button": {
+          "n": 90,
+          "hit_widget": 0.8111,
+          "median_err_px": 0.99
+        },
+        "checkbox": {
+          "n": 44,
+          "hit_widget": 0.9091,
+          "median_err_px": 0.78
+        },
+        "field": {
+          "n": 53,
+          "hit_widget": 0.9623,
+          "median_err_px": 0.76
+        },
+        "icon": {
+          "n": 67,
+          "hit_widget": 0.9552,
+          "median_err_px": 0.87
+        },
+        "menu": {
+          "n": 102,
+          "hit_widget": 0.9314,
+          "median_err_px": 0.82
+        },
+        "slider": {
+          "n": 50,
+          "hit_widget": 0.9,
+          "median_err_px": 1.05
+        },
+        "tab": {
+          "n": 94,
+          "hit_widget": 0.9255,
+          "median_err_px": 0.61
+        }
+      },
+      "ood_by_theme": {
+        "high_contrast_amber": {
+          "n": 159,
+          "hit_widget": 0.8868,
+          "median_err_px": 0.82
+        },
+        "nord_slate": {
+          "n": 150,
+          "hit_widget": 0.92,
+          "median_err_px": 0.92
+        },
+        "solarized_light": {
+          "n": 191,
+          "hit_widget": 0.9215,
+          "median_err_px": 0.71
+        }
+      },
+      "ood_by_size": {
+        "small": {
+          "n": 372,
+          "hit_widget": 0.9194,
+          "median_err_px": 0.78
+        },
+        "medium": {
+          "n": 91,
+          "hit_widget": 0.8791,
+          "median_err_px": 0.93
+        },
+        "large": {
+          "n": 37,
+          "hit_widget": 0.8919,
+          "median_err_px": 1.03
+        }
+      }
+    }
+  },
+  "int8_deltas": {
+    "disk_mb_fp32": 6.344,
+    "disk_mb_int8": 1.666,
+    "compression_ratio": 3.807,
+    "int8_storage_vs_fp32": {
+      "seen_hit_delta": 0.0,
+      "ood_hit_delta": 0.0,
+      "med_err_delta_px": 0.01,
+      "latency_delta_ms": -0.05
+    },
+    "int8_dynamic_vs_fp32": {
+      "seen_hit_delta": 0.001,
+      "ood_hit_delta": 0.0,
+      "med_err_delta_px": 0.0,
+      "latency_delta_ms": -3.28
+    }
+  },
+  "font_generalisation": {
+    "seen_by_font": {
+      "DejaVuSans": {
+        "n": 269,
+        "hit_widget": 0.9777,
+        "median_err_px": 0.67
+      },
+      "DejaVuSans-Bold": {
+        "n": 239,
+        "hit_widget": 0.9916,
+        "median_err_px": 0.72
+      },
+      "DejaVuSansMono": {
+        "n": 255,
+        "hit_widget": 0.9765,
+        "median_err_px": 0.69
+      },
+      "DejaVuSerif": {
+        "n": 237,
+        "hit_widget": 0.9747,
+        "median_err_px": 0.58
+      }
+    },
+    "ood_by_font": {
+      "DejaVuSansMono-BoldOblique": {
+        "n": 57,
+        "hit_widget": 0.9298,
+        "median_err_px": 0.86
+      },
+      "DejaVuSansMono-Oblique": {
+        "n": 64,
+        "hit_widget": 0.9531,
+        "median_err_px": 0.74
+      },
+      "DejaVuSerif-Bold": {
+        "n": 64,
+        "hit_widget": 0.9375,
+        "median_err_px": 0.75
+      },
+      "DejaVuSerif-Italic": {
+        "n": 62,
+        "hit_widget": 0.9355,
+        "median_err_px": 0.86
+      },
+      "FreeSans": {
+        "n": 42,
+        "hit_widget": 0.9524,
+        "median_err_px": 0.84
+      },
+      "FreeSerif": {
+        "n": 61,
+        "hit_widget": 0.8689,
+        "median_err_px": 0.8
+      },
+      "LiberationMono-Regular": {
+        "n": 51,
+        "hit_widget": 0.8235,
+        "median_err_px": 0.73
+      },
+      "LiberationSans-Regular": {
+        "n": 62,
+        "hit_widget": 0.9516,
+        "median_err_px": 0.82
+      },
+      "LiberationSansNarrow-Regular": {
+        "n": 37,
+        "hit_widget": 0.7838,
+        "median_err_px": 0.93
+      }
+    }
+  },
+  "recovery_eval": {
+    "n": 250,
+    "exclude_box_avoidance_rate": 0.968,
+    "masked_distractor_target_hit": 0.968
+  }
+}
