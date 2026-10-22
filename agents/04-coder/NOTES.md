@@ -131,3 +131,46 @@ score codebench + eval_drive + eval_code, publish round 1 table.
 - when v2 build lands: report tokens/categories/bytes-per-token, then v2 training run
   (one variable: corpus) vs run12k baseline recipe
 - self-repair loop (deliverable 5) + checkpoint packer (deliverable 7) while GPUs... err, CPUs spin
+
+## 2026-10-22 · cycle 3 (M1): corpus v2 built; baseline controls on v2 streams; card shipped
+
+### corpus v2 — FULL BUILD (report: corpus_v2_report.json here + neurobrain/reports/)
+54,867 files walked → 48,362 parsed (88.1%): dropped 5,211 size, 434 generated-marker,
+860 vendored/fixture; minified-like 0 at real-corpus scale. Units: 19,633 size-dropped,
+**83,589 dup_source + 105 dup_ast deduped (~49% duplication rate in stdlib+site-packages!)**,
+holdout collisions 0 (mechanism proven on the synthetic bench file in tests).
+86,398 units kept → **50,124 after category balance** (cap 12k/cat; data, io, runtime at cap;
+text 5,491 · os_sys 3,153 · numeric 2,764 · net 1,842 · concurrency 466 · time_date 402 · misc 6).
+Streams: **code_train_v2 22.72M tok · code_val_v2_plain 569k · code_val_v2_instr 379k**,
+instr share **0.1993** (target 0.20), **2.37 bytes/token** (v1: 2.90). Build: 40 min wall,
+peak RSS 305 MB (streamed writes).
+
+### scheduling lesson (logged for the fleet)
+nice 19 against two nice-0 training threads gets ~1% CPU under CFS (build crawled: 2 min CPU in
+38 min wall). Also: 4 concurrent heavy jobs on 2 cores/2 GB pushed available memory to 200 MB —
+killed the extras, and switched to SEQUENTIAL heavy jobs: paused training (clean stop after the
+step-3600 eval+save; optimizer state verified in lm_latest.pt), ran the build at nice 0, resumed
+training after. Rule adopted: one heavy job at a time; light eval jobs nice 10 alongside.
+
+### baseline controls for the v2 experiment (same bins the v2 run will be judged on)
+eval_streams on lm_baseline_step4600 (reports/streams_baseline.json):
+code_val(v1) 2.2448 · **code_val_v2_plain 2.4326 · code_val_v2_instr 2.5074** ·
+drive_val 5.8343 (never saw drive) · ui_val 2.0120 (my rebuilt ui bins differ from the
+original run's — their summary said 0.76; internal comparisons on identical bins remain valid).
+
+### checkpoint card (deliverable 7) — first one shipped
+checkpoints/lm-baseline-step4600/ (mirrored here: card.md + config.json; weights stay in the
+coordinator's release ckpt-1022 to avoid double-hosting 17 MB): config.json carries
+tokenizer_sha256 198316df… and **weights_sha256 ae7599cf…** (agent-01's spec change),
+source_ckpt_sha256 0df9f2f6… = release download, 2 sample generations included (failures kept).
+
+### run12k — resumed
+Resumed from step 3600 (code 2.8159 / drive 0.1490 / ui 0.6855 at that eval) with optimizer
+state; single budget leg to 12k (time_budget 11400 s, ETA ~00:45 UTC). Code-eval trajectory so
+far: 4.78@200 → 3.40@1600 → 3.15@2000 → 2.96@2800 → 2.82@3600.
+
+### next
+self-repair baseline (running, nice 10) → publish M5 baseline row; when run12k lands: score
+codebench + eval_drive + streams + self-repair on it, pack card WITH weights here, publish the
+round table; then launch the v2 training run (one variable: corpus v2 + instruction mix;
+--code-val stays on the v1 val bin for comparability, v2 streams evaluated via eval_streams).

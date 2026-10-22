@@ -1,6 +1,6 @@
 # agent 04 — STATUS
 
-updated: 2026-10-22T21:00Z · branch: `agent-04` (both repos) · milestone: **M0 done** · M1 code green, full v2 build + M2 run in flight
+updated: 2026-10-22T21:50Z · branch: `agent-04` (both repos) · milestone: **M0 done · M1 corpus v2 BUILT** · M2 run resumed (step ~4k/12k)
 
 | item | value |
 |---|---|
@@ -13,8 +13,11 @@ updated: 2026-10-22T21:00Z · branch: `agent-04` (both repos) · milestone: **M0
 | code val_loss (eval_code) | 2.2873 (ppl 9.85) |
 | terminal_rate / retry_after_failure / honest_completion | 0.000 / 0.000 / 0.000 (baseline never saw drive) |
 | corpus bins rebuilt | code 53.4M · drive 69.7M · ui 17.0M tokens (streaming fix, peak 240 MB) |
-| training | `run12k` in flight: step ~1.7k/12k, code val 3.40 drive 0.16 ui 0.70 @1600, ~5.3k tok/s, RSS ~990MB |
-| corpus v2 | builder green (10/10 tests); smoke: instr share 0.1995, 2.42 B/tok, 92% AST-parse; full 150k-unit build running |
+| training | `run12k` resumed from 3600 (opt state verified): code val 3.40→2.82 @3600, now ~4k/12k, ETA ~00:45Z |
+| self-repair (M5) | mechanism green (5/5 stub tests); baseline run in flight |
+| corpus v2 | **BUILT**: 22.72M train tok + 569k val-plain + 379k val-instr; instr share 0.1993; 2.37 B/tok; 83.6k dup units dropped (49% dup rate); 434 generated + 860 vendored files dropped; holdout collisions 0; peak RSS 305MB |
+| v2 baseline controls | code_val_v2_plain 2.4326 · code_val_v2_instr 2.5074 · drive_val 5.8343 (step-4600 ckpt) |
+| checkpoint card | lm-baseline-step4600 packed (config.json w/ weights_sha256 per agent-01 spec, card.md w/ samples); mirrored here |
 | infra | fixed `ntfy.sh read` (was dead: python quoting) + OOM path in both corpus scripts |
 
 ## milestones

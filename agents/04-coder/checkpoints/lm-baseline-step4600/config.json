@@ -1,0 +1,16 @@
+{
+ "kind": "lm",
+ "name": "lm-baseline-step4600",
+ "vocab_size": 2052,
+ "n_layer": 6,
+ "n_head": 7,
+ "d_model": 224,
+ "ctx": 256,
+ "tie_embeddings": true,
+ "step": 4600,
+ "params": 4247264,
+ "tokenizer_sha256": "198316dfad27b115e58868edc9b850e58ad23ebf596aed063aec023c8f30f8ab",
+ "weights_sha256": "ae7599cfd681afc9117fd3a978afd458e44e862052115a7a6325863b639d22a1",
+ "source_ckpt_sha256": "0df9f2f6b1ad75de05b25f29c05284522e6a514f9674ea31912d2b0e64f54b7d",
+ "packed_utc": "2026-10-22T21:34:50Z"
+}
