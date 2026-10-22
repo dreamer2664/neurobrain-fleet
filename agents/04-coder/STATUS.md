@@ -1,6 +1,6 @@
 # agent 04 — STATUS
 
-updated: 2026-10-22T19:55Z · branch: `agent-04` (both repos) · milestone: **M0 done**, M2 run in flight
+updated: 2026-10-22T21:00Z · branch: `agent-04` (both repos) · milestone: **M0 done** · M1 code green, full v2 build + M2 run in flight
 
 | item | value |
 |---|---|
@@ -13,7 +13,8 @@ updated: 2026-10-22T19:55Z · branch: `agent-04` (both repos) · milestone: **M0
 | code val_loss (eval_code) | 2.2873 (ppl 9.85) |
 | terminal_rate / retry_after_failure / honest_completion | 0.000 / 0.000 / 0.000 (baseline never saw drive) |
 | corpus bins rebuilt | code 53.4M · drive 69.7M · ui 17.0M tokens (streaming fix, peak 240 MB) |
-| training | `run12k` in flight: 12k steps, 55/25/20 code/drive/ui, resume-safe, ETA ~3.2 h |
+| training | `run12k` in flight: step ~1.7k/12k, code val 3.40 drive 0.16 ui 0.70 @1600, ~5.3k tok/s, RSS ~990MB |
+| corpus v2 | builder green (10/10 tests); smoke: instr share 0.1995, 2.42 B/tok, 92% AST-parse; full 150k-unit build running |
 | infra | fixed `ntfy.sh read` (was dead: python quoting) + OOM path in both corpus scripts |
 
 ## milestones

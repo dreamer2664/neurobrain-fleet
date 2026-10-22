@@ -82,3 +82,52 @@ Corpus v2, one variable at a time: AST-parse filter, drop vendored/generated/fix
 function-level dedupe by hash, short-function packing, instruction-mix episodes (~20% of code
 tokens) mined from docstrings; report bytes/token; evaluate instructed vs plain separately.
 Beat baseline val loss, then re-score codebench. Everything logs to `runs.jsonl`.
+
+## 2026-10-22 · cycle 2 (M1 in progress): corpus v2 builder green, full build + 12k run in flight
+
+### environment hazard logged for the fleet: string mangling in edit channels
+While patching files via shell heredocs I observed (byte-proven with od): typed
+special-token literals can arrive on disk altered (a typed doc-separator token landed as a
+fim-style token; typed double-backslash-n collapsed to a real newline), and grep/cat output can
+display different bytes than od shows. Symptom: "impossible" ValueErrors where a list visibly
+contains the searched string. Policy adopted: never type special-token literals or backslash
+escapes in patches — derive from `tok.specials` / build by concatenation / `chr(10)`; verify
+writes with ord-scans, not eyeballed greps; gate every commit on `ast.parse` + pytest.
+Files fixed after audit: `neurobrain/codebench.py` (STOP_MARKERS), `tests/test_codebench.py`
+(extract test), `neurobrain/corpus_v2.py`, `tests/test_corpus_v2.py`. All 10/10 tests green,
+committed `aaa1b28`, `d03e466`.
+
+### corpus v2 (deliverables 2 + 6) — code green
+`neurobrain/corpus_v2.py` (+ `tests/test_corpus_v2.py`, hermetic synthetic corpus):
+- AST-parse filter; drops generated (AUTO-GENERATED/DO-NOT-EDIT markers), vendored/fixture dirs,
+  minified-like files (>30% of lines >160 chars)
+- function/class-level units (80..6000 B), dedupe by normalized-source sha1 AND AST-dump sha1
+- **unconditional codebench holdout**: task prompt+reference normalized-sha1 checked BEFORE size
+  filter; v1 mechanism (sha256 manifest pins) still applies at file level
+- category tagging (io/net/text/numeric/data/os_sys/time_date/concurrency/runtime/misc) with
+  per-category cap (balance)
+- short-unit packing separated by the `<|code|>` special (there is no fim token in this vocab)
+- instruction episodes: `<|task|>write a function that <doc-summary><|code|>` + unit source,
+  budgeted to 20% of code tokens; val split keeps plain vs instructed streams separate
+  (`code_val_v2_plain.bin` / `code_val_v2_instr.bin`) so deliverable-6 evals can be reported apart
+- streamed uint16 writes (flat RSS), full report json
+
+Smoke on the real corpus (3000 units, nice 19, concurrent with training): 382 files walked,
+353 parsed (92.4%), **instr_share_est 0.1995** (target 0.20), **2.42 bytes/token** (v1: 2.90),
+1.54M train tokens in 55 s. Full build (150k units, cap 12k/cat) launched right after.
+
+### train_lm.py
+Added optional stream-path overrides (`--code-train`, `--code-val`, `--drive-*`, `--ui-*`) so a
+v2 run doesn't require touching the live default bins. Defaults unchanged; running process
+unaffected.
+
+### run12k (M2/M3 candidate) — in flight
+Step 1700/12000 @ ~5.3k tok/s (2 cores shared with bench work); eval@1600: code 3.40,
+drive 0.162, ui 0.70. RSS ~990 MB (mostly reclaimable mmap of the token streams; anon ~400 MB).
+Budget stop at 12600 s ≈ step 10.9k → one `--resume` leg to reach 12k. On completion:
+score codebench + eval_drive + eval_code, publish round 1 table.
+
+### next
+- when v2 build lands: report tokens/categories/bytes-per-token, then v2 training run
+  (one variable: corpus) vs run12k baseline recipe
+- self-repair loop (deliverable 5) + checkpoint packer (deliverable 7) while GPUs... err, CPUs spin
