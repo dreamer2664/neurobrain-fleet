@@ -71,8 +71,43 @@ Details:
 - `region()` bounds-checks against the display; unsupported depths raise.
 - `downscale()` static helper: 128x128 (for GripNet) and 640x360 (for the drive loop).
 
+## M2 — demo app + scripted scenario (DONE, verified 2026-10-22)
+
+Code: `deskhands/demo_app.py` (tkinter file-manager lookalike), `tests/test_deskhands_m2.py`.
+Commit: `9c33a42` "agent 02: M2 demo app + scripted scenario".
+
+The app has list, buttons (New/Delete/About/Quit), entry, checkbox, dialog (Toplevel),
+slider (Scale), plus a draggable Canvas item used as the drag target. It is scriptable
+from JSON two ways: `--script ops.json` (in-process, deterministic) and a live control
+socket (`--port-file`) exposing `state` / `rects` / `script` / `quit`. `rects` reports
+every widget's physical screen geometry so the X11 backend can drive the live window.
+
+Scenario result: **20 clicks, 200 typed chars, 2 toggles, 1 drag — 100%**, driven through
+`DesktopHands` (XTest) against the live window under Xvfb and asserted on the app's own
+dumped state. `test_deskhands_m2.py` — 2 passed, stable across 3 repeat runs.
+
+| assertion | measured |
+|---|---|
+| 20 clicks | `counters.clicks >= 20` (each XTest press counted app-wide) |
+| 200 chars | `len(entry_text) == 200`, `counters.type == 200` |
+| toggles | `counters.toggle == 2`, `show_hidden` False after 2 from False |
+| drag | item landed at canvas (120,60) — **within 2 px** of the +100/+40 target |
+| dialog | `About` opens a Toplevel, `OK` closes it |
+
+Full deskhands suite: `test_deskhands_m0.py` + `test_capture_m1.py` + `test_deskhands_m2.py`
+= **18 passed**.
+
+Tk quirks found and worked around (worth knowing for M3–M7):
+- A widget-level `<ButtonPress>`/`<B1-Motion>` bind on a `Scale` **shadows its built-in
+  value-setting**. Count presses with an app-level `bind_all` instead — it runs last and
+  cannot shadow. Even so, a horizontal `Scale`'s trough does not map XTest clicks to values
+  reliably in this Tk 8.6/Xvfb build, so the drag target is a dedicated Canvas item.
+- Clicking an `Entry` twice at the **same pixel** clears the `Listbox` selection (Tk
+  behaviour). Click at distinct offsets, or assert selection before the focus click.
+- An `Entry` `<ButtonRelease>` handler calling `focus_set()` **clears** the entry's focus
+  (`focus_set` returns None here); a plain click already focuses the entry, so no handler.
+
 ## Next
 
-M2: `deskhands/demo_app.py` — tkinter file-manager lookalike (list, buttons, entry,
-checkbox, dialog, slider), scriptable from JSON, dumps own state. Test rig for the
-scripted scenario (20 clicks, 200 chars, toggles, drag) at 100%.
+M3: window enumeration (title, rect, pid) + focus by title substring + report focused
+window + virtual-desktop bounds. 50 trials.
