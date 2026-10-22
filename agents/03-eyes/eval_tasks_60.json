@@ -1,0 +1,1075 @@
+[
+  {
+    "id": "fm-001",
+    "category": "file_manager",
+    "instruction": "delete every .iso file in Downloads",
+    "app": "filemanager",
+    "setup": "default",
+    "success": {
+      "check": "no_iso_in_downloads",
+      "args": {}
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "fm-002",
+    "category": "file_manager",
+    "instruction": "rename the first file in Home to backup01",
+    "app": "filemanager",
+    "setup": "default",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "Home/backup01"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "fm-003",
+    "category": "file_manager",
+    "instruction": "archive all files from Home into Archive",
+    "app": "filemanager",
+    "setup": "default",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "Archive/draft.txt"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "fm-004",
+    "category": "file_manager",
+    "instruction": "enable export option and export Home manifest",
+    "app": "filemanager",
+    "setup": "default",
+    "success": {
+      "check": "json_field_equals",
+      "args": {
+        "rel": "Home/manifest.json",
+        "key": "include_hidden",
+        "val": true
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "fm-005",
+    "category": "file_manager",
+    "instruction": "upload the current Home directory bundle",
+    "app": "filemanager",
+    "setup": "default",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "Uploads/uploaded.done"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "fm-006",
+    "category": "file_manager",
+    "instruction": "filter Home files by md extension",
+    "app": "filemanager",
+    "setup": "default",
+    "success": {
+      "check": "app_state_equals",
+      "args": {
+        "key": "filtered_files",
+        "val": [
+          "notes.md"
+        ]
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "fm-007",
+    "category": "file_manager",
+    "instruction": "refresh Home directory index to pick up incoming.log",
+    "app": "filemanager",
+    "setup": "external_arrival",
+    "success": {
+      "check": "app_state_contains",
+      "args": {
+        "key": "indexed_files",
+        "item": "incoming.log"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "fm-008",
+    "category": "file_manager",
+    "instruction": "open Inbox from sidebar and save a folder snapshot",
+    "app": "filemanager",
+    "setup": "default",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "Inbox/snapshot.json"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "fm-009",
+    "category": "file_manager",
+    "instruction": "share the Downloads folder link",
+    "app": "filemanager",
+    "setup": "default",
+    "success": {
+      "check": "file_contains",
+      "args": {
+        "rel": "shared_links.txt",
+        "substr": "shared:Downloads"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "fm-010",
+    "category": "file_manager",
+    "instruction": "archive Home files then export the Archive manifest",
+    "app": "filemanager",
+    "setup": "default",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "Archive/manifest.json"
+      }
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "fm-011",
+    "category": "file_manager",
+    "instruction": "cancel the pending destructive batch in Files",
+    "app": "filemanager",
+    "setup": "pending_batch",
+    "success": {
+      "check": "app_state_equals",
+      "args": {
+        "key": "pending_delete",
+        "val": false
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "fm-012",
+    "category": "file_manager",
+    "instruction": "archive only markdown files from Home and save Home snapshot",
+    "app": "filemanager",
+    "setup": "default",
+    "success": {
+      "check": "md_archived_and_saved",
+      "args": {}
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-001",
+    "category": "editor",
+    "instruction": "append release2026 to notes.txt and save",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "file_contains",
+      "args": {
+        "rel": "docs/notes.txt",
+        "substr": "release2026"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-002",
+    "category": "editor",
+    "instruction": "switch to profile tab (main.py), append pass and save",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "file_contains",
+      "args": {
+        "rel": "docs/main.py",
+        "substr": "pass"
+      }
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-003",
+    "category": "editor",
+    "instruction": "replace m7 with shipped in notes.txt",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "file_contains",
+      "args": {
+        "rel": "docs/notes.txt",
+        "substr": "todo: ship shipped"
+      }
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-004",
+    "category": "editor",
+    "instruction": "switch to help document and spool to printer",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "file_contains",
+      "args": {
+        "rel": "docs/print.spool",
+        "substr": "help.md"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-005",
+    "category": "editor",
+    "instruction": "enable both filter and export options then export bundle",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "file_contains",
+      "args": {
+        "rel": "docs/exported.bundle",
+        "substr": "wrap=True;pdf=True"
+      }
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-006",
+    "category": "editor",
+    "instruction": "share the profile document",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "file_contains",
+      "args": {
+        "rel": "docs/shared.doc",
+        "substr": "main.py"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-007",
+    "category": "editor",
+    "instruction": "sync editor workspace to cloud via upload icon",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "docs/cloud.sync"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-008",
+    "category": "editor",
+    "instruction": "clear the contents of help.md using delete",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "file_empty",
+      "args": {
+        "rel": "docs/help.md"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-009",
+    "category": "editor",
+    "instruction": "create archive.md on archive tab with text archived01",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "file_contains",
+      "args": {
+        "rel": "docs/archive.md",
+        "substr": "archived01"
+      }
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-010",
+    "category": "editor",
+    "instruction": "reload open buffer from disk",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "app_state_equals",
+      "args": {
+        "key": "reloaded",
+        "val": true
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-011",
+    "category": "editor",
+    "instruction": "cancel unsaved editor dialog",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "app_state_equals",
+      "args": {
+        "key": "canceled",
+        "val": true
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "ed-012",
+    "category": "editor",
+    "instruction": "export help.md with pdf export checked on nord theme",
+    "app": "editor",
+    "setup": "default",
+    "success": {
+      "check": "file_contains",
+      "args": {
+        "rel": "docs/exported.bundle",
+        "substr": "doc=help.md;wrap=False;pdf=True"
+      }
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-001",
+    "category": "settings",
+    "instruction": "enable share in Settings and save",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "json_field_equals",
+      "args": {
+        "rel": "settings.json",
+        "key": "share",
+        "val": true
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-002",
+    "category": "settings",
+    "instruction": "disable auto refresh and enable upload then save",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "settings_multi",
+      "args": {
+        "refresh": false,
+        "upload": true,
+        "saved": true
+      }
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-003",
+    "category": "settings",
+    "instruction": "drag play volume slider above 0.75 and save",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "json_field_gt",
+      "args": {
+        "rel": "settings.json",
+        "key": "play_level",
+        "val": 0.75
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-004",
+    "category": "settings",
+    "instruction": "lower pause timeout slider below 0.20 and save",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "json_field_lt",
+      "args": {
+        "rel": "settings.json",
+        "key": "pause_level",
+        "val": 0.2
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-005",
+    "category": "settings",
+    "instruction": "raise download limit slider above 0.80 and submit",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "json_field_gt",
+      "args": {
+        "rel": "settings.json",
+        "key": "download_limit",
+        "val": 0.8
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-006",
+    "category": "settings",
+    "instruction": "switch to profile tab, set profile name to agent03 and submit",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "settings_multi",
+      "args": {
+        "active_tab": "profile",
+        "profile_name": "agent03",
+        "submitted": true
+      }
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-007",
+    "category": "settings",
+    "instruction": "set home path field to /tmp/work and save settings",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "json_field_equals",
+      "args": {
+        "rel": "settings.json",
+        "key": "home_dir",
+        "val": "work03"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-008",
+    "category": "settings",
+    "instruction": "log out of current session from Settings",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "json_field_equals",
+      "args": {
+        "rel": "settings.json",
+        "key": "logged_out",
+        "val": true
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-009",
+    "category": "settings",
+    "instruction": "enable export checkbox on login tab and save",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "settings_multi",
+      "args": {
+        "active_tab": "login",
+        "export": true,
+        "saved": true
+      }
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-010",
+    "category": "settings",
+    "instruction": "open help tab in solarized Settings and submit",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "settings_multi",
+      "args": {
+        "active_tab": "help",
+        "submitted": true
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-011",
+    "category": "settings",
+    "instruction": "cancel Settings changes without saving",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "app_state_equals",
+      "args": {
+        "key": "canceled",
+        "val": true
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "st-012",
+    "category": "settings",
+    "instruction": "enable share and upload on unseen font/theme and save",
+    "app": "settings",
+    "setup": "default",
+    "success": {
+      "check": "settings_multi",
+      "args": {
+        "share": true,
+        "upload": true,
+        "saved": true
+      }
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-001",
+    "category": "browser",
+    "instruction": "navigate browser search bar to docslocal and submit",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "json_field_equals",
+      "args": {
+        "rel": "browser/state.json",
+        "key": "navigated_url",
+        "val": "docslocal"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-002",
+    "category": "browser",
+    "instruction": "download package binary from crowded browser toolbar",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "Downloads/pkg.bin"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-003",
+    "category": "browser",
+    "instruction": "switch to cart tab and click checkout cart button",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "browser_multi",
+      "args": {
+        "tab": "cart",
+        "checkout": true
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-004",
+    "category": "browser",
+    "instruction": "enable adblock filter checkbox and refresh page",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "browser_multi",
+      "args": {
+        "adblock": true,
+        "refreshed": true
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-005",
+    "category": "browser",
+    "instruction": "open archive bookmark from sidebar",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "json_field_equals",
+      "args": {
+        "rel": "browser/state.json",
+        "key": "bookmark",
+        "val": "archive"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-006",
+    "category": "browser",
+    "instruction": "start media playback and raise volume slider above 0.70",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "json_field_gt",
+      "args": {
+        "rel": "browser/state.json",
+        "key": "volume",
+        "val": 0.7
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-007",
+    "category": "browser",
+    "instruction": "pause media player in browser",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "json_field_equals",
+      "args": {
+        "rel": "browser/state.json",
+        "key": "media",
+        "val": "paused"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-008",
+    "category": "browser",
+    "instruction": "switch to profile tab and click login",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "browser_multi",
+      "args": {
+        "tab": "profile",
+        "auth": "logged_in"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-009",
+    "category": "browser",
+    "instruction": "press share icon on crowded toolbar (unseen FreeSans + nord)",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "json_field_equals",
+      "args": {
+        "rel": "browser/state.json",
+        "key": "shared",
+        "val": true
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-010",
+    "category": "browser",
+    "instruction": "open settings bookmark and click home toolbar icon (unseen solarized + Liberation)",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "browser_multi",
+      "args": {
+        "bookmark": "settings",
+        "toolbar_home": true
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-011",
+    "category": "browser",
+    "instruction": "open cart popup from crowded top icon bar",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "json_field_equals",
+      "args": {
+        "rel": "browser/state.json",
+        "key": "cart_opened",
+        "val": true
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "br-012",
+    "category": "browser",
+    "instruction": "open inbox bookmark, type query status01 and submit",
+    "app": "browser",
+    "setup": "default",
+    "success": {
+      "check": "browser_multi",
+      "args": {
+        "bookmark": "inbox",
+        "navigated_url": "status01"
+      }
+    },
+    "budget": {
+      "max_steps": 10,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-001",
+    "category": "recovery",
+    "instruction": "click the active save button while ignoring or recovering past the disabled save button",
+    "app": "recovery",
+    "setup": "disabled_save_pair",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_disabled_save.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-002",
+    "category": "recovery",
+    "instruction": "click the active export button when primary export is disabled",
+    "app": "recovery",
+    "setup": "disabled_export_pair",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_disabled_export.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-003",
+    "category": "recovery",
+    "instruction": "click the enabled delete button while avoiding disabled delete",
+    "app": "recovery",
+    "setup": "disabled_delete_pair",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_disabled_delete.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-004",
+    "category": "recovery",
+    "instruction": "select the active inbox menu entry past disabled inbox entry",
+    "app": "recovery",
+    "setup": "disabled_menu_inbox",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_disabled_inbox.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-005",
+    "category": "recovery",
+    "instruction": "recover via exclude_box when top save button is frozen",
+    "app": "recovery",
+    "setup": "stale_twin_save",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_twin_save.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-006",
+    "category": "recovery",
+    "instruction": "recover via exclude_box when primary submit button is unresponsive",
+    "app": "recovery",
+    "setup": "stale_twin_submit",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_twin_submit.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-007",
+    "category": "recovery",
+    "instruction": "recover via exclude_box when toolbar share icon is frozen",
+    "app": "recovery",
+    "setup": "stale_twin_share_icon",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_twin_share.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-008",
+    "category": "recovery",
+    "instruction": "toggle live export checkbox when upper export checkbox is frozen",
+    "app": "recovery",
+    "setup": "stale_twin_checkbox",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_twin_chk.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 6,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-009",
+    "category": "recovery",
+    "instruction": "click delete then confirm dynamic modal by clicking submit",
+    "app": "recovery",
+    "setup": "modal_delete",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_modal_delete.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-010",
+    "category": "recovery",
+    "instruction": "click logout then confirm dynamic modal by clicking submit",
+    "app": "recovery",
+    "setup": "modal_logout",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_modal_logout.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-011",
+    "category": "recovery",
+    "instruction": "click archive then confirm dynamic modal by clicking submit",
+    "app": "recovery",
+    "setup": "modal_archive",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_modal_archive.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  },
+  {
+    "id": "rc-012",
+    "category": "recovery",
+    "instruction": "click share then confirm dynamic modal by clicking submit",
+    "app": "recovery",
+    "setup": "modal_share",
+    "success": {
+      "check": "file_exists",
+      "args": {
+        "rel": "recovered_modal_share.ok"
+      }
+    },
+    "budget": {
+      "max_steps": 8,
+      "max_seconds": 30
+    }
+  }
+]

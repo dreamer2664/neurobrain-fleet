@@ -128,6 +128,28 @@ Out of **550 misses** (from-scratch baseline; **497 misses** on `ckpt-1022`):
   - `int8_dynamic` (`1.67 MB`, **`3.81x` compression**): **`seen = 98.10%` (`+0.10 pts`, `0.68 px`)**, `ood = 91.00%` (`+0.00 pts`), **`lat = 28.26 ms` (`-3.28 ms` faster than fp32!)**
 - **Recovery-Conditioned `exclude_box` (`N=250`)**: **`96.8%`** excluded-box avoidance & **`96.8%`** target hit when masking a distractor widget.
 
+---
+
+## Cycle 5 (M7 Complete — All M0..M7 Milestones Shipped) — One-Command 60-Task Headless Xvfb + Tkinter UI Suite (`51 / 60 = 85.00%`)
+
+### 1. Architecture of `neurobrain/eval_suite.py` (`specs/eval_suite.md`)
+
+- Runs **100% live headless X11**: starts `Xvfb` (`256x256x24`), mounts real `tkinter.Tk` desktop apps (`FileManager`, `Editor`, `Settings`, `Browser`, `Recovery`), captures pixels via Agent 02's `deskhands.capture.Capture` (`libX11.XGetImage`), grounds instructions purely from captured pixels via `EyesGrounder` (`checkpoints/grip_v2`), injects hardware-level clicks/drags/typing via `deskhands.core.DesktopHands` (`libXtst`), and checks deterministic filesystem / JSON / buffer assertions in isolated per-task temp workspaces.
+- Implements `specs/drive.md` Rung-2 recovery (including Agent 01's verdict-aware re-ground + shift `spec-change`): both zero-pixel no-op clicks (disabled controls, frozen twin panes, background) and failed final-step verdicts mask prior coordinates via `exclude_box` (extended in `EyesGrounder` to accept box lists) and re-ground on the live X11 screen within budget.
+
+### 2. Measured 60-Task Scoreboard (`agents/03-eyes/scoreboard.json`)
+
+- **Command**: `python3 -m neurobrain.eval_suite --out /home/user/fleet/agents/03-eyes/scoreboard.json`
+- **Legacy Release Baseline (`ckpt-1022`, `0.44M GripNet`, identical loop)**: **`1 / 60 (1.67%)`** (`browser=0/12`, `editor=0/12`, `file_manager=0/12`, `settings=0/12`, `recovery=1/12`).
+- **Two-Stage `EyesGrounder` (`checkpoints/grip_v2`, `1.57M` params, zero-shot on X11/Xft Tkinter)**: **`51 / 60 (85.00%, +83.33 pts)`**, `median_steps = 2.0`, `median_seconds = 0.249s`, `ram_peak_mb = 305.8 MB`:
+  - `settings`: **`12 / 12 (100.0%)`** (checkboxes, X11 slider drags, fields, OOD `Liberation Sans` + `nord_slate` / `solarized_light`)
+  - `editor`: **`11 / 12 (91.7%)`** (multi-tab text entry, search/replace, bundle export, print spool)
+  - `recovery`: **`11 / 12 (91.7%)`** (disabled-widget pairs, frozen twin controls rescued via `exclude_box`, dynamic two-step confirmation popups; `9 / 18 = 50.0%` runtime retry-to-done recovery rate)
+  - `browser` (20-widget crowded toolbar + OOD fonts/themes): **`9 / 12 (75.0%)`**
+  - `file_manager` (16-widget multi-step + duplicate-label icon/tab/menu pairs): **`8 / 12 (66.7%)`**
+- **Remaining 9 Failure Strips (`failure_strips/*.png`, `galleries/m7_failures_strip.png`)**: Primarily X11 Xft `7pt` subpixel toolbar icons (`35–44 px` wide) on screens that simultaneously show a matching-label `tab` or `menu` (`archive`, `share`, `refresh`, `cart`).
+
+
 
 
 

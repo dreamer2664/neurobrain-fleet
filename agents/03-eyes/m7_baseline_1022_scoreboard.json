@@ -1,0 +1,412 @@
+{
+  "commit": "2e7427f",
+  "model": {
+    "lm_step": 0,
+    "grip_step": 750,
+    "checkpoint": "override"
+  },
+  "n": 60,
+  "passed": 1,
+  "success": 0.0167,
+  "by_category": {
+    "browser": {
+      "n": 12,
+      "passed": 0,
+      "success": 0.0,
+      "median_steps": 8.0,
+      "median_seconds": 0.4994
+    },
+    "editor": {
+      "n": 12,
+      "passed": 0,
+      "success": 0.0,
+      "median_steps": 8.0,
+      "median_seconds": 0.5404
+    },
+    "file_manager": {
+      "n": 12,
+      "passed": 0,
+      "success": 0.0,
+      "median_steps": 8.0,
+      "median_seconds": 0.4989
+    },
+    "recovery": {
+      "n": 12,
+      "passed": 1,
+      "success": 0.0833,
+      "median_steps": 6.0,
+      "median_seconds": 0.4105
+    },
+    "settings": {
+      "n": 12,
+      "passed": 0,
+      "success": 0.0,
+      "median_steps": 8.0,
+      "median_seconds": 0.5817
+    }
+  },
+  "median_steps": 8.0,
+  "median_seconds": 0.4941,
+  "ram_peak_mb": 280.2,
+  "recovery_stats": {
+    "tasks_triggering_retry": 59,
+    "tasks_recovered_to_done": 0,
+    "recovery_rate": 0.0
+  },
+  "failures": [
+    {
+      "id": "fm-001",
+      "category": "file_manager",
+      "why": "clicked background at (219,194) on 'click the delete button'; check 'no_iso_in_downloads' failed",
+      "strip": "/tmp/m7_base_strips/fm-001.png"
+    },
+    {
+      "id": "fm-002",
+      "category": "file_manager",
+      "why": "clicked background at (80,219) on 'click the rename button'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/fm-002.png"
+    },
+    {
+      "id": "fm-003",
+      "category": "file_manager",
+      "why": "clicked button:delete(normal) at (98,212) on 'click the archive icon'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/fm-003.png"
+    },
+    {
+      "id": "fm-004",
+      "category": "file_manager",
+      "why": "clicked button:cancel(normal) at (169,243) on 'click the export button'; check 'json_field_equals' failed",
+      "strip": "/tmp/m7_base_strips/fm-004.png"
+    },
+    {
+      "id": "fm-005",
+      "category": "file_manager",
+      "why": "clicked background at (80,219) on 'click the upload icon'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/fm-005.png"
+    },
+    {
+      "id": "fm-006",
+      "category": "file_manager",
+      "why": "clicked background at (154,186) on 'click the search input box'; check 'app_state_equals' failed",
+      "strip": "/tmp/m7_base_strips/fm-006.png"
+    },
+    {
+      "id": "fm-007",
+      "category": "file_manager",
+      "why": "clicked background at (99,194) on 'click the refresh icon'; check 'app_state_contains' failed",
+      "strip": "/tmp/m7_base_strips/fm-007.png"
+    },
+    {
+      "id": "fm-008",
+      "category": "file_manager",
+      "why": "clicked background at (80,219) on 'choose inbox from the menu'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/fm-008.png"
+    },
+    {
+      "id": "fm-009",
+      "category": "file_manager",
+      "why": "clicked button:save(normal) at (137,243) on 'click the share icon'; check 'file_contains' failed",
+      "strip": "/tmp/m7_base_strips/fm-009.png"
+    },
+    {
+      "id": "fm-010",
+      "category": "file_manager",
+      "why": "clicked background at (81,194) on 'open the archive tab'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/fm-010.png"
+    },
+    {
+      "id": "fm-011",
+      "category": "file_manager",
+      "why": "clicked background at (80,219) on 'click the cancel button'; check 'app_state_equals' failed",
+      "strip": "/tmp/m7_base_strips/fm-011.png"
+    },
+    {
+      "id": "fm-012",
+      "category": "file_manager",
+      "why": "clicked background at (154,186) on 'click the save button'; check 'md_archived_and_saved' failed",
+      "strip": "/tmp/m7_base_strips/fm-012.png"
+    },
+    {
+      "id": "ed-001",
+      "category": "editor",
+      "why": "clicked tab:help(selected) at (137,57) on 'click the save button'; check 'file_contains' failed",
+      "strip": "/tmp/m7_base_strips/ed-001.png"
+    },
+    {
+      "id": "ed-002",
+      "category": "editor",
+      "why": "clicked background at (17,186) on 'open the profile tab'; check 'file_contains' failed",
+      "strip": "/tmp/m7_base_strips/ed-002.png"
+    },
+    {
+      "id": "ed-003",
+      "category": "editor",
+      "why": "clicked background at (41,185) on 'click the search input box'; check 'file_contains' failed",
+      "strip": "/tmp/m7_base_strips/ed-003.png"
+    },
+    {
+      "id": "ed-004",
+      "category": "editor",
+      "why": "clicked button:save(normal) at (16,212) on 'click the print icon'; check 'file_contains' failed",
+      "strip": "/tmp/m7_base_strips/ed-004.png"
+    },
+    {
+      "id": "ed-005",
+      "category": "editor",
+      "why": "clicked background at (99,115) on 'toggle the export checkbox'; check 'file_contains' failed",
+      "strip": "/tmp/m7_base_strips/ed-005.png"
+    },
+    {
+      "id": "ed-006",
+      "category": "editor",
+      "why": "clicked background at (16,219) on 'click the share icon'; check 'file_contains' failed",
+      "strip": "/tmp/m7_base_strips/ed-006.png"
+    },
+    {
+      "id": "ed-007",
+      "category": "editor",
+      "why": "clicked button:export(normal) at (193,212) on 'click the upload icon'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/ed-007.png"
+    },
+    {
+      "id": "ed-008",
+      "category": "editor",
+      "why": "clicked button:save(normal) at (75,212) on 'click the delete button'; check 'file_empty' failed",
+      "strip": "/tmp/m7_base_strips/ed-008.png"
+    },
+    {
+      "id": "ed-009",
+      "category": "editor",
+      "why": "clicked tab:help(selected) at (137,57) on 'click the save button'; check 'file_contains' failed",
+      "strip": "/tmp/m7_base_strips/ed-009.png"
+    },
+    {
+      "id": "ed-010",
+      "category": "editor",
+      "why": "clicked background at (51,194) on 'click the refresh icon'; check 'app_state_equals' failed",
+      "strip": "/tmp/m7_base_strips/ed-010.png"
+    },
+    {
+      "id": "ed-011",
+      "category": "editor",
+      "why": "clicked background at (16,219) on 'click the cancel button'; check 'app_state_equals' failed",
+      "strip": "/tmp/m7_base_strips/ed-011.png"
+    },
+    {
+      "id": "ed-012",
+      "category": "editor",
+      "why": "clicked background at (20,253) on 'toggle the export checkbox'; check 'file_contains' failed",
+      "strip": "/tmp/m7_base_strips/ed-012.png"
+    },
+    {
+      "id": "st-001",
+      "category": "settings",
+      "why": "clicked background at (90,161) on 'toggle the share checkbox'; check 'json_field_equals' failed",
+      "strip": "/tmp/m7_base_strips/st-001.png"
+    },
+    {
+      "id": "st-002",
+      "category": "settings",
+      "why": "clicked background at (198,163) on 'toggle the upload checkbox'; check 'settings_multi' failed",
+      "strip": "/tmp/m7_base_strips/st-002.png"
+    },
+    {
+      "id": "st-003",
+      "category": "settings",
+      "why": "clicked background at (59,186) on 'click the save button'; check 'json_field_gt' failed",
+      "strip": "/tmp/m7_base_strips/st-003.png"
+    },
+    {
+      "id": "st-004",
+      "category": "settings",
+      "why": "clicked background at (234,18) on 'drag the pause slider'; check 'json_field_lt' failed",
+      "strip": "/tmp/m7_base_strips/st-004.png"
+    },
+    {
+      "id": "st-005",
+      "category": "settings",
+      "why": "clicked background at (16,219) on 'click the submit button'; check 'json_field_gt' failed",
+      "strip": "/tmp/m7_base_strips/st-005.png"
+    },
+    {
+      "id": "st-006",
+      "category": "settings",
+      "why": "clicked background at (59,186) on 'click the submit button'; check 'settings_multi' failed",
+      "strip": "/tmp/m7_base_strips/st-006.png"
+    },
+    {
+      "id": "st-007",
+      "category": "settings",
+      "why": "clicked background at (16,219) on 'click the save button'; check 'json_field_equals' failed",
+      "strip": "/tmp/m7_base_strips/st-007.png"
+    },
+    {
+      "id": "st-008",
+      "category": "settings",
+      "why": "clicked background at (225,243) on 'click the logout button'; check 'json_field_equals' failed",
+      "strip": "/tmp/m7_base_strips/st-008.png"
+    },
+    {
+      "id": "st-009",
+      "category": "settings",
+      "why": "clicked background at (18,187) on 'open the login tab'; check 'settings_multi' failed",
+      "strip": "/tmp/m7_base_strips/st-009.png"
+    },
+    {
+      "id": "st-010",
+      "category": "settings",
+      "why": "clicked background at (16,219) on 'click the submit button'; check 'settings_multi' failed",
+      "strip": "/tmp/m7_base_strips/st-010.png"
+    },
+    {
+      "id": "st-011",
+      "category": "settings",
+      "why": "clicked background at (16,219) on 'click the cancel button'; check 'app_state_equals' failed",
+      "strip": "/tmp/m7_base_strips/st-011.png"
+    },
+    {
+      "id": "st-012",
+      "category": "settings",
+      "why": "clicked background at (20,253) on 'toggle the upload checkbox'; check 'settings_multi' failed",
+      "strip": "/tmp/m7_base_strips/st-012.png"
+    },
+    {
+      "id": "br-001",
+      "category": "browser",
+      "why": "clicked background at (226,172) on 'click the search input box'; check 'json_field_equals' failed",
+      "strip": "/tmp/m7_base_strips/br-001.png"
+    },
+    {
+      "id": "br-002",
+      "category": "browser",
+      "why": "clicked button:submit(normal) at (122,205) on 'click the download icon'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/br-002.png"
+    },
+    {
+      "id": "br-003",
+      "category": "browser",
+      "why": "clicked button:login(normal) at (80,236) on 'click the cart button'; check 'browser_multi' failed",
+      "strip": "/tmp/m7_base_strips/br-003.png"
+    },
+    {
+      "id": "br-004",
+      "category": "browser",
+      "why": "clicked button:submit(normal) at (88,205) on 'click the refresh icon'; check 'browser_multi' failed",
+      "strip": "/tmp/m7_base_strips/br-004.png"
+    },
+    {
+      "id": "br-005",
+      "category": "browser",
+      "why": "clicked button:login(normal) at (80,236) on 'choose archive from the menu'; check 'json_field_equals' failed",
+      "strip": "/tmp/m7_base_strips/br-005.png"
+    },
+    {
+      "id": "br-006",
+      "category": "browser",
+      "why": "clicked background at (8,26) on 'drag the play slider'; check 'json_field_gt' failed",
+      "strip": "/tmp/m7_base_strips/br-006.png"
+    },
+    {
+      "id": "br-007",
+      "category": "browser",
+      "why": "clicked background at (226,187) on 'click the pause button'; check 'json_field_equals' failed",
+      "strip": "/tmp/m7_base_strips/br-007.png"
+    },
+    {
+      "id": "br-008",
+      "category": "browser",
+      "why": "clicked background at (73,58) on 'open the profile tab'; check 'browser_multi' failed",
+      "strip": "/tmp/m7_base_strips/br-008.png"
+    },
+    {
+      "id": "br-009",
+      "category": "browser",
+      "why": "clicked button:submit(normal) at (81,192) on 'click the share icon'; check 'json_field_equals' failed",
+      "strip": "/tmp/m7_base_strips/br-009.png"
+    },
+    {
+      "id": "br-010",
+      "category": "browser",
+      "why": "clicked background at (80,210) on 'click the home icon'; check 'browser_multi' failed",
+      "strip": "/tmp/m7_base_strips/br-010.png"
+    },
+    {
+      "id": "br-011",
+      "category": "browser",
+      "why": "clicked button:submit(normal) at (88,206) on 'click the cart icon'; check 'json_field_equals' failed",
+      "strip": "/tmp/m7_base_strips/br-011.png"
+    },
+    {
+      "id": "br-012",
+      "category": "browser",
+      "why": "clicked background at (226,242) on 'choose inbox from the menu'; check 'browser_multi' failed",
+      "strip": "/tmp/m7_base_strips/br-012.png"
+    },
+    {
+      "id": "rc-001",
+      "category": "recovery",
+      "why": "clicked background at (210,178) on 'click the save button'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/rc-001.png"
+    },
+    {
+      "id": "rc-002",
+      "category": "recovery",
+      "why": "clicked background at (176,236) on 'click the export button'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/rc-002.png"
+    },
+    {
+      "id": "rc-004",
+      "category": "recovery",
+      "why": "clicked background at (227,235) on 'choose inbox from the menu'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/rc-004.png"
+    },
+    {
+      "id": "rc-005",
+      "category": "recovery",
+      "why": "clicked background at (137,138) on 'click the save button'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/rc-005.png"
+    },
+    {
+      "id": "rc-006",
+      "category": "recovery",
+      "why": "clicked background at (168,235) on 'click the submit button'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/rc-006.png"
+    },
+    {
+      "id": "rc-007",
+      "category": "recovery",
+      "why": "clicked menu:help(normal) at (8,64) on 'click the share icon'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/rc-007.png"
+    },
+    {
+      "id": "rc-008",
+      "category": "recovery",
+      "why": "clicked background at (253,253) on 'toggle the export checkbox'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/rc-008.png"
+    },
+    {
+      "id": "rc-009",
+      "category": "recovery",
+      "why": "clicked background at (211,202) on 'click the delete button'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/rc-009.png"
+    },
+    {
+      "id": "rc-010",
+      "category": "recovery",
+      "why": "clicked background at (81,234) on 'click the logout button'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/rc-010.png"
+    },
+    {
+      "id": "rc-011",
+      "category": "recovery",
+      "why": "clicked button:cancel(normal) at (233,152) on 'click the submit button'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/rc-011.png"
+    },
+    {
+      "id": "rc-012",
+      "category": "recovery",
+      "why": "clicked button:share(normal) at (80,219) on 'click the submit button'; check 'file_exists' failed",
+      "strip": "/tmp/m7_base_strips/rc-012.png"
+    }
+  ]
+}

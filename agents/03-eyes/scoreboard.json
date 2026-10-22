@@ -1,0 +1,112 @@
+{
+  "commit": "d5028c9",
+  "model": {
+    "lm_step": 0,
+    "grip_step": 3550,
+    "checkpoint": "checkpoints/grip_v2"
+  },
+  "n": 60,
+  "passed": 51,
+  "success": 0.85,
+  "by_category": {
+    "browser": {
+      "n": 12,
+      "passed": 9,
+      "success": 0.75,
+      "median_steps": 2.0,
+      "median_seconds": 0.28
+    },
+    "editor": {
+      "n": 12,
+      "passed": 11,
+      "success": 0.9167,
+      "median_steps": 2.5,
+      "median_seconds": 0.2779
+    },
+    "file_manager": {
+      "n": 12,
+      "passed": 8,
+      "success": 0.6667,
+      "median_steps": 2.5,
+      "median_seconds": 0.2899
+    },
+    "recovery": {
+      "n": 12,
+      "passed": 11,
+      "success": 0.9167,
+      "median_steps": 2.0,
+      "median_seconds": 0.2109
+    },
+    "settings": {
+      "n": 12,
+      "passed": 12,
+      "success": 1.0,
+      "median_steps": 2.0,
+      "median_seconds": 0.2932
+    }
+  },
+  "median_steps": 2.0,
+  "median_seconds": 0.2492,
+  "ram_peak_mb": 305.8,
+  "recovery_stats": {
+    "tasks_triggering_retry": 18,
+    "tasks_recovered_to_done": 9,
+    "recovery_rate": 0.5
+  },
+  "failures": [
+    {
+      "id": "fm-003",
+      "category": "file_manager",
+      "why": "clicked field:search(focused) at (152,75) on 'click the archive icon'; check 'file_exists' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/failure_strips/fm-003.png"
+    },
+    {
+      "id": "fm-007",
+      "category": "file_manager",
+      "why": "clicked icon:archive(normal) at (187,28) on 'click the refresh icon'; check 'app_state_contains' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/failure_strips/fm-007.png"
+    },
+    {
+      "id": "fm-010",
+      "category": "file_manager",
+      "why": "clicked background at (169,220) on 'click the export button'; check 'file_exists' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/failure_strips/fm-010.png"
+    },
+    {
+      "id": "fm-012",
+      "category": "file_manager",
+      "why": "clicked button:cancel(normal) at (196,234) on 'click the save button'; check 'md_archived_and_saved' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/failure_strips/fm-012.png"
+    },
+    {
+      "id": "ed-006",
+      "category": "editor",
+      "why": "clicked background at (33,12) on 'click the share icon'; check 'file_contains' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/failure_strips/ed-006.png"
+    },
+    {
+      "id": "br-004",
+      "category": "browser",
+      "why": "clicked tab:profile(selected) at (213,49) on 'click the refresh icon'; check 'browser_multi' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/failure_strips/br-004.png"
+    },
+    {
+      "id": "br-008",
+      "category": "browser",
+      "why": "clicked background at (116,247) on 'click the login button'; check 'browser_multi' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/failure_strips/br-008.png"
+    },
+    {
+      "id": "br-011",
+      "category": "browser",
+      "why": "clicked tab:profile(selected) at (212,49) on 'click the cart icon'; check 'json_field_equals' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/failure_strips/br-011.png"
+    },
+    {
+      "id": "rc-007",
+      "category": "recovery",
+      "why": "clicked icon:share(normal) at (197,28) on 'click the share icon'; check 'file_exists' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/failure_strips/rc-007.png"
+    }
+  ]
+}
