@@ -1,0 +1,132 @@
+{
+ "_meta": {
+  "dir": "/home/user/neurobrain/data/forge-hard",
+  "ok": true,
+  "profile": "smoke",
+  "seed": 23,
+  "tokenizer": "/home/user/neurobrain/data/tokenizer.json",
+  "vocab_size": 2052
+ },
+ "hard_ui": {
+  "action_balance": {
+   "balanced": 0.2764,
+   "counts": [
+    74214,
+    8487,
+    10390,
+    6909
+   ],
+   "entropy": 1.2271,
+   "entropy_ratio": 0.6135,
+   "max_share": 0.74214,
+   "min_share": 0.06909,
+   "n_labels": 4
+  },
+  "coordinate": {
+   "cells_used": 755,
+   "entropy": 8.5202,
+   "entropy_ratio": 0.8912,
+   "max_cell_share": 0.01788,
+   "offset_clipped": 0.0145,
+   "offset_mean": [
+    -0.0186,
+    -0.0028
+   ],
+   "offset_mean_abs": 0.4975,
+   "offset_std": [
+    0.5769,
+    0.5748
+   ]
+  },
+  "dataset": "hard_ui",
+  "duplicates": {
+   "exact_rate": 0.0,
+   "near_rate": 0.0005,
+   "sampled": 2000
+  },
+  "image_entropy": {
+   "black_share": 0.0461,
+   "mean": 5.5397,
+   "sampled": 2000,
+   "std": 0.7473
+  },
+  "instruction": {
+   "mean_used_chars": 20.9,
+   "padding_share": 0.5653
+  },
+  "kind": "ui_shards",
+  "label_balance": {
+   "balanced": 0.9732,
+   "counts": [
+    4181,
+    4234,
+    4190,
+    4271,
+    4063,
+    4077,
+    4152,
+    4102,
+    4142,
+    4169,
+    4106,
+    4187,
+    4194,
+    4104,
+    4195,
+    4267,
+    4201,
+    4173,
+    4197,
+    4168,
+    4191,
+    4203,
+    4055,
+    4178
+   ],
+   "entropy": 4.5848,
+   "entropy_ratio": 1.0,
+   "max_share": 0.04271,
+   "min_share": 0.04055,
+   "n_labels": 24
+  },
+  "n": 100000,
+  "profile": "smoke",
+  "ranges": {
+   "ok": true,
+   "overrides": {},
+   "violations": []
+  },
+  "role_balance": {
+   "balanced": 0.4836,
+   "counts": [
+    38731,
+    8487,
+    10390,
+    8947,
+    10881,
+    15655,
+    6909
+   ],
+   "entropy": 2.5164,
+   "entropy_ratio": 0.8964,
+   "max_share": 0.38731,
+   "min_share": 0.06909,
+   "n_labels": 7
+  },
+  "seed": 23,
+  "shards": 20,
+  "theme_balance": {
+   "balanced": 0.8043,
+   "counts": [
+    36671,
+    36519,
+    26810
+   ],
+   "entropy": 1.5706,
+   "entropy_ratio": 0.991,
+   "max_share": 0.36671,
+   "min_share": 0.2681,
+   "n_labels": 3
+  }
+ }
+}

@@ -1,0 +1,144 @@
+{
+ "_meta": {
+  "dir": "/home/user/neurobrain/data/forge-drive",
+  "ok": true,
+  "profile": "standard",
+  "seed": 23,
+  "tokenizer": "/home/user/neurobrain/data/tokenizer.json",
+  "vocab_size": 2052
+ },
+ "drive": {
+  "alt_encodings": [],
+  "balance": {
+   "_share": {
+    "_share": 0.0,
+    "alpha": 0.48291,
+    "byte": 0.0,
+    "digit": 0.04816,
+    "punct": 0.22964,
+    "space": 0.23099,
+    "special": 0.00829
+   },
+   "alpha": 128006497,
+   "byte": 0,
+   "digit": 12767016,
+   "punct": 60870444,
+   "space": 61228830,
+   "special": 2198278
+  },
+  "content": {
+   "invariants": {
+    "failure_fraction": 0.989814,
+    "mean_retries": 2.021,
+    "mix": {
+     "code": 0.3995,
+     "plan": 0.15,
+     "ui": 0.4505
+    },
+    "retry_after_failure_rate": 1.0,
+    "terminal_rate": 1.0
+   },
+   "source": "neurobrain.drive.drive_corpus (seed)"
+  },
+  "dataset": "drive",
+  "doc_len": {
+   "max": 550,
+   "mean": 265.1,
+   "p50": 261,
+   "p99": 504
+  },
+  "docs": 1000000,
+  "duplicates": {
+   "exact_rate": 0.0,
+   "near_rate": 0.0,
+   "sampled": 10000
+  },
+  "files": [
+   "drive_train.bin",
+   "drive_val.bin"
+  ],
+  "invariants": {
+   "bad_retries": 0,
+   "episodes": 1000000,
+   "failure_fraction": 0.989814,
+   "failures": {
+    "retry_gap": [],
+    "terminal": []
+   },
+   "mean_retries": 2.021,
+   "mix": {
+    "code": 0.3995,
+    "plan": 0.15,
+    "ui": 0.4505
+   },
+   "retry_after_failure_rate": 1.0,
+   "terminal_missing": 0,
+   "terminal_mix": {
+    "budget-exhausted": 0.0346,
+    "success": 0.9217,
+    "success-partial": 0.0436
+   },
+   "terminal_over": 0,
+   "terminal_rate": 1.0,
+   "tokens": 265071065,
+   "tokens_per_episode": 265.1,
+   "violations": []
+  },
+  "kind": "token_streams",
+  "n": 1000000,
+  "profile": "standard",
+  "ranges": {
+   "ok": true,
+   "overrides": {
+    "vocab_used_min": 380
+   },
+   "violations": []
+  },
+  "seed": 23,
+  "tokens": 265071065,
+  "top_tokens": [
+   {
+    "id": 285,
+    "share": 0.06786,
+    "text": "|>"
+   },
+   {
+    "id": 284,
+    "share": 0.05872,
+    "text": "<|"
+   },
+   {
+    "id": 44,
+    "share": 0.01929,
+    "text": ","
+   },
+   {
+    "id": 115,
+    "share": 0.01925,
+    "text": "s"
+   },
+   {
+    "id": 292,
+    "share": 0.019,
+    "text": " the"
+   },
+   {
+    "id": 95,
+    "share": 0.01733,
+    "text": "_"
+   },
+   {
+    "id": 40,
+    "share": 0.01457,
+    "text": "("
+   },
+   {
+    "id": 272,
+    "share": 0.0141,
+    "text": " s"
+   }
+  ],
+  "units": "docs",
+  "vocab_used": 682
+ }
+}

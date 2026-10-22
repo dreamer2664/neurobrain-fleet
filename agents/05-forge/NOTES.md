@@ -122,7 +122,214 @@ rather than the gate:
 
 M2 extends this to 100k (≈16 min at 10 ms/sample) with tiers verified.
 
+## M2 — 100k hard-UI samples ✅
+
+`--set hard_ui.samples=100000`, seed 23: **20 shards × 5k, 1.8 GB on disk,
+980 s (16 min), peak RSS 480 MB, verify OK (20/20 sha256).**
+
+| number | value |
+|---|---|
+| heat cells used | **755 / 1024** (10k: 661, seed world: 72) |
+| offset |mean abs| | 0.50, clipped **1.5%** |
+| image entropy | 5.54 ± 0.75 bits |
+| label balance | H/Hmax 1.000 over 24 classes, min share 4.06% (uniform 4.17%) |
+| action mix | click 74.2 / type 8.5 / toggle 10.4 / **drag 6.9%** |
+| themes | light 37 / dark 37 / contrast 27% |
+| tiers | 0: 19.7k, 1: 45.0k, 2: 35.3k |
+| duplicates | exact 0.00%, near 0.05% |
+
+Artifacts: `artifacts/stats-hard-100k.json`.
+
+## M3 — 1M instructions with a dedupe index ✅
+
+`neurobrain/instructions.py`: 11 template families × slots × surface forms.
+
+| family | share | what it teaches |
+|---|---|---|
+| plain / bare | 23% | canonical phrasing |
+| multi | 14.6% | "click save, **not** cancel" -- negation with the distractor present |
+| app / section / contextual | 28% | "in Studio, ...", "... in the toolbar" |
+| relative | 11.5% | "the button **under the search bar**" |
+| sequence | 6.2% | two steps in one sentence |
+| type / slider / checkbox_off | 17% | action-specific phrasing with values |
+
+Surface forms are a product of prefix (16) × suffix (12) × case (3) × keystroke
+error (18%) × contraction (8%): lower 55%, prefix 76%, suffix 59%, title 30%,
+**typo 18.8%**, contraction 8%.
+
+1,005,000 **unique** instructions in 54 s, 325 MB peak RSS.
+Dedupe index: blake2b64(normalise(text)) set; a collision re-rolls the surface
+form instead of dropping the sample → **reject rate 4.13% of raw draws** and
+**0.00% duplicates in the emitted corpus** (measured on the token stream, 6k
+documents sampled). Mean 50.4 chars, p99 doc length 33 tokens.
+
+Records are also written as `shard-XXXX.jsonl.gz` with the structured target
+(label/role), distractor, anchor, constraints, family and variant, so a
+verifier or the trajectory forge can check what the words actually asked for.
+
+## M4 — drive corpus v2 at scale ✅
+
+`neurobrain/drive.py` rewritten around `specs/drive.md`:
+
+* UI episodes now draw from a **failure catalogue** (wrong element, click off
+  target, element scrolled out, modal blocked the click, focus in another
+  window, double activation, late repaint) and each failure names its **ladder
+  rung** (`retry_exact`, `retry_shifted`, `replan`, `decompose`, `tool_switch`,
+  `escalate`);
+* **honest terminals**: 8% of UI episodes and 12% of plan episodes end in
+  `success-partial` or `budget-exhausted` **through the escalate/park rung**,
+  never straight after a `<|retry|>` -- so the model learns that a task ends in
+  exactly one of done / done-partial / failed, and that parking is not the same
+  as retrying;
+* code episodes: 19 bugs, 2-4 attempts, error kinds AssertionError / TypeError /
+  ValueError / IndexError / NameError, expected values computed by executing the
+  reference body;
+* plan episodes: 1-2 obstacles, second one triggers the **tool switch** rung.
+
+Measured at 1M episodes (seed 23, 265.07M tokens, 530 MB):
+
+```
+terminal_rate=1.000  retry_after_failure=1.000  failure_frac=0.990  retry/ep=2.02
+mix ui/code/plan 0.45/0.40/0.15   terminals success/partial/failed 0.92/0.04/0.03
+duplicates exact 0.00%            doc_len mean 265, p99 504 tokens
+```
+
+All four numbers are recomputed **from the token stream**, not from the
+generator's counters (`dataforge verify` re-scans the bytes; the numpy scan and
+the text classifier are pinned to each other by a test).
+
+## M5 — trajectory forge ✅
+
+`neurobrain/trajectories.py` + `dataforge` dataset `trajectories`: records match
+`specs/task_schema.md` exactly (id, instruction, created_at, status, plan,
+history, result, budget) and carry a `branches` list of the failure paths with
+the recovery that was recorded.
+
+`validate_trajectory` enforces: observation before **and** after every action
+(no blind action), verdict ∈ progress/no-op/wrong/fatal, non-decreasing step
+numbers, a positive budget, `status=done ⇒ result.success`. Every record is
+validated before it is written; `verify` re-validates 200 records per shard
+from the gzip on disk.
+
+Measured (seed 4, 50k): **0 invalid**, failure 58.4%, recovery 100%, verdicts
+no-op 7 / progress 80 / wrong 14, plan 3.6 steps, history 3.5 entries per task,
+mix 45/40/15 by source.
+
+## M6 — code corpus v2 + 4096 code tokenizer ✅
+
+`dataforge` dataset `code_v2`:
+
+1. **AST filter** — `ast.parse`, no regex; a file that does not parse is dropped.
+2. **Function-level extraction** + `sha1(ast.dump(node))` **dedupe across all
+   files**, with a **split assigned on the function hash** so a copy-pasted
+   function can never be on both sides of the wall (a test parses the emitted
+   streams and asserts the split is disjoint).
+3. **Category tags** from module path + imports + names:
+   test / data / fileio / net / web / cli / ui / core.
+4. **Instruction→code pairs** mined from docstrings (`<|task|>...<|code|>...`).
+5. **Two tokenizers**: the checkpoint's 2052 BPE and a **4096 code-only BPE**
+   trained from scratch on the train split only (`code_tokenizer_4096.json`).
+
+On the smoke slice (2 MB, 1,486 functions): **2.85 bytes/token @2052 vs 3.54
+bytes/token @4096 (+24.1%)**, 539 instruction pairs. The standard build trains
+the 4096 tokenizer on 12 MB of code.
+
+Bug the gates caught: the first 4096 tokenizer came out at 4100 ids (4096 BPE +
+4 specials). The convention is now the same as the checkpoint's 2052-token
+tokenizer: **4096 total ids = 4092 BPE + 4 specials**.
+
+## M4+ — honest terminals for impossible objectives (after agent 01's overclaim finding)
+
+Agent 01 published (20:51) that a `<|scan|>` prefix present **only** on
+impossible episodes lets a model learn "scan means impossible" instead of
+reading the element list. My M4 corpus had no impossible objectives at all, so
+a model trained on it can only ever claim success — exactly the overclaiming
+failure the fleet measured at 20:27.
+
+Two changes, both in `neurobrain/drive.py`:
+
+1. **`<|scan|>` on every UI episode**, objective + element list first, so the
+   scan carries information about the screen, not about the answer.
+2. **8% impossible objectives**: the objective names a label that is *not* in
+   the element list (checked at generation time), the loop makes 2–4 honest
+   attempts, then reports `<|check|>objective impossible: ...` and closes with
+   `<|done|>failed` — never after a `<|retry|>`, so invariant 2 still holds.
+
+Terminal vocabulary is now the four the fleet uses:
+`success | success-partial | budget-exhausted | failed`, all counted from the
+token stream by `stats`.
+
+Measured on 3,000 episodes: success 0.889, partial 0.040, exhausted 0.033,
+failed 0.039, failure_fraction 0.994, terminal_rate 1.000.
+
+## M7 — determinism proof across two clean builds ✅
+
+Two independent `--profile standard --seed 23` builds into `data/forge-A` and
+`data/forge-B`, 1420 s and 1424 s wall clock (run **in parallel** on 2 cores, so
+the wall clock is inflated; `hard_ui` alone measured 980 s uncontended).
+
+```
+dataforge diff --a data/forge-A --b data/forge-B
+=> determinism OK  49 shards identical
+
+dataforge verify --dir data/forge-A
+=> verify OK  code:2 code_v2:6 drive:2 hard_ui:20 instructions:12
+              trajectories:10 ui_protocol:2 ui_seed:5   49/49 sha256 match
+
+dataforge stats --dir data/forge-A
+=> ranges all within bounds  OK      (58 s, peak RSS 967 MB)
+```
+
+## The whole standard corpus, one screen
+
+```
+dataset        kind            n            tokens    dup%   ranges
+code           token_streams     3,558 docs 14.22M    0.00   OK
+code_v2        token_streams    51,625 funcs 11.94M    0.00   OK
+drive          token_streams 1,000,000 eps  280.03M    0.02   OK
+hard_ui        ui_shards      100,000 imgs       -    0.00   OK
+instructions   token_streams 1,005,000 ins  19.41M    0.00   OK
+trajectories   jsonl            50,000 tasks      -    0.00   OK
+ui_protocol    token_streams   150,000 docs 17.15M    0.00   OK
+ui_seed        ui_shards       25,000 imgs       -    0.00   OK
+                                                    342.7M tokens total
+drive invariants  terminal_rate=1.000 retry_after_failure=1.000 failure_frac=0.991
+                  retry/ep=2.02 mix 0.45/0.40/0.15 terminals ok/partial/exhausted/failed 0.89/0.04/0.03/0.04
+hard_ui           755/1024 heat cells, clip 1.5%, entropy 5.54 bits, label H/Hmax 1.000
+instructions      1,005,000 unique, reject 4.13%, typo 18.8%, multi 14.6%, relative 11.5%
+trajectories      0 invalid, failure 59.4%, recovery 100%, verdicts no-op 6/progress 80/wrong 15
+code_v2           2.84 bytes/token @2052 vs 3.28 @4096 (+15.6%), split disjoint by function hash
+```
+
+## Bugs the gates caught this session (all fixed, each one is now a test)
+
+| where | what | number |
+|---|---|---|
+| seed drive generator | 1-in-3 code episodes was a single passing attempt → duplicate corpus | dup 32.28% → 0.03% |
+| seed offset target | divides sub-cell error by 0.45, saturating half the samples | clip 51.6% → 1.4% (hard world) |
+| hard world v1 | sliders were 1.4% of targets → `drag` unlearnable | drag → 6.9% |
+| `--set` bound | `offset_mean_abs ≤ 0.45` was wrong: 0.5 is correct by construction | band 0.30–0.60 |
+| ui_protocol writer | appended a second EOT → 50% "duplicates" that were empty docs | dup 50% → 0.00% |
+| marker scan | markers share their first token → the lookup table collided | all 15 markers found |
+| describe in one line: terminal mix counted the word "failed" in code retry text | fixed by matching the token sequence after `<\|done\|>` | 0.00 → 0.04 correct |
+| verify | compared a shard scan against the dataset aggregate | compares per-shard invariants |
+| code_v2 dedupe | emitted every copy of a duplicated function (hash was stored, never checked) | dup 8.80% → 0.00% |
+| 4096 tokenizer | came out at 4100 ids (4096 BPE + 4 specials) | 4096 total = 4092 + 4 |
+
+## Done-when audit (agent 05)
+
+| requirement | state |
+|---|---|
+| `dataforge build --profile standard` reproduces every dataset | 8/8 datasets, 49 shards |
+| from an empty sandbox in under 45 min | 23.7 min/build (parallel pair, 2 cores); 980 s of it is `hard_ui` |
+| `verify` passes | 49/49 sha256, invariants re-derived from the bytes |
+| `stats` prints a one-screen health report incl. drive invariants | yes, exit 0 only when every number is in range |
+| agents 03/04/01 consume the shards without asking | `DATA.md` + `dataforge link` + per-shard tokenizer field; bus post landed |
+
 ### Next
 
-M2: scale the hard world to 100k samples (`--set hard_ui.samples=100000`,
-~16 min), tier mix verified, and hand agent 03 the training directory.
+Next cycle: keep extending the hard world (more app grammars, a second label
+deck for OOD themes) and watch what agents 03/04 report as failure modes -- the
+forge answers to the training curves, not to its own taste. Also: fold the
+impossible-objective vocabulary into the trajectory forge, and add a
+`dataforge stats --watch` line for the coordinator's scoreboard.

@@ -1,6 +1,6 @@
 {
  "_meta": {
-  "dir": "/home/user/neurobrain/data/forge",
+  "dir": "/home/user/neurobrain/data/forge-A",
   "ok": true,
   "profile": "standard",
   "seed": 23,
@@ -8,6 +8,7 @@
   "vocab_size": 2052
  },
  "code": {
+  "alt_encodings": [],
   "balance": {
    "_share": {
     "_share": 0.0,
@@ -25,6 +26,13 @@
    "space": 4668456,
    "special": 3558
   },
+  "content": {
+   "bytes_read": 38578143,
+   "dedupe": "sha1(file bytes)",
+   "files": 3558,
+   "source": "stdlib+purelib",
+   "val_docs": 106
+  },
   "dataset": "code",
   "doc_len": {
    "max": 461923,
@@ -36,7 +44,7 @@
   "duplicates": {
    "exact_rate": 0.0,
    "near_rate": 0.0,
-   "sampled": 3106
+   "sampled": 3558
   },
   "files": [
    "code_train.bin",
@@ -97,36 +105,187 @@
   "units": "docs",
   "vocab_used": 1983
  },
- "drive": {
+ "code_v2": {
+  "alt_encodings": [
+   {
+    "file": "codev2_4096_train.bin",
+    "tokenizer": "code_tokenizer_4096.json",
+    "tokens": 7003062
+   },
+   {
+    "file": "codev2_4096_val.bin",
+    "tokenizer": "code_tokenizer_4096.json",
+    "tokens": 221090
+   }
+  ],
   "balance": {
    "_share": {
     "_share": 0.0,
-    "alpha": 0.4761,
-    "byte": 0.0,
-    "digit": 0.05286,
-    "punct": 0.23701,
-    "space": 0.22463,
-    "special": 0.00939
+    "alpha": 0.35467,
+    "byte": 0.00111,
+    "digit": 0.02711,
+    "punct": 0.24618,
+    "space": 0.36555,
+    "special": 0.00539
    },
-   "alpha": 101518917,
+   "alpha": 6796926,
+   "byte": 21304,
+   "digit": 519445,
+   "punct": 4717845,
+   "space": 7005397,
+   "special": 103250
+  },
+  "content": {
+   "bytes_per_token_2052": 2.8414,
+   "bytes_per_token_4096": 3.2841,
+   "categories": {
+    "cli": 0.0164,
+    "core": 0.0708,
+    "data": 0.2627,
+    "fileio": 0.1662,
+    "net": 0.02,
+    "test": 0.3446,
+    "ui": 0.0269,
+    "web": 0.0924
+   },
+   "dedupe": "sha1(ast.dump(node)) across all files, first-file-wins split",
+   "files_parsed": 3899,
+   "functions": 40069,
+   "functions_train": 38718,
+   "functions_val": 1351,
+   "instruction_mean_chars": 77.2,
+   "instruction_pairs": 11556,
+   "source": "stdlib+purelib, ast.parse filtered",
+   "tok_train_bytes": 12000505,
+   "tokenizer_4096": {
+    "bytes": 81932,
+    "name": "code_tokenizer_4096.json",
+    "sha256": "05762a386d977900ec70a5480ef01428e72030891992010d90fa0bf3b68189c3"
+   },
+   "vocab_2052": 2052,
+   "vocab_4096": 4096
+  },
+  "dataset": "code_v2",
+  "doc_len": {
+   "max": 2706,
+   "mean": 209.0,
+   "p50": 126,
+   "p99": 1122
+  },
+  "docs": 51625,
+  "duplicates": {
+   "exact_rate": 0.0,
+   "near_rate": 0.0,
+   "sampled": 17992
+  },
+  "files": [
+   "codev2_2052_train.bin",
+   "codev2_2052_val.bin",
+   "codev2_4096_train.bin",
+   "codev2_4096_val.bin",
+   "codev2_instr_train.bin",
+   "codev2_instr_val.bin"
+  ],
+  "kind": "token_streams",
+  "n": 51625,
+  "profile": "standard",
+  "ranges": {
+   "ok": true,
+   "overrides": {},
+   "violations": []
+  },
+  "seed": 23,
+  "tokens": 11940015,
+  "top_tokens": [
+   {
+    "id": 95,
+    "share": 0.04461,
+    "text": "_"
+   },
+   {
+    "id": 44,
+    "share": 0.03328,
+    "text": ","
+   },
+   {
+    "id": 46,
+    "share": 0.03228,
+    "text": "."
+   },
+   {
+    "id": 40,
+    "share": 0.02579,
+    "text": "("
+   },
+   {
+    "id": 264,
+    "share": 0.02251,
+    "text": "\n       "
+   },
+   {
+    "id": 115,
+    "share": 0.01581,
+    "text": "s"
+   },
+   {
+    "id": 41,
+    "share": 0.01525,
+    "text": ")"
+   },
+   {
+    "id": 281,
+    "share": 0.01409,
+    "text": " ="
+   }
+  ],
+  "units": "docs",
+  "vocab_used": 3994
+ },
+ "drive": {
+  "alt_encodings": [],
+  "balance": {
+   "_share": {
+    "_share": 0.0,
+    "alpha": 0.47618,
+    "byte": 0.0,
+    "digit": 0.04573,
+    "punct": 0.2417,
+    "space": 0.22852,
+    "special": 0.00787
+   },
+   "alpha": 133344577,
    "byte": 0,
-   "digit": 11272158,
-   "punct": 50536269,
-   "space": 47898506,
-   "special": 2002360
+   "digit": 12806377,
+   "punct": 67683606,
+   "space": 63991489,
+   "special": 2202497
+  },
+  "content": {
+   "invariants": {
+    "failure_fraction": 0.990682,
+    "mean_retries": 2.019,
+    "mix": {
+     "code": 0.4009,
+     "plan": 0.1497,
+     "ui": 0.4494
+    },
+    "retry_after_failure_rate": 1.0,
+    "terminal_rate": 1.0
+   },
+   "source": "neurobrain.drive.drive_corpus (seed)"
   },
   "dataset": "drive",
   "doc_len": {
-   "max": 397,
-   "mean": 213.2,
-   "p50": 190,
-   "p99": 377
+   "max": 547,
+   "mean": 280.0,
+   "p50": 278,
+   "p99": 505
   },
   "docs": 1000000,
   "duplicates": {
-   "exact_rate": 0.000333,
-   "near_rate": 0.000333,
-   "sampled": 6000
+   "exact_rate": 0.0002,
+   "near_rate": 0.0002,
+   "sampled": 10000
   },
   "files": [
    "drive_train.bin",
@@ -135,23 +294,29 @@
   "invariants": {
    "bad_retries": 0,
    "episodes": 1000000,
-   "failure_fraction": 1.0,
+   "failure_fraction": 0.990682,
    "failures": {
     "retry_gap": [],
     "terminal": []
    },
-   "mean_retries": 1.47,
+   "mean_retries": 2.019,
    "mix": {
-    "code": 0.401,
-    "plan": 0.1492,
-    "ui": 0.4497
+    "code": 0.4009,
+    "plan": 0.1497,
+    "ui": 0.4494
    },
    "retry_after_failure_rate": 1.0,
    "terminal_missing": 0,
+   "terminal_mix": {
+    "budget-exhausted": 0.0315,
+    "failed": 0.0362,
+    "success": 0.8904,
+    "success-partial": 0.0419
+   },
    "terminal_over": 0,
    "terminal_rate": 1.0,
-   "tokens": 213228210,
-   "tokens_per_episode": 213.2,
+   "tokens": 280028546,
+   "tokens_per_episode": 280.0,
    "violations": []
   },
   "kind": "token_streams",
@@ -165,53 +330,350 @@
    "violations": []
   },
   "seed": 23,
-  "tokens": 213228210,
+  "tokens": 280028546,
   "top_tokens": [
    {
     "id": 285,
-    "share": 0.07173,
+    "share": 0.06631,
     "text": "|>"
    },
    {
     "id": 284,
-    "share": 0.06156,
+    "share": 0.05765,
     "text": "<|"
    },
    {
     "id": 115,
-    "share": 0.02043,
+    "share": 0.0185,
     "text": "s"
    },
    {
-    "id": 44,
-    "share": 0.01939,
-    "text": ","
-   },
-   {
     "id": 292,
-    "share": 0.01756,
+    "share": 0.01817,
     "text": " the"
    },
    {
+    "id": 44,
+    "share": 0.01814,
+    "text": ","
+   },
+   {
     "id": 95,
-    "share": 0.01624,
+    "share": 0.01716,
     "text": "_"
    },
    {
-    "id": 112,
-    "share": 0.01451,
-    "text": "p"
+    "id": 272,
+    "share": 0.01403,
+    "text": " s"
    },
    {
     "id": 40,
-    "share": 0.01433,
+    "share": 0.01382,
     "text": "("
    }
   ],
   "units": "docs",
-  "vocab_used": 613
+  "vocab_used": 718
+ },
+ "hard_ui": {
+  "action_balance": {
+   "balanced": 0.2764,
+   "counts": [
+    74214,
+    8487,
+    10390,
+    6909
+   ],
+   "entropy": 1.2271,
+   "entropy_ratio": 0.6135,
+   "max_share": 0.74214,
+   "min_share": 0.06909,
+   "n_labels": 4
+  },
+  "coordinate": {
+   "cells_used": 755,
+   "entropy": 8.5202,
+   "entropy_ratio": 0.8912,
+   "max_cell_share": 0.01788,
+   "offset_clipped": 0.0145,
+   "offset_mean": [
+    -0.0186,
+    -0.0028
+   ],
+   "offset_mean_abs": 0.4975,
+   "offset_std": [
+    0.5769,
+    0.5748
+   ]
+  },
+  "dataset": "hard_ui",
+  "duplicates": {
+   "exact_rate": 0.0,
+   "near_rate": 0.0005,
+   "sampled": 2000
+  },
+  "image_entropy": {
+   "black_share": 0.0461,
+   "mean": 5.5397,
+   "sampled": 2000,
+   "std": 0.7473
+  },
+  "instruction": {
+   "mean_used_chars": 20.9,
+   "padding_share": 0.5653
+  },
+  "kind": "ui_shards",
+  "label_balance": {
+   "balanced": 0.9732,
+   "counts": [
+    4181,
+    4234,
+    4190,
+    4271,
+    4063,
+    4077,
+    4152,
+    4102,
+    4142,
+    4169,
+    4106,
+    4187,
+    4194,
+    4104,
+    4195,
+    4267,
+    4201,
+    4173,
+    4197,
+    4168,
+    4191,
+    4203,
+    4055,
+    4178
+   ],
+   "entropy": 4.5848,
+   "entropy_ratio": 1.0,
+   "max_share": 0.04271,
+   "min_share": 0.04055,
+   "n_labels": 24
+  },
+  "n": 100000,
+  "profile": "standard",
+  "ranges": {
+   "ok": true,
+   "overrides": {},
+   "violations": []
+  },
+  "role_balance": {
+   "balanced": 0.4836,
+   "counts": [
+    38731,
+    8487,
+    10390,
+    8947,
+    10881,
+    15655,
+    6909
+   ],
+   "entropy": 2.5164,
+   "entropy_ratio": 0.8964,
+   "max_share": 0.38731,
+   "min_share": 0.06909,
+   "n_labels": 7
+  },
+  "seed": 23,
+  "shards": 20,
+  "theme_balance": {
+   "balanced": 0.8043,
+   "counts": [
+    36671,
+    36519,
+    26810
+   ],
+   "entropy": 1.5706,
+   "entropy_ratio": 0.991,
+   "max_share": 0.36671,
+   "min_share": 0.2681,
+   "n_labels": 3
+  }
+ },
+ "instructions": {
+  "alt_encodings": [],
+  "balance": {
+   "_share": {
+    "_share": 0.0,
+    "alpha": 0.44354,
+    "byte": 0.0,
+    "digit": 0.01416,
+    "punct": 0.04775,
+    "space": 0.44276,
+    "special": 0.05179
+   },
+   "alpha": 8607486,
+   "byte": 0,
+   "digit": 274797,
+   "punct": 926736,
+   "space": 8592315,
+   "special": 1005000
+  },
+  "content": {
+   "attempts": 1048278,
+   "chars_mean": 50.4,
+   "dedupe": "blake2b64(normalise(text)) set, index 1,005,000 entries, re-roll on hit",
+   "family": {
+    "app": 0.1245,
+    "bare": 0.0772,
+    "checkbox_off": 0.0364,
+    "contextual": 0.0523,
+    "multi": 0.1457,
+    "plain": 0.1524,
+    "relative": 0.1147,
+    "section": 0.103,
+    "sequence": 0.0625,
+    "slider": 0.0506,
+    "type": 0.0806
+   },
+   "len_hist_by_10chars": [
+    114,
+    12645,
+    66937,
+    169234,
+    256122,
+    235096,
+    148227,
+    74178,
+    31362,
+    9365,
+    1575,
+    145
+   ],
+   "product_space_estimate": 33266993760,
+   "record_shards": 10,
+   "reject_rate": 0.04128,
+   "rejects": 43278,
+   "unique": 1005000,
+   "variant": {
+    "contraction": 0.08,
+    "lower": 0.5502,
+    "plain": 0.011,
+    "prefix": 0.7587,
+    "suffix": 0.5877,
+    "title": 0.2997,
+    "typo": 0.1876
+   }
+  },
+  "dataset": "instructions",
+  "doc_len": {
+   "max": 49,
+   "mean": 19.3,
+   "p50": 19,
+   "p99": 33
+  },
+  "docs": 1005000,
+  "duplicates": {
+   "exact_rate": 0.0,
+   "near_rate": 0.0,
+   "sampled": 10000
+  },
+  "files": [
+   "instructions_train.bin",
+   "instructions_val.bin"
+  ],
+  "kind": "token_streams",
+  "n": 1005000,
+  "profile": "standard",
+  "ranges": {
+   "ok": true,
+   "overrides": {
+    "alpha_share_min": 0.4,
+    "dup_rate_max": 0.01
+   },
+   "violations": []
+  },
+  "seed": 23,
+  "tokens": 19406334,
+  "top_tokens": [
+   {
+    "id": 2048,
+    "share": 0.05179,
+    "text": "<|endoftext|>"
+   },
+   {
+    "id": 292,
+    "share": 0.05046,
+    "text": " the"
+   },
+   {
+    "id": 305,
+    "share": 0.03208,
+    "text": " in"
+   },
+   {
+    "id": 32,
+    "share": 0.0187,
+    "text": " "
+   },
+   {
+    "id": 301,
+    "share": 0.01845,
+    "text": " p"
+   },
+   {
+    "id": 115,
+    "share": 0.0173,
+    "text": "s"
+   },
+   {
+    "id": 272,
+    "share": 0.01697,
+    "text": " s"
+   },
+   {
+    "id": 355,
+    "share": 0.0163,
+    "text": " to"
+   }
+  ],
+  "units": "docs",
+  "vocab_used": 867
+ },
+ "trajectories": {
+  "checked": 3334,
+  "dataset": "trajectories",
+  "dup_ids": 0,
+  "duplicates": {
+   "exact_rate": 0.0,
+   "near_rate": 0.0,
+   "sampled": 3334
+  },
+  "invalid": 0,
+  "invariants": {
+   "failure_fraction": 0.5939,
+   "history_per_task": 3.58,
+   "plan_steps_per_task": 3.56,
+   "recovery_fraction": 1.0,
+   "terminal_rate": 1.0,
+   "verdicts": {
+    "no-op": 0.0587,
+    "progress": 0.7957,
+    "wrong": 0.1456
+   }
+  },
+  "kind": "jsonl",
+  "n": 50000,
+  "profile": "standard",
+  "ranges": {
+   "ok": true,
+   "overrides": {},
+   "violations": []
+  },
+  "seed": 23,
+  "shards": 10,
+  "units": "tasks"
  },
  "ui_protocol": {
+  "alt_encodings": [],
   "balance": {
    "_share": {
     "_share": 0.0,
@@ -229,6 +691,10 @@
    "space": 378682,
    "special": 300000
   },
+  "content": {
+   "requested": 150000,
+   "source": "neurobrain.ui_world.protocol_corpus"
+  },
   "dataset": "ui_protocol",
   "doc_len": {
    "max": 148,
@@ -240,7 +706,7 @@
   "duplicates": {
    "exact_rate": 0.0,
    "near_rate": 0.0,
-   "sampled": 6000
+   "sampled": 9500
   },
   "files": [
    "ui_train.bin",
@@ -395,7 +861,10 @@
     "heat_cells_used_min": 60,
     "heat_entropy_ratio_min": 0.45,
     "offset_clipped_max": 0.6,
-    "offset_mean_abs_max": 0.65
+    "offset_mean_abs_band": [
+     0.3,
+     0.8
+    ]
    },
    "violations": []
   },
@@ -419,16 +888,17 @@
   "seed": 23,
   "shards": 5,
   "theme_balance": {
-   "balanced": 0.993,
+   "balanced": 1.0,
    "counts": [
     12413,
-    12587
+    12587,
+    0
    ],
    "entropy": 1.0,
    "entropy_ratio": 1.0,
    "max_share": 0.50348,
-   "min_share": 0.49652,
-   "n_labels": 2
+   "min_share": 0.0,
+   "n_labels": 3
   }
  }
 }

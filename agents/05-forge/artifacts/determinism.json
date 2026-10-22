@@ -1,32 +1,28 @@
 {
- "proof": "two independent builds, same seed+profile",
+ "proof": "two independent clean builds of --profile standard --seed 23, compared shard by shard",
  "profile": "standard",
  "seed": 23,
- "build_a": "/home/user/neurobrain/data/forge",
- "build_b": "/tmp/det-b",
- "shards_compared": 11,
+ "build_a": "data/forge-A",
+ "build_b": "data/forge-B",
+ "build_seconds": {
+  "a": 1420.1,
+  "b": 1423.8,
+  "note": "run in parallel on 2 cores so wall clock is inflated; hard_ui alone measured 980 s uncontended"
+ },
+ "shards_compared": 49,
  "identical": true,
- "build_seconds": 211.4,
- "peak_rss_mb": 659.5,
- "shards": {
-  "code": [
-   "faae3bbf5a4a2278..",
-   "1c45afd8a1061872.."
-  ],
+ "verify": "OK - 49/49 sha256 match, drive invariants re-derived from the bytes",
+ "stats_ranges_ok": true,
+ "datasets": {
+  "drive": {
+   "n": 1000000,
+   "shards": 2
+  }
+ },
+ "shard_hashes_first16": {
   "drive": [
-   "b229be8c26865fa6..",
-   "e33a33bf3bba3c5c.."
-  ],
-  "ui_protocol": [
-   "da44e04514f165d6..",
-   "71cda5e160de8fa8.."
-  ],
-  "ui_seed": [
-   "bb83146e5eef5b98..",
-   "75e0b9afc2b745a5..",
-   "6665ee78f6553b22..",
-   "ff8e2890d884dcda..",
-   "6c46ba70bc279daf.."
+   "b0dcf0082940d133..",
+   "af3b5f62a8fe4790.."
   ]
  }
 }

@@ -5,22 +5,48 @@
    "hashes_ok": true,
    "shards": 2
   },
+  "code_v2": {
+   "bytes": 38328334,
+   "hashes_ok": true,
+   "shards": 6
+  },
   "drive": {
-   "bytes": 426456420,
+   "bytes": 560057092,
    "hashes_ok": true,
    "invariants": {
     "episodes": 1000000,
-    "failure_fraction": 1.0,
-    "mean_retries": 1.47,
+    "failure_fraction": 0.990682,
+    "mean_retries": 2.019,
     "mix": {
-     "code": 0.401,
-     "plan": 0.1492,
-     "ui": 0.4497
+     "code": 0.4009,
+     "plan": 0.1497,
+     "ui": 0.4494
     },
     "retry_after_failure_rate": 1.0,
     "terminal_rate": 1.0
    },
    "shards": 2
+  },
+  "hard_ui": {
+   "bytes": 1899798266,
+   "hashes_ok": true,
+   "shards": 20
+  },
+  "instructions": {
+   "bytes": 70012430,
+   "hashes_ok": true,
+   "shards": 12
+  },
+  "trajectories": {
+   "bytes": 6111903,
+   "hashes_ok": true,
+   "invariants": {
+    "checked": 2010,
+    "failure_fraction": 0.5965,
+    "invalid": 0,
+    "recovery_fraction": 1.0
+   },
+   "shards": 10
   },
   "ui_protocol": {
    "bytes": 34290016,
@@ -33,6 +59,6 @@
    "shards": 5
   }
  },
- "dir": "/home/user/neurobrain/data/forge",
+ "dir": "/home/user/neurobrain/data/forge-A",
  "ok": true
 }

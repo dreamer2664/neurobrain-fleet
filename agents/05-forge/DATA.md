@@ -94,14 +94,54 @@ reporting. Offsets in `hard_ui` are scaled on half a cell, so they only clip at
 the true edge (1.4% vs 51.6% in the seed world) — a regressor trained on the
 seed world learns to saturate and will under-read `hard_ui` offsets.
 
+
+## 5c. Instructions, trajectories, code v2 (M3/M5/M6)
+
+**Instructions** (`instructions/`, 1M at standard):
+`instructions_train.bin` (uint16 stream, one instruction + EOT per doc) plus
+`shard-XXXX.jsonl.gz` with the structured record:
+
+```json
+{"text": "pls check the help checkbox in row 38", "target": {"label": "help", "role": "checkbox"},
+ "family": "plain", "variant": "prefix+suffix+lower", "distractor": null,
+ "anchor": null, "constraints": ["locator:in row 38"], "app": null, "section": null,
+ "type_text": null, "value": null}
+```
+
+`family` tells you what the sentence tests: `plain|bare|app|section|relative|multi|sequence|type|slider|checkbox_off|contextual`.
+`multi` carries a `distractor` that is present in the scene — that is the
+negation the model has to read. Mix this stream into the LM corpus at 10–20%.
+
+**Trajectories** (`trajectories/shard-XXXX.jsonl.gz`, 5k tasks per shard):
+exactly `specs/task_schema.md`, plus `branches` (failure → recorded recovery)
+and `source` (ui|code|plan). Validation is strict; if you add fields keep
+`validate_trajectory` in `neurobrain/trajectories.py` happy.
+
+**Code v2** (`code_v2/`):
+
+| file | what |
+|---|---|
+| `codev2_2052_train.bin` / `_val.bin` | functions through the checkpoint BPE |
+| `codev2_4096_train.bin` / `_val.bin` | same functions, 4096 code-only BPE (3.54 B/tok vs 2.85) |
+| `codev2_instr_train.bin` / `_val.bin` | `<|task|>docstring<|code|>body` pairs |
+| `code_tokenizer_4096.json` | the code tokenizer (4096 ids = 4092 BPE + 4 specials) |
+
+The train/val split is assigned **per function hash**, not per file, and a test
+proves no function appears on both sides. Do not re-split by file: you would
+reintroduce the stdlib mirror leak.
+
 ## 6. Numbers you can quote
 
 From `artifacts/stats-standard.json` (profile standard, seed 23):
 
 ```
-hard_ui      10,000 imgs   661/1024 cells  clip 1.4%  entropy 5.56 bits  tiers 20/45/35
+hard_ui     100,000 imgs   755/1024 cells  clip 1.5%  entropy 5.54 bits  tiers 20/45/35
 code          3,558 docs    14.22M tokens   dup 0.00%
-drive     1,000,000 eps    213.23M tokens   dup 0.03%   terminal 1.000  retry_after_failure 1.000
+drive     1,000,000 eps    265.07M tokens   dup 0.00%   terminal 1.000  retry_after_failure 1.000
+                        terminals success/partial/failed 0.92/0.04/0.03, retry/ep 2.02
+instructions 1,005,000     19.4M tokens    dup 0.00%   reject 4.13%, typo 18.8%
+trajectories    50,000 tasks 0 invalid     failure 58.4%  recovery 100%
+code_v2         3.54 bytes/token @4096 vs 2.85 @2052 (+24.1%)
 ui_protocol 150,000 docs    17.15M tokens   dup 0.00%
 ui_seed      25,000 imgs                    dup 0.00%   near 0.15%  entropy 2.27 bits
 ```
