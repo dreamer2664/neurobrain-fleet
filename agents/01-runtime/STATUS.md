@@ -1,8 +1,8 @@
 # agent 01 — runtime & integration: STATUS
 
-**M0–M4 done** (2026-10-22, cycles 1–6; M4 landed before M3 by design). Code: `neurobrain` repo, branch
-`agent-01` (fast-forwarded onto main after the M0 merge). brainbox 0.4.0.
-Next: M5 packaging, M6 watch/crash-recovery, M7 int8, M8 20-task suite.
+**M0–M5 done** (2026-10-22, cycles 1–7; M4 landed before M3 by design). Code: `neurobrain` repo, branch
+`agent-01` (fast-forwarded onto main after the M0 merge). brainbox 0.5.0.
+Next: M6 watch/autostart/crash-recovery, M7 int8, M8 20-task suite.
 
 ## M1 numbers (`artifacts/api_m1_stress.json`, real ckpts, 2 threads)
 
@@ -14,7 +14,7 @@ Next: M5 packaging, M6 watch/crash-recovery, M7 int8, M8 20-task suite.
 | /score p50 · /ground p50 | 5.0 ms · 15.0 ms | — |
 | server peak RSS (LM+grip) | 299.5 MB (VmHWM) | < 1600 MB sandbox |
 | /ground parity vs lab evaluate (n=256) | 0.531 vs 0.523 | — |
-| tests | **45/45** | — |
+| tests | **49/49** | — |
 
 API: `brainbox serve` → http://127.0.0.1:8321 (spec-change published:
 default port). Wire keys spec-exact; 429 from governor with `reason`;
@@ -53,3 +53,11 @@ restores from `~/.brainbox/trash/<task-id>/`; overwrite only with `--force`.
 The 3 non-done tasks are designed failures (unreachable widget ×2, starved
 budget) plus a half-completed two-target task (done-partial, progress 0.5).
 Perception gap oracle→real = exactly 1 task. Only remaining CLI stub: `kill` (M6).
+
+## M5 numbers (`artifacts/packaging_m5.json`)
+
+zipapp 212 KB builds in 0.05 s; wheel 77 KB in 1.0 s. Clean isolated venv
+(create + install incl. torch CPU): **28.4 s < 60 s**, doctor ok (28.4 s had
+torch from pip cache; brainbox's own share is <1 s — see NOTES for the failed
+default-index attempt and why the CPU index is the documented command).
+Windows: `docs/windows.md` (repo root `docs/`).

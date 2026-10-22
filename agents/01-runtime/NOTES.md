@@ -258,3 +258,37 @@ scripted tasks.
 Next: M5 packaging (zipapp + pip clean-venv timing, Windows doc), then M6
 watch/autostart/crash recovery, M7 int8+governor, M8 suite (needs agent 03's
 20 tasks — if unpublished, I'll extend drive_suite to 20 and flag it).
+
+## Cycle 7 — 2026-10-22 — M5: packaging (zipapp + pip) and Windows doc
+
+- Bundled tokenizer: `brainbox/tokenizer.json` (byte-identical to
+  `data/tokenizer.json`, sha pinned equal by test) is package data in the
+  wheel and zipapp. `bundled_tokenizer_path()` extracts it to
+  `~/.brainbox/` inside a zipapp, so a clean install needs no repo checkout
+  to find a tokenizer.
+- `scripts/build_zipapp.py` → `dist/brainbox.pyz` (212 KB): brainbox +
+  neurobrain + tokenizer; system python must supply torch. Zipapp `doctor`
+  verified from a bare temp cwd with only `BRAINBOX_HOME` set.
+- Measured installs (`artifacts/packaging_m5.json`):
+
+  | scenario | create+install | result |
+  |---|---|---|
+  | venv --system-site-packages + wheel (77 KB) | **3.0 s** | doctor ok, bench ok |
+  | isolated venv + full deps, CPU index | **28.4 s** (< 60) | doctor ok, torch 2.14.1+cpu |
+  | isolated venv, default PyPI index | FAILED (sandbox-only) | see below |
+
+  The failed attempt is documented, not hidden: this sandbox's `/tmp` is a
+  992 MB tmpfs and the default index resolves a 554.6 MB CUDA-bundled torch
+  (download died incomplete, then ENOSPC unpacking). Retried on real disk —
+  fine. Two durable lessons, both now in `docs/windows.md`: (1) the
+  supported install command pins the CPU index
+  (`--index-url https://download.pytorch.org/whl/cpu`); (2) brainbox's own
+  install cost is <1 s — the 60 s budget is a torch-download budget.
+  Cold-network note: the 28.4 s had torch served from the pip cache.
+- `docs/windows.md`: install → checkpoint fetch with hashes → first run →
+  Task Scheduler autostart → troubleshooting. Windows-only steps are flagged
+  as documented-not-executed (no Windows in this sandbox); M6 adds the
+  generator so nobody hand-writes the schtasks line.
+- Tests 49/49 (`artifacts/tests_m5.txt`).
+
+Next: M6 — watch mode + autostart registration + kill -9 crash recovery.

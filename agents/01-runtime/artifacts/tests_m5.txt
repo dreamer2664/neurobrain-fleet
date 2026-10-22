@@ -1,0 +1,61 @@
+test_bench_20_tokens_json (test_brainbox_m0.TestCLI.test_bench_20_tokens_json) ... ok
+test_doctor_json (test_brainbox_m0.TestCLI.test_doctor_json) ... ok
+test_help_lists_all_verbs_and_unimplemented_exit_2 (test_brainbox_m0.TestCLI.test_help_lists_all_verbs_and_unimplemented_exit_2) ... ok
+test_corrupt_weights_rejected_by_sha (test_brainbox_m0.TestCheckpointRoundTrip.test_corrupt_weights_rejected_by_sha) ... ok
+test_legacy_pt_migration (test_brainbox_m0.TestCheckpointRoundTrip.test_legacy_pt_migration) ... ok
+test_stub_dir_layout_and_load (test_brainbox_m0.TestCheckpointRoundTrip.test_stub_dir_layout_and_load) ... ok
+test_tampered_tokenizer_rejected_by_sha (test_brainbox_m0.TestCheckpointRoundTrip.test_tampered_tokenizer_rejected_by_sha) ... ok
+test_hysteresis_refuse_and_resume (test_brainbox_m0.TestGovernor.test_hysteresis_refuse_and_resume) ... ok
+test_rss_reader_returns_positive (test_brainbox_m0.TestGovernor.test_rss_reader_returns_positive) ... ok
+test_generate_20_tokens (test_brainbox_m0.TestHostGenerate.test_generate_20_tokens) ... ok
+test_score_topk (test_brainbox_m0.TestHostGenerate.test_score_topk) ... ok
+test_bound_to_loopback_only (test_brainbox_m1.TestAPI.test_bound_to_loopback_only) ... ok
+test_errors (test_brainbox_m1.TestAPI.test_errors) ... ok
+test_generate_defaults_64_tokens (test_brainbox_m1.TestAPI.test_generate_defaults_64_tokens) ... ok
+test_generate_spec_exact (test_brainbox_m1.TestAPI.test_generate_spec_exact) ... ok
+test_ground_spec_exact (test_brainbox_m1.TestAPI.test_ground_spec_exact) ... ok
+test_health_spec_exact_and_fast (test_brainbox_m1.TestAPI.test_health_spec_exact_and_fast) ... ok
+test_queue_serialises_model_execution (test_brainbox_m1.TestAPI.test_queue_serialises_model_execution) ... ok
+test_score_spec_exact (test_brainbox_m1.TestAPI.test_score_spec_exact) ... ok
+test_429_over_cap_but_health_still_answers (test_brainbox_m1.TestGovernorRefusal.test_429_over_cap_but_health_still_answers) ... ok
+test_serve_help (test_brainbox_m1.TestServeCLI.test_serve_help) ... ok
+test_doctor_fails_on_corrupt_checkpoint (test_brainbox_m2.TestFindAndDoctor.test_doctor_fails_on_corrupt_checkpoint) ... ok
+test_doctor_reports_grip_and_verifies (test_brainbox_m2.TestFindAndDoctor.test_doctor_reports_grip_and_verifies) ... ok
+test_find_checkpoint_ignores_grip_dirs (test_brainbox_m2.TestFindAndDoctor.test_find_checkpoint_ignores_grip_dirs) ... ok
+test_grip_dir_roundtrip_and_config (test_brainbox_m2.TestGripMigration.test_grip_dir_roundtrip_and_config) ... ok
+test_grip_dir_tamper_rejected (test_brainbox_m2.TestGripMigration.test_grip_dir_tamper_rejected) ... ok
+test_migrate_script_both_kinds (test_brainbox_m2.TestGripMigration.test_migrate_script_both_kinds) ... ok
+test_decompose_rung4 (test_brainbox_m3.TestDecompose.test_decompose_rung4) ... ok
+test_run_scripted_shell_task_then_tasks_and_logs (test_brainbox_m3.TestDriveCLI.test_run_scripted_shell_task_then_tasks_and_logs) ... ok
+test_flaky_click_recovers_at_rung1 (test_brainbox_m3.TestDriveLoop.test_flaky_click_recovers_at_rung1) ... ok
+test_idle_cycle_verifies_done_and_reports (test_brainbox_m3.TestDriveLoop.test_idle_cycle_verifies_done_and_reports) ... ok
+test_partial_credit_done_partial (test_brainbox_m3.TestDriveLoop.test_partial_credit_done_partial) ... ok
+test_relocated_widget_recovers_at_rung2 (test_brainbox_m3.TestDriveLoop.test_relocated_widget_recovers_at_rung2) ... ok
+test_shell_tool_switch_and_trash_delete (test_brainbox_m3.TestDriveLoop.test_shell_tool_switch_and_trash_delete) ... ok
+test_simple_task_done_no_retry (test_brainbox_m3.TestDriveLoop.test_simple_task_done_no_retry) ... ok
+test_step_budget_forces_terminal (test_brainbox_m3.TestDriveLoop.test_step_budget_forces_terminal) ... ok
+test_unreachable_fails_terminally_after_ladder (test_brainbox_m3.TestDriveLoop.test_unreachable_fails_terminally_after_ladder) ... ok
+test_wrong_plan_recovers_at_rung3_replan (test_brainbox_m3.TestDriveLoop.test_wrong_plan_recovers_at_rung3_replan) ... ok
+test_100_cycles_byte_identical (test_brainbox_m4.TestTrash.test_100_cycles_byte_identical) ... ok
+test_directory_tree_roundtrip (test_brainbox_m4.TestTrash.test_directory_tree_roundtrip) ... ok
+test_errors (test_brainbox_m4.TestTrash.test_errors) ... ok
+test_restore_refuses_overwrite_then_allows (test_brainbox_m4.TestTrash.test_restore_refuses_overwrite_then_allows) ... ok
+test_same_basename_two_dirs (test_brainbox_m4.TestTrash.test_same_basename_two_dirs) ... ok
+test_single_file_roundtrip_byte_identical (test_brainbox_m4.TestTrash.test_single_file_roundtrip_byte_identical) ... ok
+test_cli_undo_and_list (test_brainbox_m4.TestUndoCLI.test_cli_undo_and_list) ... brainbox undo: no trash recorded for task t-7777
+ok
+test_bundled_copy_identical_to_data (test_brainbox_m5.TestBundledTokenizer.test_bundled_copy_identical_to_data) ... /home/user/neurobrain/tests/test_brainbox_m5.py:20: ResourceWarning: unclosed file <_io.BufferedReader name='/home/user/neurobrain/brainbox/tokenizer.json'>
+  return hashlib.sha256(open(p, "rb").read()).hexdigest()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/user/neurobrain/tests/test_brainbox_m5.py:20: ResourceWarning: unclosed file <_io.BufferedReader name='/home/user/neurobrain/data/tokenizer.json'>
+  return hashlib.sha256(open(p, "rb").read()).hexdigest()
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_bundled_loads (test_brainbox_m5.TestBundledTokenizer.test_bundled_loads) ... ok
+test_wheel_builds_with_entrypoint_and_data (test_brainbox_m5.TestWheel.test_wheel_builds_with_entrypoint_and_data) ... ok
+test_zipapp_builds_and_runs_doctor (test_brainbox_m5.TestZipapp.test_zipapp_builds_and_runs_doctor) ... ok
+
+----------------------------------------------------------------------
+Ran 49 tests in 9.192s
+
+OK

@@ -1,0 +1,45 @@
+{
+  "milestone": "M5",
+  "zipapp": {
+    "build_s": 0.05,
+    "bytes": 217837,
+    "ok": true
+  },
+  "wheel": {
+    "build_s": 1.01,
+    "file": "neurobrain-0.1.0-py3-none-any.whl",
+    "bytes": 77531,
+    "ok": true
+  },
+  "venv_system_site": {
+    "create_s": 2.34,
+    "install_s": 0.69,
+    "total_create_plus_install_s": 3.04,
+    "under_60s": true,
+    "doctor_ok": true,
+    "doctor_wall_s": 1.41,
+    "bench": {
+      "boot_s": 1.221,
+      "tok_s": 227.27,
+      "peak_rss_mb": 256.2,
+      "stub": true
+    }
+  },
+  "venv_isolated_full_deps": {
+    "attempt_default_pypi": "FAILED in sandbox only: /tmp is a 992MB tmpfs (default-index torch wheel alone is 554.6MB CUDA-bundled; download died incomplete, then ENOSPC on unpack). Retried on real disk below.",
+    "supported_command": "pip install --index-url https://download.pytorch.org/whl/cpu --extra-index-url https://pypi.org/simple <wheel>",
+    "create_s": 2.46,
+    "install_s": 25.89,
+    "total_create_plus_install_s": 28.35,
+    "under_60s": true,
+    "doctor_ok": true,
+    "torch": "2.14.1+cpu",
+    "bench": {
+      "boot_s": 1.129,
+      "tok_s": 270.27,
+      "peak_rss_mb": 254.5,
+      "stub": true
+    },
+    "note": "torch 2.14.1+cpu wheel served from the sandbox pip cache; cold-network adds a ~196MB download. brainbox wheel itself: 77KB, <1s (venv_system_site)."
+  }
+}
