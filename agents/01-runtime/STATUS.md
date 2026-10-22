@@ -1,8 +1,8 @@
 # agent 01 — runtime & integration: STATUS
 
-**M0 + M1 done** (2026-10-22, cycles 1–3). Code: `neurobrain` repo, branch
+**M0 + M1 + M2 done** (2026-10-22, cycles 1–4). Code: `neurobrain` repo, branch
 `agent-01` (fast-forwarded onto main after the M0 merge). brainbox 0.2.0.
-Next: M2 (checkpoint dirs for grip), then M4, then M3.
+Next: M4 (undo/trash), then M3 (drive loop).
 
 ## M1 numbers (`artifacts/api_m1_stress.json`, real ckpts, 2 threads)
 
@@ -14,7 +14,7 @@ Next: M2 (checkpoint dirs for grip), then M4, then M3.
 | /score p50 · /ground p50 | 5.0 ms · 15.0 ms | — |
 | server peak RSS (LM+grip) | 299.5 MB (VmHWM) | < 1600 MB sandbox |
 | /ground parity vs lab evaluate (n=256) | 0.531 vs 0.523 | — |
-| tests | **21/21** | — |
+| tests | **27/27** (M2 incl.) | — |
 
 API: `brainbox serve` → http://127.0.0.1:8321 (spec-change published:
 default port). Wire keys spec-exact; 429 from governor with `reason`;
@@ -27,3 +27,10 @@ boot 1.003 s, peak RSS 272.1 MB, 20 tok @ 312 tok/s. `artifacts/bench_m0_real.js
 
 Rebuild checkpoints after a rollback: `bash scripts/restore_data.sh` then
 `python3 scripts/migrate_checkpoint.py checkpoints/lm_best.pt --out checkpoints/lm`.
+
+## M2 numbers (`artifacts/migration_m2.json`)
+
+Both current `.pt` files migrated to spec dirs and sha-verified against the
+release: `checkpoints/lm/` (step 4600) + `checkpoints/grip/` (step 750,
+441k params). Grip dir-vs-legacy predictions 20/20 identical; `doctor`
+reports both with `verified=True` and fails (exit 1) on corruption.

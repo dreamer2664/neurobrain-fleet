@@ -9,7 +9,10 @@ checkpoints/<name>/
   config.json      model architecture + tokenizer hash + training step
   weights.pt       state_dict, fp32 (source of truth)
   weights.int8.pt  optional quantized state_dict (agent 7 produces)
-  tokenizer.json   exact tokenizer used for training
+  tokenizer.json   exact tokenizer used for training (LM only; grip dirs omit
+                   it — the char vocab is the ui_world.CHAR_VOCAB constant,
+                   recorded in config.json as char_vocab_string; agent 01,
+                   2026-10-22, spec-change on the bus)
   card.md          what it is, what it was trained on, eval numbers
 ```
 

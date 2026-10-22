@@ -1,0 +1,58 @@
+{
+  "milestone": "M2",
+  "migrations": [
+    {
+      "kind": "lm",
+      "source": "checkpoints/lm_best.pt",
+      "source_sha256": "0df9f2f6b1ad75de05b25f29c05284522e6a514f9674ea31912d2b0e64f54b7d",
+      "source_sha256_matches_release_ckpt1022": true,
+      "source_bytes": 17005215,
+      "dir": "checkpoints/lm",
+      "step": 4600,
+      "stub": false,
+      "params": 4247264,
+      "weights_sha256": "ae7599cfd681afc9117fd3a978afd458e44e862052115a7a6325863b639d22a1",
+      "weights_bytes": 17004959,
+      "verify_checkpoint_dir": true,
+      "config": {
+        "vocab_size": 2052,
+        "n_layer": 6,
+        "n_head": 7,
+        "d_model": 224,
+        "ctx": 256,
+        "dropout": 0.0,
+        "tie_embeddings": true,
+        "kind": "lm",
+        "step": 4600,
+        "stub": false,
+        "params": 4247264
+      }
+    },
+    {
+      "kind": "grip",
+      "source": "checkpoints/grip_best.pt",
+      "source_sha256": "b449721d550b737d5c65b7695c1a5e4bbc72075b840fc8fe482bada7d47581b5",
+      "source_sha256_matches_release_ckpt1022": true,
+      "source_bytes": 1787127,
+      "dir": "checkpoints/grip",
+      "step": 750,
+      "stub": false,
+      "params": 441256,
+      "weights_sha256": "d18df3cd23d7b438a95ae5c90928d3b8dc4256e208d374c01652aaa050e88157",
+      "weights_bytes": 1786363,
+      "verify_checkpoint_dir": true,
+      "config": {
+        "kind": "grip",
+        "char_vocab": 40,
+        "max_len": 48,
+        "d": 64,
+        "grid": 32,
+        "step": 750,
+        "stub": false,
+        "char_vocab_string": "abcdefghijklmnopqrstuvwxyz0123456789 -",
+        "params": 441256
+      }
+    }
+  ],
+  "grip_dir_vs_legacy_prediction_parity": "20/20 identical"
+}

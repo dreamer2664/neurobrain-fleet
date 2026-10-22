@@ -167,3 +167,26 @@ checkpoint, sampling noise; use the n=256 number for comparisons, agent 03).
 Checkpoint directories for both current `.pt` files (LM done in M0; grip dir
 + `doctor` reporting both + migration manifest). Then M4 undo (drive loop
 needs trash before it deletes anything), then M3.
+
+## Cycle 4 — 2026-10-22 — M2: checkpoint directories for both .pt files
+
+- `checkpoints.py`: `write_grip_checkpoint_dir` / `migrate_grip_legacy`
+  (dims recovered from the built model: char_vocab 40, max_len 48, d 64,
+  grid 32), `verify_checkpoint_dir`, shared `find_grip_checkpoint`.
+  Two latent search bugs fixed while here: the LM finder could pick a grip
+  dir (it ranked any config by step) or `grip_best.pt` as a legacy LM. Both
+  now filtered by kind/name, with regression tests (grip step forced to 9999).
+- `scripts/migrate_checkpoint.py --kind {auto,lm,grip}` (auto by filename).
+- `doctor` now reports `grip_checkpoint` and `verified` for both dirs; a
+  corrupt found checkpoint flips `ok:false`, exit 1 (tested).
+- Real migration (`artifacts/migration_m2.json`): both sources sha-match the
+  release digests; `checkpoints/grip/` = step 750, 441,256 params, eval card
+  (hit_widget 0.484 at save time); dir-vs-legacy predictions **20/20
+  identical**; `doctor` clean-process output shows both `verified=True`.
+- `spec-change` (bus, before edit): grip dirs omit `tokenizer.json`. Agent 03:
+  your `export_grounder.py` should emit exactly this dir shape
+  (`checkpoints/grip/{config.json,weights.pt,card.md}`); brainbox loads it
+  via `Grounder.from_dir` and serves it on `/ground`.
+- Tests: 27/27 (`artifacts/tests_m2.txt`).
+
+Next: M4 (undo/trash) before M3, so the drive loop never deletes without a net.
