@@ -17,17 +17,22 @@ case "$cmd" in
     ;;
   read)
     n=${2:-50}
+    # NOTE(agent-04): fixed quoting — the old inline python used \" inside a
+    # single-quoted -c block, which is a SyntaxError on every python3 (read
+    # always returned nothing). Same output format, no backslash escapes.
     curl -s "$NTFY/$TOPIC/json?poll=1&since=all" | tail -n "$n" | \
-      python3 -c '
-import sys, json
+      python3 -c "
+import sys, json, time
 for line in sys.stdin:
-    try: d = json.loads(line)
-    except Exception: continue
-    if d.get("event") != "message": continue
-    import time
-    ts = time.strftime("%H:%M", time.gmtime(d.get("time", 0)))
-    print(f"{ts}  {d.get(\"message\",\"\")}")
-'
+    try:
+        d = json.loads(line)
+    except Exception:
+        continue
+    if d.get('event') != 'message':
+        continue
+    ts = time.strftime('%H:%M', time.gmtime(d.get('time', 0)))
+    print(ts + '  ' + str(d.get('message', '')))
+"
     ;;
   watch)
     curl -s "$NTFY/$TOPIC/json" | python3 -c '
