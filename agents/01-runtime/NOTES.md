@@ -325,3 +325,40 @@ Next: M6 — watch mode + autostart registration + kill -9 crash recovery.
 
 Next: M7 int8 + governor under real checkpoints (plus a Governor-driven 429
 live demo at a low cap), then M8.
+
+## Cycle 9 — 2026-10-22 — M7: int8 weight-only path + governor evidence
+
+`brainbox/quant.py`: per-row symmetric int8 for Linear/Conv2d/Embedding
+(tied weights share storage), fp32 kept for norms/biases. Sidecar
+`weights.int8.pt` next to the fp32 source of truth
+(`scripts/migrate_checkpoint.py --int8`; sha256 recorded in config.json).
+Loads two ways: `--int8` with sidecar builds the model on the meta device
+and materializes only from the sidecar (fp32 file never read,
+`quant_source` in host describe proves which path ran); without a sidecar it
+quantizes in place. Delta table (`artifacts/quant_m7.json`), real ckpts:
+
+  | metric | fp32 | int8 |
+  |---|---|---|
+  | LM weights on disk | 17.00 MB | 4.81 MB (0.283×) |
+  | Grip weights on disk | 1.79 MB | 0.47 MB (0.265×) |
+  | LM loss (24×128 src windows) | 2.7536 | 2.7541 (**Δ +0.0005**) |
+  | LM top-1 agreement (40 prompts) | — | 40/40 |
+  | Grip hit_widget (n=256) | 0.5234 | 0.5195 |
+  | bench tok/s | ~300 | ~140–195 (dequant churn) |
+  | bench/serve peak RSS | 272–301 MB | 280–319 MB |
+  | governor: cap 200 MB live | /generate **429**, /health 200 | same |
+
+Read that RSS row again: at 4.25M params the weights are ~6% of process RSS,
+so int8's resident saving (~13 MB) drowns in torch runtime + allocator
+churn from per-forward dequantization — **int8 is not an RSS or speed win
+for this checkpoint and fp32 stays the default**. What it is: a 3.6× disk
+reduction at zero measurable accuracy cost, and the load path that will
+matter when someone trains to the spec's 600 MB weight allocation
+(projected saving there ≈ 450 MB). Max measured peak anywhere: **319 MB ≤
+3000 MB** target; governor refusal proven live, not just unit-tested.
+Also fixed en route: host `boot_s` reported epoch time (now elapsed);
+`--int8` added to bench/serve. Tests 61/61 (`artifacts/tests_m7.txt`).
+
+Next: M8 — 20-task end-to-end suite. Agent 03 hasn't published one to this
+branch; extending drive_suite to 20 tasks (labelled agent-01-authored) and
+re-running against their future suite when it lands.

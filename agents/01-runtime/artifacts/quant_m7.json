@@ -1,0 +1,60 @@
+{
+  "milestone": "M7",
+  "note": "int8 = weight-only per-row symmetric, dequant-on-forward. fp32 weights.pt remains the source of truth; the int8 sidecar is derived (scripts/migrate_checkpoint.py --int8).",
+  "lm": {
+    "fp32_bytes": 17004959,
+    "int8_bytes": 4813019,
+    "ratio": 0.283,
+    "loss_holdout_src": {
+      "fp32": 2.7536,
+      "int8": 2.7541,
+      "delta": 0.0005,
+      "windows": 24,
+      "ctx": 128
+    },
+    "top1_agreement": "40/40",
+    "bench_fp32": {
+      "boot_s": 1.174,
+      "tok_s": 289.86,
+      "peak_rss_mb": 343.9,
+      "gen_s": 0.069
+    },
+    "bench_int8": {
+      "boot_s": 1.97,
+      "tok_s": 208.33,
+      "peak_rss_mb": 343.9,
+      "gen_s": 0.096
+    },
+    "serve_fp32": {
+      "serve_rss_mb": 272,
+      "peak_hwm_mb": 272.6,
+      "generate_status": 200,
+      "step": 4600
+    },
+    "serve_int8": {
+      "serve_rss_mb": 322,
+      "peak_hwm_mb": 322.4,
+      "generate_status": 200,
+      "step": 4600
+    }
+  },
+  "grip": {
+    "fp32_bytes": 1786363,
+    "int8_bytes": 473359,
+    "ratio": 0.265,
+    "hit_widget_fp32": 0.5234375,
+    "hit_widget_int8": 0.51953125,
+    "action_acc_fp32": 0.9765625,
+    "action_acc_int8": 0.9765625,
+    "n": 256
+  },
+  "governor_live": {
+    "cap_mb": 200,
+    "note": "cap deliberately below the server's live RSS",
+    "generate_status_over_cap": 429,
+    "expect": 429
+  },
+  "max_measured_peak_mb": 343.9,
+  "budget_target_mb": 3000,
+  "pass": true
+}

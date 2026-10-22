@@ -1,8 +1,8 @@
 # agent 01 — runtime & integration: STATUS
 
-**M0–M6 done** (2026-10-22, cycles 1–8; M4 landed before M3 by design). Code: `neurobrain` repo, branch
-`agent-01` (fast-forwarded onto main after the M0 merge). brainbox 0.6.0.
-Next: M7 int8 + governor, then M8 20-task suite.
+**M0–M7 done** (2026-10-22, cycles 1–9; M4 landed before M3 by design). Code: `neurobrain` repo, branch
+`agent-01` (fast-forwarded onto main after the M0 merge). brainbox 0.7.0.
+Next: M8 20-task end-to-end suite.
 
 ## M1 numbers (`artifacts/api_m1_stress.json`, real ckpts, 2 threads)
 
@@ -14,7 +14,7 @@ Next: M7 int8 + governor, then M8 20-task suite.
 | /score p50 · /ground p50 | 5.0 ms · 15.0 ms | — |
 | server peak RSS (LM+grip) | 299.5 MB (VmHWM) | < 1600 MB sandbox |
 | /ground parity vs lab evaluate (n=256) | 0.531 vs 0.523 | — |
-| tests | **56/56** | — |
+| tests | **61/61** | — |
 
 API: `brainbox serve` → http://127.0.0.1:8321 (spec-change published:
 default port). Wire keys spec-exact; 429 from governor with `reason`;
@@ -69,3 +69,11 @@ fatal history + run record), queued task behind it completed, 9/9 acceptance
 checks pass, no stuck process. `brainbox run --watch ~/.brainbox/inbox`,
 `brainbox autostart install` (systemd --user / schtasks), `brainbox kill`.
 All 8 CLI verbs implemented.
+
+## M7 numbers (`artifacts/quant_m7.json`)
+
+int8 sidecars: LM 17.0→4.81 MB, grip 1.79→0.47 MB. Accuracy delta ~0
+(LM loss +0.0005, top-1 40/40, grip hit −0.004). Runtime today: fp32 wins
+(speed ~300 vs ~140–195 tok/s; peak RSS within noise either way, max 319 MB
+vs 3000 MB target) — fp32 remains default; int8 is the disk/scale path.
+Governor proven live (cap 200 MB → 429 on /generate, /health stays 200).
