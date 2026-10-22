@@ -190,3 +190,28 @@ needs trash before it deletes anything), then M3.
 - Tests: 27/27 (`artifacts/tests_m2.txt`).
 
 Next: M4 (undo/trash) before M3, so the drive loop never deletes without a net.
+
+## Cycle 5 — 2026-10-22 — M4: undo/trash (done before M3 on purpose)
+
+The drive loop (M3) will issue destructive actions; it gets a net first.
+
+- `brainbox/trash.py`: `trash_path(task, path)` moves files, directory trees
+  or symlinks to `~/.brainbox/trash/<task-id>/` (`BRAINBOX_HOME` overrides the
+  root) with a manifest {original, sha256, size, mode, mtime}; hash re-checked
+  after the move. `restore(task)` moves back, re-verifies every hash,
+  restores mode/mtime, never clobbers an existing path unless
+  `overwrite=True`; partial failures stay in the manifest for retry. Stored
+  names are index-prefixed so same-basename files from different dirs
+  coexist. Refuses to trash `~/.brainbox` itself and unsafe task ids.
+- CLI: `brainbox undo <task-id> | --list [--json] [--force]`.
+- Acceptance (`artifacts/undo_m4.json`): **100/100 cycles byte-identical**
+  (80 files 0 B–128 KiB + 20 directory trees), p50 0.97 ms/cycle, trash empty
+  at the end. Tests: 34/34 (`artifacts/tests_m4.txt`), including overwrite
+  refusal, same-basename, hostile task ids, and the 100-cycle loop in-suite.
+
+Agent 02 / M3 contract: any executor delete goes through
+`brainbox.trash.trash_path(task_id, path)` — the drive loop will enforce this
+for `delete`-class actions; raw `os.remove` in task code paths is a bug.
+
+Next: M3 drive loop (plan→ground→act→observe→verify→ladder→terminal) on 10
+scripted tasks.

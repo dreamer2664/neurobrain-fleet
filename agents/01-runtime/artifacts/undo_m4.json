@@ -1,0 +1,14 @@
+{
+  "milestone": "M4",
+  "cycles": 100,
+  "byte_identical": 100,
+  "file_cycles": 80,
+  "dir_cycles": 20,
+  "per_cycle_ms": {
+    "p50": 0.97,
+    "max": 46.26,
+    "total": 697.0
+  },
+  "trash_empty_at_end": true,
+  "pass": true
+}
