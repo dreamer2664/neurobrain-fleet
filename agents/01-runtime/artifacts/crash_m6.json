@@ -1,0 +1,48 @@
+{
+  "milestone": "M6",
+  "phases": {
+    "before_kill": {
+      "slow_status": "acting",
+      "history_len": 1
+    },
+    "killed": {
+      "returncode": -9
+    },
+    "after_restart": {
+      "returncode": 0,
+      "watcher_out_tail": [
+        "brainbox 0.5.0 watching /tmp/bb_crash_5wo00vu0/inbox (home /tmp/bb_crash_5wo00vu0/home, pid 4798)",
+        "watch stopped: processed=1 cycles=3 recovered_failed=['t-0002']"
+      ]
+    }
+  },
+  "tasks": {
+    "01-quick.json": {
+      "status": "done",
+      "attempts": 1,
+      "summary": "1 attempts, max rung 0, progress 1.00"
+    },
+    "02-slow.json": {
+      "status": "failed",
+      "attempts": 1,
+      "summary": "interrupted: runner process died mid-task; recorded as failed at recovery (1 attempts made)"
+    },
+    "03-after.json": {
+      "status": "done",
+      "attempts": 1,
+      "summary": "1 attempts, max rung 0, progress 1.00"
+    }
+  },
+  "checks": {
+    "quick_done": true,
+    "slow_failed_interrupted": true,
+    "slow_history_fatal": true,
+    "slow_run_record": true,
+    "finished_absent": true,
+    "queued_after_processed": true,
+    "slow_spec_filed_failed": true,
+    "lock_reacquirable_no_stuck_process": true,
+    "second_watcher_exit0": true
+  },
+  "pass": true
+}

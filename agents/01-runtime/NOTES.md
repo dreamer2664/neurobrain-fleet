@@ -292,3 +292,36 @@ watch/autostart/crash recovery, M7 int8+governor, M8 suite (needs agent 03's
 - Tests 49/49 (`artifacts/tests_m5.txt`).
 
 Next: M6 — watch mode + autostart registration + kill -9 crash recovery.
+
+## Cycle 8 — 2026-10-22 — M6: watch mode + autostart + crash recovery
+
+- `brainbox/watch.py`: inbox-as-queue (`processing/ done/ failed/` buckets,
+  `<spec>.result.json` sidecars), single-runner flock pidfile,
+  `kill_runner` (SIGTERM→SIGKILL; zombie-aware liveness — a just-killed
+  child watcher still answers `kill(pid,0)`, which briefly fooled `kill`
+  into reporting failure in tests), startup `recover()`: active tasks →
+  `failed` with "interrupted" summary + fatal history entry + run record;
+  processing specs filed `failed/`, orphan specs (crashed before task
+  creation) re-queued, parked tasks left parked.
+- `brainbox run --watch <dir> [--poll --max-cycles]`, graceful SIGTERM/SIGINT;
+  idle cycles run `idle_cycle()` between polls. `brainbox kill` is the last
+  M0 stub filled — **all 8 CLI verbs are real now**.
+- `brainbox/autostart.py` + `brainbox autostart install|uninstall|status`:
+  Linux writes `~/.config/systemd/user/brainbox.service` (Restart=on-failure;
+  `--enable` runs systemctl where present — the write itself is unit-tested
+  and shown in logs, enable is not possible in this sandbox), Windows
+  generates/runs the `schtasks /Create … ONLOGON` command (shape-tested).
+- World snapshot/restore (sim activated set + positions + chaos counters,
+  persisted after every attempt) so parked tasks can resume across processes.
+- Bug found by the acceptance test design: ShellWorld's verifier counted
+  only final-check movement as progress, so step 1 of any 2-step shell plan
+  "failed". Now a state-changing ok act is progress; checks still decide
+  close classification. M3 suite re-run after the change: metrics identical.
+- Acceptance `scripts/crash_recovery.py` → `artifacts/crash_m6.json`:
+  **9/9 checks pass** — SIGKILL during a 120 s write; on restart the task is
+  recorded failed (not retried blind, not lost), the task queued behind it
+  completes, lock re-acquirable, second watcher exits 0. Tests 56/56
+  (`artifacts/tests_m6.txt`).
+
+Next: M7 int8 + governor under real checkpoints (plus a Governor-driven 429
+live demo at a low cap), then M8.

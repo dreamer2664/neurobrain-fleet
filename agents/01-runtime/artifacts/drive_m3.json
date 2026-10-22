@@ -166,7 +166,7 @@
           "max_rung": 2,
           "failures": 4,
           "recovered": true,
-          "wall_s": 0.07,
+          "wall_s": 0.06,
           "parked_times": 0
         },
         {
@@ -226,7 +226,7 @@
           "max_rung": 6,
           "failures": 10,
           "recovered": false,
-          "wall_s": 0.13,
+          "wall_s": 0.14,
           "parked_times": 2
         },
         {
