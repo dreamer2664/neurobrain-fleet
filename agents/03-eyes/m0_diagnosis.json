@@ -1,0 +1,342 @@
+{
+  "n": 1000,
+  "hit_widget": 0.45,
+  "hit_point_6px": 0.45,
+  "hit_point_8px": 0.45,
+  "action_acc": 1.0,
+  "median_center_err_px": 22.56,
+  "mean_center_err_px": 28.16,
+  "p90_center_err_px": 69.31,
+  "n_misses": 550,
+  "miss_taxonomy": {
+    "same_role_wrong_label": 541,
+    "wrong_role_widget": 9,
+    "near_miss_border": 0,
+    "background_far": 0
+  },
+  "worst_confusions": {
+    "top_3_pair_confusions": [
+      [
+        "menu:export -> menu:help",
+        4
+      ],
+      [
+        "icon:pause -> icon:settings",
+        3
+      ],
+      [
+        "field:logout -> field:print",
+        2
+      ]
+    ],
+    "top_10_pair_confusions": [
+      [
+        "menu:export -> menu:help",
+        4
+      ],
+      [
+        "icon:pause -> icon:settings",
+        3
+      ],
+      [
+        "field:logout -> field:print",
+        2
+      ],
+      [
+        "menu:save -> menu:submit",
+        2
+      ],
+      [
+        "checkbox:home -> checkbox:share",
+        2
+      ],
+      [
+        "menu:cart -> menu:rename",
+        2
+      ],
+      [
+        "field:inbox -> field:submit",
+        2
+      ],
+      [
+        "button:login -> button:download",
+        2
+      ],
+      [
+        "button:save -> button:profile",
+        2
+      ],
+      [
+        "field:settings -> field:inbox",
+        2
+      ]
+    ],
+    "label_confusions": [
+      [
+        "delete -> home",
+        6
+      ],
+      [
+        "pause -> upload",
+        5
+      ],
+      [
+        "pause -> settings",
+        5
+      ],
+      [
+        "save -> submit",
+        4
+      ],
+      [
+        "inbox -> help",
+        4
+      ],
+      [
+        "save -> profile",
+        4
+      ],
+      [
+        "refresh -> inbox",
+        4
+      ],
+      [
+        "home -> rename",
+        4
+      ],
+      [
+        "save -> help",
+        4
+      ],
+      [
+        "export -> help",
+        4
+      ]
+    ],
+    "role_confusions": [
+      [
+        "checkbox -> checkbox",
+        91
+      ],
+      [
+        "icon -> icon",
+        87
+      ],
+      [
+        "button -> button",
+        81
+      ],
+      [
+        "field -> field",
+        79
+      ],
+      [
+        "menu -> menu",
+        69
+      ],
+      [
+        "slider -> slider",
+        68
+      ],
+      [
+        "tab -> tab",
+        66
+      ],
+      [
+        "menu -> field",
+        9
+      ]
+    ]
+  },
+  "by_role": {
+    "button": {
+      "n": 146,
+      "hit_widget": 0.4452,
+      "median_err_px": 22.62
+    },
+    "checkbox": {
+      "n": 148,
+      "hit_widget": 0.3851,
+      "median_err_px": 33.61
+    },
+    "field": {
+      "n": 143,
+      "hit_widget": 0.4476,
+      "median_err_px": 24.24
+    },
+    "icon": {
+      "n": 134,
+      "hit_widget": 0.3507,
+      "median_err_px": 32.9
+    },
+    "menu": {
+      "n": 141,
+      "hit_widget": 0.4468,
+      "median_err_px": 22.94
+    },
+    "slider": {
+      "n": 144,
+      "hit_widget": 0.5278,
+      "median_err_px": 5.24
+    },
+    "tab": {
+      "n": 144,
+      "hit_widget": 0.5417,
+      "median_err_px": 5.2
+    }
+  },
+  "by_label": {
+    "archive": {
+      "n": 26,
+      "hit_widget": 0.3846,
+      "median_err_px": 31.27
+    },
+    "cancel": {
+      "n": 42,
+      "hit_widget": 0.4524,
+      "median_err_px": 28.42
+    },
+    "cart": {
+      "n": 37,
+      "hit_widget": 0.5676,
+      "median_err_px": 3.8
+    },
+    "delete": {
+      "n": 47,
+      "hit_widget": 0.4043,
+      "median_err_px": 28.53
+    },
+    "download": {
+      "n": 46,
+      "hit_widget": 0.5,
+      "median_err_px": 12.43
+    },
+    "export": {
+      "n": 46,
+      "hit_widget": 0.4348,
+      "median_err_px": 27.74
+    },
+    "filter": {
+      "n": 41,
+      "hit_widget": 0.4634,
+      "median_err_px": 19.95
+    },
+    "help": {
+      "n": 42,
+      "hit_widget": 0.6667,
+      "median_err_px": 3.8
+    },
+    "home": {
+      "n": 40,
+      "hit_widget": 0.425,
+      "median_err_px": 22.34
+    },
+    "inbox": {
+      "n": 44,
+      "hit_widget": 0.4773,
+      "median_err_px": 19.99
+    },
+    "login": {
+      "n": 31,
+      "hit_widget": 0.2581,
+      "median_err_px": 38.51
+    },
+    "logout": {
+      "n": 47,
+      "hit_widget": 0.4255,
+      "median_err_px": 30.46
+    },
+    "pause": {
+      "n": 36,
+      "hit_widget": 0.3056,
+      "median_err_px": 34.73
+    },
+    "play": {
+      "n": 42,
+      "hit_widget": 0.4524,
+      "median_err_px": 24.15
+    },
+    "print": {
+      "n": 39,
+      "hit_widget": 0.5128,
+      "median_err_px": 5.22
+    },
+    "profile": {
+      "n": 41,
+      "hit_widget": 0.439,
+      "median_err_px": 30.81
+    },
+    "refresh": {
+      "n": 44,
+      "hit_widget": 0.4545,
+      "median_err_px": 28.71
+    },
+    "rename": {
+      "n": 41,
+      "hit_widget": 0.439,
+      "median_err_px": 28.03
+    },
+    "save": {
+      "n": 60,
+      "hit_widget": 0.2833,
+      "median_err_px": 38.61
+    },
+    "search": {
+      "n": 45,
+      "hit_widget": 0.5333,
+      "median_err_px": 5.34
+    },
+    "settings": {
+      "n": 55,
+      "hit_widget": 0.5273,
+      "median_err_px": 5.34
+    },
+    "share": {
+      "n": 40,
+      "hit_widget": 0.45,
+      "median_err_px": 22.13
+    },
+    "submit": {
+      "n": 31,
+      "hit_widget": 0.3548,
+      "median_err_px": 37.36
+    },
+    "upload": {
+      "n": 37,
+      "hit_widget": 0.5405,
+      "median_err_px": 3.8
+    }
+  },
+  "by_theme": {
+    "dark": {
+      "n": 503,
+      "hit_widget": 0.4553,
+      "median_err_px": 22.44
+    },
+    "light": {
+      "n": 497,
+      "hit_widget": 0.4447,
+      "median_err_px": 22.8
+    }
+  },
+  "by_size": {
+    "small": {
+      "n": 856,
+      "hit_widget": 0.4346,
+      "median_err_px": 24.15
+    },
+    "medium": {
+      "n": 144,
+      "hit_widget": 0.5417,
+      "median_err_px": 5.2
+    }
+  },
+  "latency_ms_per_frame": 9.05,
+  "latency_mean_ms": 9.34,
+  "peak_rss_mb": 442.59,
+  "params": 441256,
+  "step": 500,
+  "ckpt": "checkpoints/m0_repro/grip_latest.pt",
+  "gallery_tiles": 100,
+  "gallery_path": "/home/user/fleet/agents/03-eyes/galleries/m0_failures_100.png"
+}
