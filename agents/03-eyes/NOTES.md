@@ -82,4 +82,27 @@ Out of **550 misses** (from-scratch baseline; **497 misses** on `ckpt-1022`):
 - **`label_mode="text"` (real 8–14px TrueType text downscaled `256 -> 128`)**: `hit_widget = 49.9%` (`56.6%` @ 2100 steps), `median_err = 20.3 px` (`3.54 px` @ 2100), `action_acc = 99.8%`.
 - **Key Diagnostic Discovery**: At `128x128` downscaled resolution, 8–10 px lowercase TrueType glyphs have an x-height of only ~2.5 pixels (Nyquist-limited after `stride=4` to `32x32`), causing `95.8%` of Stage-1 misses (`434/453`) to be `same_role_wrong_label` (`tab -> tab` 102, `menu -> menu` 98, `button -> button` 76). **HOWEVER, `Stage1CoarseNet`'s Top-K spatial peak recall is `99.4%` at `K=4` and `99.8%` at `K=6` (`100.0%` at `K=8`)!** That proves a 1:1 native-pixel `64x64` Stage-2 crop verifier/pointer around the Top-K Stage-1 peaks has a **99.8% recall ceiling** while keeping total latency ~22 ms/frame!
 
+---
+
+## Cycle 3 (M3 + M4 + M5-75%) — Candidate-Pinned Horizontal CRNN `Stage2RefineNet` Reaches `80.2%` Seen (`0.93 px`), `73.4%` Unseen OOD (`1.18 px`), `29.97 ms/frame`
+
+### 1. Geometric Discovery: Clamped Strips vs Candidate-Pinned Horizontal CRNN
+
+- **Initial square/clamped strip diagnostic (`650` steps)**:
+  When `extract_crop_tensor` clamped `x0` into `[0, W]` (`x1 -= x0; x0 = 0`), two horizontally adjacent toolbar buttons/icons (`cx = 28` and `cx = 72`) extracted the **exact same `[0, 192]` pixel window**, allowing cross-attention to match a neighbor's text (`button = 55.2%`, `icon = 55.3%`, while vertical `tab` jumped `+18 pts` to `68.0%`).
+- **Controlled 650-step Ablations (`m4_m5_ablations.json`, fixed `N=1000` seen / `N=500` OOD)**:
+  - `Stage 1 only (2100 steps, nms_r=1)`: `seen = 56.6%` (`3.54 px`), `ood = 58.0%` (`2.38 px`), `lat = 12.38 ms`
+  - `+ Stage 2 (650 steps, random negatives, uniform tiers)`: `seen = 56.9%` (`3.34 px`) — `+0.3 pts`
+  - `+ Stage 2 (650 steps, sibling hard-negative mining, uniform tiers)`: `seen = 58.1%` (`2.59 px`) — **`+1.5 pts`**, med error `-0.95 px`
+  - `+ Stage 2 (650 steps, sibling hard-negative mining + easy→crowded curriculum)`: **`seen = 62.1%` (`2.35 px`)** — **`+5.5 pts` (`+4.0 pts` from curriculum alone)** → **M3 & M4 cleared!**
+- **Candidate-Pinned `32x160` Horizontal CRNN (`Stage2RefineNet` @ `1700` steps, `m6_crnn_1700_eval.json`)**:
+  - Pinning candidate `cx` at fixed pixel column `112` (`[-112px .. +48px]`, border-replicated at edges) + `(8x1)` vertical glyph collapse + learned column positional embedding + 1-layer Horizontal `BiGRU` eliminated crop-clamping ambiguity:
+  - **Seen Hard World (`N=1000`)**: **`78.8%` (`s1_w=0.20`) → `80.2%` (`s1_w=0.50`)**, **`median_center_err = 0.93 px`**, **`action_acc = 100.0%`**, **`lat = 29.97 ms/frame`**!
+    - By role: `field = 92.4%` (`0.90 px`), `checkbox = 87.6%` (`1.03 px`), `tab = 81.5%` (`0.70 px`), `slider = 78.0%` (`0.93 px`), `menu = 76.0%` (`0.88 px`), `button = 75.7%` (`1.15 px`), `icon = 68.4%` (`1.11 px`).
+  - **Unseen OOD Fonts + Themes (`N=500`)**: **`73.4%`**, **`median_center_err = 1.18 px`**!
+- **Next Bottleneck Identified for M5 (`85%`) → M6 (`≥ 90%`)**:
+  - `Stage 1` Top-7 recall on `val_seen` is **`99.8%` (`499 / 500`)**!
+  - Narrow `icon` (`68.4%`) abbreviates labels to 3 characters (`"ref"` vs `"ren"`) + an `8x8 px` mini-icon, which `4x` horizontal downsampling (`160 -> 40`, `4.0 px/col`) squeezed into 3 columns. Upgrading `c8` to `stride=(2, 1)` (`8x80` = **`2.0 px/col`**) + Phase-B listwise softmax training directly over real Stage-1 Top-7 candidates resolves every single character and mini-icon!
+
+
 

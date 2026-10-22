@@ -1,0 +1,750 @@
+{
+  "stage1_only_2100": {
+    "seen_hit_widget": 0.566,
+    "seen_med_err_px": 3.54,
+    "seen_action_acc": 1.0,
+    "ood_hit_widget": 0.58,
+    "ood_med_err_px": 2.38,
+    "latency_ms_per_frame": 12.38,
+    "seen_by_role": {
+      "button": {
+        "n": 181,
+        "hit_widget": 0.5525,
+        "median_err_px": 7.45
+      },
+      "checkbox": {
+        "n": 97,
+        "hit_widget": 0.6598,
+        "median_err_px": 1.66
+      },
+      "field": {
+        "n": 105,
+        "hit_widget": 0.7619,
+        "median_err_px": 1.02
+      },
+      "icon": {
+        "n": 152,
+        "hit_widget": 0.5592,
+        "median_err_px": 7.46
+      },
+      "menu": {
+        "n": 196,
+        "hit_widget": 0.4694,
+        "median_err_px": 20.12
+      },
+      "slider": {
+        "n": 91,
+        "hit_widget": 0.6154,
+        "median_err_px": 1.54
+      },
+      "tab": {
+        "n": 178,
+        "hit_widget": 0.5,
+        "median_err_px": 20.99
+      }
+    },
+    "worst_confusions": {
+      "top_3_pair_confusions": [
+        [
+          "button:settings -> button:filter",
+          3
+        ],
+        [
+          "menu:search -> menu:home",
+          3
+        ],
+        [
+          "button:refresh -> button:inbox",
+          3
+        ]
+      ],
+      "top_10_pair_confusions": [
+        [
+          "button:settings -> button:filter",
+          3
+        ],
+        [
+          "menu:search -> menu:home",
+          3
+        ],
+        [
+          "button:refresh -> button:inbox",
+          3
+        ],
+        [
+          "menu:download -> menu:print",
+          2
+        ],
+        [
+          "menu:export -> menu:delete",
+          2
+        ],
+        [
+          "icon:submit -> icon:search",
+          2
+        ],
+        [
+          "slider:login -> slider:logout",
+          2
+        ],
+        [
+          "tab:home -> tab:upload",
+          2
+        ],
+        [
+          "menu:help -> menu:save",
+          2
+        ],
+        [
+          "field:help -> field:delete",
+          2
+        ]
+      ],
+      "label_confusions": [
+        [
+          "save -> share",
+          5
+        ],
+        [
+          "download -> print",
+          4
+        ],
+        [
+          "home -> upload",
+          4
+        ],
+        [
+          "help -> save",
+          4
+        ],
+        [
+          "cart -> profile",
+          4
+        ],
+        [
+          "profile -> filter",
+          4
+        ],
+        [
+          "inbox -> profile",
+          4
+        ],
+        [
+          "home -> save",
+          3
+        ],
+        [
+          "export -> delete",
+          3
+        ],
+        [
+          "submit -> search",
+          3
+        ]
+      ],
+      "role_confusions": [
+        [
+          "menu -> menu",
+          98
+        ],
+        [
+          "tab -> tab",
+          89
+        ],
+        [
+          "button -> button",
+          80
+        ],
+        [
+          "icon -> icon",
+          65
+        ],
+        [
+          "slider -> slider",
+          35
+        ],
+        [
+          "checkbox -> checkbox",
+          29
+        ],
+        [
+          "field -> field",
+          22
+        ],
+        [
+          "checkbox -> menu",
+          4
+        ],
+        [
+          "menu -> checkbox",
+          3
+        ],
+        [
+          "menu -> field",
+          3
+        ]
+      ]
+    }
+  },
+  "stage2_650_random_neg_uniform": {
+    "seen_hit_widget": 0.569,
+    "seen_med_err_px": 3.34,
+    "seen_action_acc": 1.0,
+    "ood_hit_widget": 0.558,
+    "ood_med_err_px": 3.93,
+    "latency_ms_per_frame": 36.48,
+    "seen_by_role": {
+      "button": {
+        "n": 181,
+        "hit_widget": 0.5525,
+        "median_err_px": 7.61
+      },
+      "checkbox": {
+        "n": 97,
+        "hit_widget": 0.6701,
+        "median_err_px": 1.95
+      },
+      "field": {
+        "n": 105,
+        "hit_widget": 0.7429,
+        "median_err_px": 1.38
+      },
+      "icon": {
+        "n": 152,
+        "hit_widget": 0.5658,
+        "median_err_px": 7.42
+      },
+      "menu": {
+        "n": 196,
+        "hit_widget": 0.5,
+        "median_err_px": 11.76
+      },
+      "slider": {
+        "n": 91,
+        "hit_widget": 0.6044,
+        "median_err_px": 1.78
+      },
+      "tab": {
+        "n": 178,
+        "hit_widget": 0.4888,
+        "median_err_px": 37.44
+      }
+    },
+    "worst_confusions": {
+      "top_3_pair_confusions": [
+        [
+          "menu:search -> menu:home",
+          3
+        ],
+        [
+          "button:refresh -> button:inbox",
+          3
+        ],
+        [
+          "menu:download -> menu:print",
+          2
+        ]
+      ],
+      "top_10_pair_confusions": [
+        [
+          "menu:search -> menu:home",
+          3
+        ],
+        [
+          "button:refresh -> button:inbox",
+          3
+        ],
+        [
+          "menu:download -> menu:print",
+          2
+        ],
+        [
+          "button:home -> button:rename",
+          2
+        ],
+        [
+          "menu:export -> menu:delete",
+          2
+        ],
+        [
+          "icon:submit -> icon:search",
+          2
+        ],
+        [
+          "slider:login -> slider:logout",
+          2
+        ],
+        [
+          "tab:home -> tab:upload",
+          2
+        ],
+        [
+          "menu:help -> menu:save",
+          2
+        ],
+        [
+          "field:help -> field:delete",
+          2
+        ]
+      ],
+      "label_confusions": [
+        [
+          "home -> upload",
+          4
+        ],
+        [
+          "cart -> profile",
+          4
+        ],
+        [
+          "profile -> filter",
+          4
+        ],
+        [
+          "save -> share",
+          4
+        ],
+        [
+          "inbox -> delete",
+          4
+        ],
+        [
+          "inbox -> profile",
+          4
+        ],
+        [
+          "download -> print",
+          3
+        ],
+        [
+          "export -> delete",
+          3
+        ],
+        [
+          "submit -> search",
+          3
+        ],
+        [
+          "filter -> export",
+          3
+        ]
+      ],
+      "role_confusions": [
+        [
+          "menu -> menu",
+          93
+        ],
+        [
+          "tab -> tab",
+          90
+        ],
+        [
+          "button -> button",
+          78
+        ],
+        [
+          "icon -> icon",
+          65
+        ],
+        [
+          "slider -> slider",
+          36
+        ],
+        [
+          "checkbox -> checkbox",
+          28
+        ],
+        [
+          "field -> field",
+          22
+        ],
+        [
+          "checkbox -> menu",
+          4
+        ],
+        [
+          "menu -> field",
+          3
+        ],
+        [
+          "field -> menu",
+          3
+        ]
+      ]
+    }
+  },
+  "stage2_650_hard_neg_uniform": {
+    "seen_hit_widget": 0.581,
+    "seen_med_err_px": 2.59,
+    "seen_action_acc": 1.0,
+    "ood_hit_widget": 0.572,
+    "ood_med_err_px": 2.21,
+    "latency_ms_per_frame": 34.3,
+    "seen_by_role": {
+      "button": {
+        "n": 181,
+        "hit_widget": 0.5525,
+        "median_err_px": 4.86
+      },
+      "checkbox": {
+        "n": 97,
+        "hit_widget": 0.7423,
+        "median_err_px": 1.99
+      },
+      "field": {
+        "n": 105,
+        "hit_widget": 0.8095,
+        "median_err_px": 0.96
+      },
+      "icon": {
+        "n": 152,
+        "hit_widget": 0.5263,
+        "median_err_px": 5.16
+      },
+      "menu": {
+        "n": 196,
+        "hit_widget": 0.5204,
+        "median_err_px": 5.7
+      },
+      "slider": {
+        "n": 91,
+        "hit_widget": 0.6154,
+        "median_err_px": 1.24
+      },
+      "tab": {
+        "n": 178,
+        "hit_widget": 0.4831,
+        "median_err_px": 40.68
+      }
+    },
+    "worst_confusions": {
+      "top_3_pair_confusions": [
+        [
+          "button:refresh -> button:inbox",
+          3
+        ],
+        [
+          "menu:submit -> menu:logout",
+          3
+        ],
+        [
+          "tab:delete -> tab:upload",
+          3
+        ]
+      ],
+      "top_10_pair_confusions": [
+        [
+          "button:refresh -> button:inbox",
+          3
+        ],
+        [
+          "menu:submit -> menu:logout",
+          3
+        ],
+        [
+          "tab:delete -> tab:upload",
+          3
+        ],
+        [
+          "icon:help -> icon:settings",
+          2
+        ],
+        [
+          "button:search -> button:share",
+          2
+        ],
+        [
+          "button:home -> button:rename",
+          2
+        ],
+        [
+          "menu:export -> menu:delete",
+          2
+        ],
+        [
+          "icon:submit -> icon:search",
+          2
+        ],
+        [
+          "tab:login -> tab:save",
+          2
+        ],
+        [
+          "button:settings -> button:filter",
+          2
+        ]
+      ],
+      "label_confusions": [
+        [
+          "refresh -> inbox",
+          5
+        ],
+        [
+          "settings -> filter",
+          4
+        ],
+        [
+          "submit -> logout",
+          4
+        ],
+        [
+          "help -> search",
+          4
+        ],
+        [
+          "login -> export",
+          3
+        ],
+        [
+          "print -> upload",
+          3
+        ],
+        [
+          "search -> share",
+          3
+        ],
+        [
+          "export -> delete",
+          3
+        ],
+        [
+          "search -> save",
+          3
+        ],
+        [
+          "login -> save",
+          3
+        ]
+      ],
+      "role_confusions": [
+        [
+          "tab -> tab",
+          91
+        ],
+        [
+          "menu -> menu",
+          87
+        ],
+        [
+          "button -> button",
+          75
+        ],
+        [
+          "icon -> icon",
+          70
+        ],
+        [
+          "slider -> slider",
+          35
+        ],
+        [
+          "checkbox -> checkbox",
+          23
+        ],
+        [
+          "field -> field",
+          19
+        ],
+        [
+          "menu -> checkbox",
+          5
+        ],
+        [
+          "button -> icon",
+          5
+        ],
+        [
+          "icon -> button",
+          2
+        ]
+      ]
+    }
+  },
+  "stage2_650_hard_neg_curriculum": {
+    "seen_hit_widget": 0.621,
+    "seen_med_err_px": 2.35,
+    "seen_action_acc": 1.0,
+    "ood_hit_widget": 0.564,
+    "ood_med_err_px": 3.58,
+    "latency_ms_per_frame": 34.79,
+    "seen_by_role": {
+      "button": {
+        "n": 181,
+        "hit_widget": 0.5525,
+        "median_err_px": 6.97
+      },
+      "checkbox": {
+        "n": 97,
+        "hit_widget": 0.6907,
+        "median_err_px": 1.76
+      },
+      "field": {
+        "n": 105,
+        "hit_widget": 0.7429,
+        "median_err_px": 1.4
+      },
+      "icon": {
+        "n": 152,
+        "hit_widget": 0.5526,
+        "median_err_px": 7.22
+      },
+      "menu": {
+        "n": 196,
+        "hit_widget": 0.5765,
+        "median_err_px": 3.46
+      },
+      "slider": {
+        "n": 91,
+        "hit_widget": 0.6374,
+        "median_err_px": 1.72
+      },
+      "tab": {
+        "n": 178,
+        "hit_widget": 0.6798,
+        "median_err_px": 1.66
+      }
+    },
+    "worst_confusions": {
+      "top_3_pair_confusions": [
+        [
+          "menu:login -> menu:inbox",
+          3
+        ],
+        [
+          "menu:profile -> menu:cancel",
+          3
+        ],
+        [
+          "button:refresh -> button:inbox",
+          3
+        ]
+      ],
+      "top_10_pair_confusions": [
+        [
+          "menu:login -> menu:inbox",
+          3
+        ],
+        [
+          "menu:profile -> menu:cancel",
+          3
+        ],
+        [
+          "button:refresh -> button:inbox",
+          3
+        ],
+        [
+          "tab:delete -> tab:upload",
+          3
+        ],
+        [
+          "icon:submit -> icon:search",
+          2
+        ],
+        [
+          "menu:settings -> menu:delete",
+          2
+        ],
+        [
+          "tab:home -> tab:upload",
+          2
+        ],
+        [
+          "button:settings -> button:filter",
+          2
+        ],
+        [
+          "menu:help -> menu:save",
+          2
+        ],
+        [
+          "button:print -> button:archive",
+          2
+        ]
+      ],
+      "label_confusions": [
+        [
+          "login -> inbox",
+          4
+        ],
+        [
+          "submit -> search",
+          4
+        ],
+        [
+          "save -> share",
+          4
+        ],
+        [
+          "delete -> inbox",
+          4
+        ],
+        [
+          "refresh -> inbox",
+          4
+        ],
+        [
+          "home -> save",
+          3
+        ],
+        [
+          "export -> profile",
+          3
+        ],
+        [
+          "home -> upload",
+          3
+        ],
+        [
+          "settings -> filter",
+          3
+        ],
+        [
+          "filter -> export",
+          3
+        ]
+      ],
+      "role_confusions": [
+        [
+          "menu -> menu",
+          80
+        ],
+        [
+          "button -> button",
+          79
+        ],
+        [
+          "icon -> icon",
+          66
+        ],
+        [
+          "tab -> tab",
+          57
+        ],
+        [
+          "slider -> slider",
+          33
+        ],
+        [
+          "checkbox -> checkbox",
+          27
+        ],
+        [
+          "field -> field",
+          23
+        ],
+        [
+          "field -> menu",
+          3
+        ],
+        [
+          "button -> icon",
+          2
+        ],
+        [
+          "checkbox -> menu",
+          2
+        ]
+      ]
+    }
+  }
+}
