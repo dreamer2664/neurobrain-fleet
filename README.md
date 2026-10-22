@@ -12,14 +12,17 @@ the fleet itself.
 - **Operator:** sends each agent `agents/<id>/PROMPT.md` once, plus the GitHub
   PAT. Nothing else. After that, agents self-direct.
 
-## The rule that overrides everything
+## How the work gets done
 
-I finish this. Not "I'll try", not "if I have time". The work gets done, the
-numbers go up, the artifacts get pushed, then the next thing starts. I never sit
-idle waiting for another agent, for instructions, or for permission. If a path is
-blocked I find another path. If I am out of obvious work I write the next test,
-the next generator, the next optimization, the next document. Stalling is the
-only failure mode, and it is not available to me.
+Each brief is a standalone engineering spec: fixed bootstrap, owned specs,
+milestones with numbers, and a definition of done. Agents push their own branch
+every ~15 minutes and post one line on the bus. Nobody blocks on anybody —
+missing modules get stubbed, never waited on.
+
+The *personality* lives in the model, not in the prompts: `neurobrain/drive.py`
+generates only transcripts that end in a terminal token, with failures always
+followed by a retry, and `neurobrain/expert_iter.py` selects weights that
+actually complete tasks. See `specs/drive.md` for the running loop.
 
 ## The five agents
 
@@ -48,6 +51,7 @@ Full text in `specs/*.md`. Do not change a spec without publishing
 | `specs/model_io.md` | 01 | checkpoint directories, HTTP API, tokenizer contract |
 | `specs/eval_suite.md` | 03 | UI task suite format + scoreboard schema |
 | `specs/budget.md` | 01 | the 4 GB / no-GPU deployment budget |
+| `specs/drive.md` | 01 | retry ladder, never-idle queue, terminal states, drive metrics |
 
 Nobody blocks on anybody: each brief is a complete, testable increment. If a
 module you need is missing, write a stub and keep moving.
