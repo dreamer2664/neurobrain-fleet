@@ -1,0 +1,372 @@
+{
+  "commit": "ab70bf3",
+  "model": {
+    "lm_step": 4600,
+    "grip_step": 750
+  },
+  "n": 20,
+  "success": 0.8,
+  "by_category": {
+    "editor": {
+      "n": 2,
+      "success": 2,
+      "rate": 1.0
+    },
+    "settings": {
+      "n": 3,
+      "success": 2,
+      "rate": 0.667
+    },
+    "browser": {
+      "n": 2,
+      "success": 0,
+      "rate": 0.0
+    },
+    "file_manager": {
+      "n": 4,
+      "success": 4,
+      "rate": 1.0
+    },
+    "recovery": {
+      "n": 4,
+      "success": 4,
+      "rate": 1.0
+    },
+    "multi_app": {
+      "n": 2,
+      "success": 2,
+      "rate": 1.0
+    },
+    "code": {
+      "n": 3,
+      "success": 2,
+      "rate": 0.667
+    }
+  },
+  "median_steps": 5.0,
+  "median_seconds": 0.03,
+  "ram_peak_mb": 296.2,
+  "failures": [
+    {
+      "id": "br-001",
+      "why": "failed progress=0.0 max_rung=6; last=no-op:activated help"
+    },
+    {
+      "id": "st-003",
+      "why": "done-partial progress=0.5 max_rung=6; last=no-op:save did not react (disabled)"
+    },
+    {
+      "id": "br-002",
+      "why": "failed progress=0.0 max_rung=6; last=no-op:activated archive"
+    },
+    {
+      "id": "co-002",
+      "why": "failed progress=0.0 max_rung=0; last=-:lm completion check: syntax error: expected an indented block after function def"
+    }
+  ],
+  "provenance": "agent-01-authored stand-in for agent 03's pending 60-task Xvfb suite (their M7); same spec shape, simulated desktop (no X server in this sandbox)",
+  "rows": [
+    {
+      "id": "ed-001",
+      "category": "editor",
+      "task": "t-0001",
+      "status": "done",
+      "success": true,
+      "attempts": 1,
+      "max_rung": 0,
+      "wall_s": 0.03,
+      "why": ""
+    },
+    {
+      "id": "st-001",
+      "category": "settings",
+      "task": "t-0002",
+      "status": "done",
+      "success": true,
+      "attempts": 1,
+      "max_rung": 0,
+      "wall_s": 0.01,
+      "why": ""
+    },
+    {
+      "id": "br-001",
+      "category": "browser",
+      "task": "t-0003",
+      "status": "failed",
+      "success": false,
+      "attempts": 10,
+      "max_rung": 6,
+      "wall_s": 0.15,
+      "why": "failed progress=0.0 max_rung=6; last=no-op:activated help"
+    },
+    {
+      "id": "fm-001",
+      "category": "file_manager",
+      "task": "t-0004",
+      "status": "done",
+      "success": true,
+      "attempts": 1,
+      "max_rung": 0,
+      "wall_s": 0.01,
+      "why": ""
+    },
+    {
+      "id": "rc-001",
+      "category": "recovery",
+      "task": "t-0005",
+      "status": "done",
+      "success": true,
+      "attempts": 6,
+      "max_rung": 6,
+      "wall_s": 0.06,
+      "why": ""
+    },
+    {
+      "id": "rc-002",
+      "category": "recovery",
+      "task": "t-0006",
+      "status": "done",
+      "success": true,
+      "attempts": 4,
+      "max_rung": 2,
+      "wall_s": 0.03,
+      "why": ""
+    },
+    {
+      "id": "rc-003",
+      "category": "recovery",
+      "task": "t-0007",
+      "status": "done",
+      "success": true,
+      "attempts": 1,
+      "max_rung": 0,
+      "wall_s": 0.01,
+      "why": ""
+    },
+    {
+      "id": "ma-001",
+      "category": "multi_app",
+      "task": "t-0008",
+      "status": "done",
+      "success": true,
+      "attempts": 8,
+      "max_rung": 2,
+      "wall_s": 0.06,
+      "why": ""
+    },
+    {
+      "id": "ma-002",
+      "category": "multi_app",
+      "task": "t-0009",
+      "status": "done",
+      "success": true,
+      "attempts": 2,
+      "max_rung": 0,
+      "wall_s": 0.03,
+      "why": ""
+    },
+    {
+      "id": "st-002",
+      "category": "settings",
+      "task": "t-0010",
+      "status": "done",
+      "success": true,
+      "attempts": 3,
+      "max_rung": 1,
+      "wall_s": 0.02,
+      "why": ""
+    },
+    {
+      "id": "st-003",
+      "category": "settings",
+      "task": "t-0011",
+      "status": "done-partial",
+      "success": false,
+      "attempts": 11,
+      "max_rung": 6,
+      "wall_s": 0.1,
+      "why": "done-partial progress=0.5 max_rung=6; last=no-op:save did not react (disabled)"
+    },
+    {
+      "id": "br-002",
+      "category": "browser",
+      "task": "t-0012",
+      "status": "failed",
+      "success": false,
+      "attempts": 10,
+      "max_rung": 6,
+      "wall_s": 0.09,
+      "why": "failed progress=0.0 max_rung=6; last=no-op:activated archive"
+    },
+    {
+      "id": "fm-002",
+      "category": "file_manager",
+      "task": "t-0013",
+      "status": "done",
+      "success": true,
+      "attempts": 6,
+      "max_rung": 5,
+      "wall_s": 0.0,
+      "why": ""
+    },
+    {
+      "id": "fm-003",
+      "category": "file_manager",
+      "task": "t-0014",
+      "status": "done",
+      "success": true,
+      "attempts": 8,
+      "max_rung": 4,
+      "wall_s": 0.01,
+      "why": ""
+    },
+    {
+      "id": "fm-004",
+      "category": "file_manager",
+      "task": "t-0015",
+      "status": "done",
+      "success": true,
+      "attempts": 1,
+      "max_rung": 0,
+      "wall_s": 0.0,
+      "why": ""
+    },
+    {
+      "id": "ed-002",
+      "category": "editor",
+      "task": "t-0016",
+      "status": "done",
+      "success": true,
+      "attempts": 7,
+      "max_rung": 4,
+      "wall_s": 0.0,
+      "why": ""
+    },
+    {
+      "id": "co-001",
+      "category": "code",
+      "task": "t-0017",
+      "status": "done",
+      "success": true,
+      "attempts": 1,
+      "max_rung": 0,
+      "wall_s": 0.0,
+      "why": ""
+    },
+    {
+      "id": "rc-004",
+      "category": "recovery",
+      "task": "t-0018",
+      "status": "done",
+      "success": true,
+      "attempts": 16,
+      "max_rung": 6,
+      "wall_s": 0.01,
+      "why": ""
+    },
+    {
+      "id": "co-002",
+      "category": "code",
+      "task": "t-0019",
+      "status": "failed",
+      "success": false,
+      "attempts": 1,
+      "max_rung": 0,
+      "wall_s": 0.13,
+      "why": "failed progress=0.0 max_rung=0; last=-:lm completion check: syntax error: expected an indented block after function def"
+    },
+    {
+      "id": "co-003",
+      "category": "code",
+      "task": "t-0020",
+      "status": "done",
+      "success": true,
+      "attempts": 14,
+      "max_rung": 6,
+      "wall_s": 0.35,
+      "why": ""
+    }
+  ],
+  "suite_definition": [
+    {
+      "id": "ed-001",
+      "category": "editor"
+    },
+    {
+      "id": "st-001",
+      "category": "settings"
+    },
+    {
+      "id": "br-001",
+      "category": "browser"
+    },
+    {
+      "id": "fm-001",
+      "category": "file_manager"
+    },
+    {
+      "id": "rc-001",
+      "category": "recovery"
+    },
+    {
+      "id": "rc-002",
+      "category": "recovery"
+    },
+    {
+      "id": "rc-003",
+      "category": "recovery"
+    },
+    {
+      "id": "ma-001",
+      "category": "multi_app"
+    },
+    {
+      "id": "ma-002",
+      "category": "multi_app"
+    },
+    {
+      "id": "st-002",
+      "category": "settings"
+    },
+    {
+      "id": "st-003",
+      "category": "settings"
+    },
+    {
+      "id": "br-002",
+      "category": "browser"
+    },
+    {
+      "id": "fm-002",
+      "category": "file_manager"
+    },
+    {
+      "id": "fm-003",
+      "category": "file_manager"
+    },
+    {
+      "id": "fm-004",
+      "category": "file_manager"
+    },
+    {
+      "id": "ed-002",
+      "category": "editor"
+    },
+    {
+      "id": "co-001",
+      "category": "code"
+    },
+    {
+      "id": "rc-004",
+      "category": "recovery"
+    },
+    {
+      "id": "co-002",
+      "category": "code"
+    },
+    {
+      "id": "co-003",
+      "category": "code"
+    }
+  ]
+}

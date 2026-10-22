@@ -1,0 +1,26 @@
+# clean-clone validation, branch agent-01 @ 093a56c, 2026-10-22T20:47:12Z
+# clone contains config+card only for checkpoints (weights are release assets)
+$ brainbox doctor
+brainbox 0.8.0  python 3.13.16  torch 2.14.1+cpu
+platform   Linux-6.1.158+-x86_64-with-glibc2.41  cpus=2  mem_total=1982 MB  disk_free=19456 MB
+tokenizer  ok vocab=2052 /home/user/cleanclone_test/data/tokenizer.json
+checkpoint NONE FOUND — stub fallback active
+grip       NONE FOUND (/ground will 503)
+rss        222.7 MB (peak 222.8 MB)
+doctor: OK
+$ brainbox bench --tokens 20
+checkpoint (in-memory stub) step=0 stub=True params=4,247,264
+boot       1.158 s (torch import + load, 2 threads)
+generate   20 tokens in 0.077 s  (259.74 tok/s, 3.9 ms/tok)
+peak RSS   255.9 MB
+sample     '# quicksort\nvectorchoose().().}<|uteldld�que ..queque cal().aymeceptionllscript'
+$ brainbox run "delete old.txt" --script cc_task.json  # fresh copy
+t-0003: done  progress=1.0  attempts=1  max_rung=0  recovered=False
+world: shell workspace
+$ brainbox undo <task>
+t-0001  done          attempts=1  rung<=0  delete old.txt
+t-0002  failed        attempts=10  rung<=6  click the save button
+t-0003  done          attempts=1  rung<=0  delete old.txt
+restored /tmp/cc_ws2/old.txt
+undo t-0003: 1 restored, 0 failed
+old.txt

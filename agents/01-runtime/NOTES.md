@@ -354,7 +354,7 @@ churn from per-forward dequantization — **int8 is not an RSS or speed win
 for this checkpoint and fp32 stays the default**. What it is: a 3.6× disk
 reduction at zero measurable accuracy cost, and the load path that will
 matter when someone trains to the spec's 600 MB weight allocation
-(projected saving there ≈ 450 MB). Max measured peak anywhere: **319 MB ≤
+(projected saving there ≈ 450 MB). Max measured peak anywhere: **344 MB ≤
 3000 MB** target; governor refusal proven live, not just unit-tested.
 Also fixed en route: host `boot_s` reported epoch time (now elapsed);
 `--int8` added to bench/serve. Tests 61/61 (`artifacts/tests_m7.txt`).
@@ -362,3 +362,52 @@ Also fixed en route: host `boot_s` reported epoch time (now elapsed);
 Next: M8 — 20-task end-to-end suite. Agent 03 hasn't published one to this
 branch; extending drive_suite to 20 tasks (labelled agent-01-authored) and
 re-running against their future suite when it lands.
+
+## Cycle 10 — 2026-10-22 — M8: 20-task end-to-end suite + clean-clone proof
+
+Agent 03's suite is their pending M7 (checked their branch + STATUS), so per
+"never block" this is an agent-01-authored stand-in in the exact
+`specs/eval_suite.md` shape, labelled as such in the scoreboard itself:
+`scripts/e2e_suite.py` → `artifacts/scoreboard_m8.json` (+ failure frame
+strips in `artifacts/e2e_failures/`). No X server exists in this sandbox, so
+GUI tasks run on the simulated desktop with the **real** GripNet (step 750)
+doing perception and the LM resident (suite-process peak 296 MB); shell
+tasks act on a real filesystem; two code tasks put the real LM in the loop.
+
+**Scoreboard: success 0.80 (16/20)**, median 5 attempts · 0.03 s/task.
+By category: file_manager 4/4, recovery 4/4, multi_app 2/2, editor 2/2,
+settings 2/3, code 2/3, browser 0/2. The four failures, unspun:
+`br-001`/`br-002` — GripNet persistently activates a *wrong same-role
+widget* ("help", "archive": precisely agent 03's 98.4% failure class — the
+loop retries, replans, parks and fails them cleanly, it cannot fix
+perception); `st-003` — designed-unreachable second target (done-partial
+at 0.5, counts as scoreboard failure by design); `co-002` — LM completion
+doesn't parse (matches agent 04's pass@1 0.000 baseline). One curiosity:
+`rc-003` (wrong plan) passed in 1 attempt — the grounder's own error
+cancelled the planner's. Real models have those days.
+
+Bug caught by the done-when audit: checkpoint dirs are committed as
+config+card only (weights are release assets), but the finders would pick
+such a placeholder and crash a clean clone at load. Finders now skip
+weight-less dirs; clean clones fall back to the flagged stub
+(`artifacts/cleanclone_m8.txt`: fresh clone → `doctor` OK → `bench` 20 tok
+→ scripted `run` done → `undo` restores). ShellWorld `move` now creates
+destination dirs (a bare mkdir step could never show the verifier progress).
+
+### Done-when audit (PROMPT.md), final
+
+- `doctor && bench && run "..."` from a clean clone — shown above, real
+  terminal output. Real-checkpoint numbers are the M0 ones (boot 1.0 s,
+  272 MB) via `restore_data.sh` + migrate; stub fallback is flagged, never
+  silent.
+- Peak RSS: max measured anywhere 344 MB (sandbox cap 1600, target 3000). ✓
+- Boot < 20 s: worst measured 2.2 s (int8 meta path). ✓
+- 20-task suite with published success rate: **0.80**, caveats etched into
+  the scoreboard's provenance field. ✓ (03's Xvfb suite supersedes on arrival.)
+- undo / watch / autostart documented with real output: `docs/windows.md`,
+  artifacts `undo_m4.json`, `crash_m6.json`, M6 log excerpts. ✓
+
+That closes M0–M8. What remains genuinely open lives with other agents'
+inputs, not with stubs of mine: 03's Xvfb suite + trained grounder exports,
+02's capture/hands behind a RealDesktopWorld, larger checkpoints where
+int8 starts paying rent. brainbox 0.8.0, 64/64 tests.

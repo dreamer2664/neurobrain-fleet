@@ -1,79 +1,33 @@
 # agent 01 — runtime & integration: STATUS
 
-**M0–M7 done** (2026-10-22, cycles 1–9; M4 landed before M3 by design). Code: `neurobrain` repo, branch
-`agent-01` (fast-forwarded onto main after the M0 merge). brainbox 0.7.0.
-Next: M8 20-task end-to-end suite.
+**M0–M8 all done** (2026-10-22, cycles 1–10; M4 landed before M3 by design).
+brainbox 0.8.0 · code `neurobrain@agent-01` · **64/64 tests**
+(`artifacts/tests_m8.txt`). All 8 CLI verbs implemented; no fake commands left.
 
-## M1 numbers (`artifacts/api_m1_stress.json`, real ckpts, 2 threads)
-
-| metric | value | bound |
+| milestone | headline number | artifact |
 |---|---|---|
-| RSS growth, 200 sequential requests | **+0.3 MB** | ≤ 20 MB |
-| /health during load (n=208) | p50 1.2 ms · max 9.1 ms | < 50 ms |
-| /generate 16 tok p50 | 97 ms | — |
-| /score p50 · /ground p50 | 5.0 ms · 15.0 ms | — |
-| server peak RSS (LM+grip) | 299.5 MB (VmHWM) | < 1600 MB sandbox |
-| /ground parity vs lab evaluate (n=256) | 0.531 vs 0.523 | — |
-| tests | **61/61** | — |
+| M0 skeleton/doctor/bench | boot 1.003 s · peak 272 MB (real LM 4600) | `bench_m0_real.json` |
+| M1 local API :8321 | 200 req → RSS +0.3 MB · /health max 9.1 ms | `api_m1_stress.json` |
+| M2 checkpoint dirs | both .pt migrated, sha≡release, predictions 20/20 | `migration_m2.json` |
+| M3 drive loop | closed 10/10 · terminal 0.70 oracle / 0.60 real | `drive_m3.json` |
+| M4 undo/trash | 100/100 cycles byte-identical | `undo_m4.json` |
+| M5 packaging | clean venv install 28.4 s < 60 · zipapp 212 KB | `packaging_m5.json` |
+| M6 watch/autostart/crash | kill -9 recovery 9/9 checks | `crash_m6.json` |
+| M7 int8 + governor | disk 0.28× · loss Δ +0.0005 · max peak 344 MB ≤ 3000 | `quant_m7.json` |
+| M8 20-task suite | **success 0.80** (16/20) · peak 296 MB | `scoreboard_m8.json` |
 
-API: `brainbox serve` → http://127.0.0.1:8321 (spec-change published:
-default port). Wire keys spec-exact; 429 from governor with `reason`;
-one model job at a time behind a queue; /health never queues.
+Honest edges, all documented in NOTES.md rather than buried: M8's suite is
+agent-01-authored (03's Xvfb suite still pending) and runs on the simulated
+desktop — no X server exists in this sandbox; int8 is slower and RSS-neutral
+at 4.25M params so fp32 stays default; the LM planner occasionally succeeds
+for the wrong reason and GripNet's same-role confusion (0/2 browser tasks)
+is the top failure class — that's 03's hill, the loop handles it cleanly.
 
-## M0 numbers (kept for reference)
+Clean-clone path: `git clone` → `brainbox doctor && brainbox bench &&
+brainbox run "…"` all work (stub fallback, flagged) — real weights via
+`bash scripts/restore_data.sh` + `scripts/migrate_checkpoint.py --int8`.
+Real terminal transcript: `artifacts/cleanclone_m8.txt`.
 
-Real LM step 4600 (release ckpt-1022, sha-verified → `checkpoints/lm/`):
-boot 1.003 s, peak RSS 272.1 MB, 20 tok @ 312 tok/s. `artifacts/bench_m0_real.json`.
-
-Rebuild checkpoints after a rollback: `bash scripts/restore_data.sh` then
-`python3 scripts/migrate_checkpoint.py checkpoints/lm_best.pt --out checkpoints/lm`.
-
-## M2 numbers (`artifacts/migration_m2.json`)
-
-Both current `.pt` files migrated to spec dirs and sha-verified against the
-release: `checkpoints/lm/` (step 4600) + `checkpoints/grip/` (step 750,
-441k params). Grip dir-vs-legacy predictions 20/20 identical; `doctor`
-reports both with `verified=True` and fails (exit 1) on corruption.
-
-## M4 numbers (`artifacts/undo_m4.json`)
-
-100 delete/restore cycles (80 files + 20 dir trees): **100/100 byte-identical**
-(sha256 verified both directions), p50 0.97 ms/cycle. `brainbox undo <task-id>`
-restores from `~/.brainbox/trash/<task-id>/`; overwrite only with `--force`.
-
-## M3 numbers (`artifacts/drive_m3.json`, 10 scripted tasks)
-
-| | oracle grounder | real GripNet step 750 |
-|---|---|---|
-| terminal_rate (done/all) | 0.70 | 0.60 |
-| closed_rate (any terminal state) | **1.00** | **1.00** |
-| recovery_rate | 0.625 | 0.60 |
-| retry_depth (non-done) | 4.67 | 5.0 |
-
-The 3 non-done tasks are designed failures (unreachable widget ×2, starved
-budget) plus a half-completed two-target task (done-partial, progress 0.5).
-Perception gap oracle→real = exactly 1 task. Only remaining CLI stub: `kill` (M6).
-
-## M5 numbers (`artifacts/packaging_m5.json`)
-
-zipapp 212 KB builds in 0.05 s; wheel 77 KB in 1.0 s. Clean isolated venv
-(create + install incl. torch CPU): **28.4 s < 60 s**, doctor ok (28.4 s had
-torch from pip cache; brainbox's own share is <1 s — see NOTES for the failed
-default-index attempt and why the CPU index is the documented command).
-Windows: `docs/windows.md` (repo root `docs/`).
-
-## M6 numbers (`artifacts/crash_m6.json`)
-
-kill -9 mid-task → restart: interrupted task recorded `failed` (summary +
-fatal history + run record), queued task behind it completed, 9/9 acceptance
-checks pass, no stuck process. `brainbox run --watch ~/.brainbox/inbox`,
-`brainbox autostart install` (systemd --user / schtasks), `brainbox kill`.
-All 8 CLI verbs implemented.
-
-## M7 numbers (`artifacts/quant_m7.json`)
-
-int8 sidecars: LM 17.0→4.81 MB, grip 1.79→0.47 MB. Accuracy delta ~0
-(LM loss +0.0005, top-1 40/40, grip hit −0.004). Runtime today: fp32 wins
-(speed ~300 vs ~140–195 tok/s; peak RSS within noise either way, max 319 MB
-vs 3000 MB target) — fp32 remains default; int8 is the disk/scale path.
-Governor proven live (cap 200 MB → 429 on /generate, /health stays 200).
+Next for agent 01: when 02's capture + 03's suite/grounder land, wire
+RealDesktopWorld (deskhands + real frames behind the same World protocol)
+and re-run this scoreboard on real pixels.
