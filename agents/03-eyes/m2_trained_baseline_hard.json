@@ -1,0 +1,714 @@
+{
+  "seen": {
+    "n": 1000,
+    "hit_widget": 0.463,
+    "hit_point_6px": 0.308,
+    "hit_point_8px": 0.348,
+    "action_acc": 1.0,
+    "median_center_err_px": 27.22,
+    "mean_center_err_px": 44.98,
+    "p90_center_err_px": 116.59,
+    "n_misses": 537,
+    "miss_taxonomy": {
+      "same_role_wrong_label": 373,
+      "wrong_role_widget": 163,
+      "near_miss_border": 1,
+      "background_far": 0
+    },
+    "worst_confusions": {
+      "top_3_pair_confusions": [
+        [
+          "button:settings -> button:filter",
+          3
+        ],
+        [
+          "menu:profile -> menu:archive",
+          2
+        ],
+        [
+          "button:save -> button:rename",
+          2
+        ]
+      ],
+      "top_10_pair_confusions": [
+        [
+          "button:settings -> button:filter",
+          3
+        ],
+        [
+          "menu:profile -> menu:archive",
+          2
+        ],
+        [
+          "button:save -> button:rename",
+          2
+        ],
+        [
+          "icon:help -> icon:settings",
+          2
+        ],
+        [
+          "button:download -> button:pause",
+          2
+        ],
+        [
+          "checkbox:export -> field:inbox",
+          2
+        ],
+        [
+          "tab:home -> tab:upload",
+          2
+        ],
+        [
+          "icon:login -> icon:rename",
+          2
+        ],
+        [
+          "tab:profile -> tab:delete",
+          2
+        ],
+        [
+          "icon:profile -> icon:filter",
+          2
+        ]
+      ],
+      "label_confusions": [
+        [
+          "submit -> download",
+          5
+        ],
+        [
+          "export -> inbox",
+          5
+        ],
+        [
+          "filter -> export",
+          5
+        ],
+        [
+          "home -> upload",
+          4
+        ],
+        [
+          "print -> rename",
+          4
+        ],
+        [
+          "download -> settings",
+          4
+        ],
+        [
+          "download -> search",
+          4
+        ],
+        [
+          "cart -> cancel",
+          4
+        ],
+        [
+          "share -> pause",
+          4
+        ],
+        [
+          "help -> search",
+          4
+        ]
+      ],
+      "role_confusions": [
+        [
+          "menu -> menu",
+          88
+        ],
+        [
+          "button -> button",
+          85
+        ],
+        [
+          "tab -> tab",
+          78
+        ],
+        [
+          "icon -> icon",
+          54
+        ],
+        [
+          "checkbox -> field",
+          34
+        ],
+        [
+          "slider -> slider",
+          31
+        ],
+        [
+          "icon -> tab",
+          21
+        ],
+        [
+          "field -> field",
+          19
+        ],
+        [
+          "checkbox -> checkbox",
+          18
+        ],
+        [
+          "tab -> icon",
+          18
+        ]
+      ]
+    },
+    "by_role": {
+      "button": {
+        "n": 181,
+        "hit_widget": 0.5028,
+        "median_err_px": 32.77
+      },
+      "checkbox": {
+        "n": 97,
+        "hit_widget": 0.2887,
+        "median_err_px": 49.26
+      },
+      "field": {
+        "n": 105,
+        "hit_widget": 0.6762,
+        "median_err_px": 21.39
+      },
+      "icon": {
+        "n": 152,
+        "hit_widget": 0.4079,
+        "median_err_px": 55.14
+      },
+      "menu": {
+        "n": 196,
+        "hit_widget": 0.3776,
+        "median_err_px": 23.47
+      },
+      "slider": {
+        "n": 91,
+        "hit_widget": 0.6484,
+        "median_err_px": 6.22
+      },
+      "tab": {
+        "n": 178,
+        "hit_widget": 0.4382,
+        "median_err_px": 42.53
+      }
+    },
+    "by_label": {
+      "archive": {
+        "n": 42,
+        "hit_widget": 0.4286,
+        "median_err_px": 52.56
+      },
+      "cancel": {
+        "n": 42,
+        "hit_widget": 0.5952,
+        "median_err_px": 7.2
+      },
+      "cart": {
+        "n": 43,
+        "hit_widget": 0.5349,
+        "median_err_px": 23.66
+      },
+      "delete": {
+        "n": 41,
+        "hit_widget": 0.5854,
+        "median_err_px": 8.33
+      },
+      "download": {
+        "n": 41,
+        "hit_widget": 0.3415,
+        "median_err_px": 55.21
+      },
+      "export": {
+        "n": 39,
+        "hit_widget": 0.359,
+        "median_err_px": 27.08
+      },
+      "filter": {
+        "n": 47,
+        "hit_widget": 0.5106,
+        "median_err_px": 33.39
+      },
+      "help": {
+        "n": 39,
+        "hit_widget": 0.4103,
+        "median_err_px": 41.97
+      },
+      "home": {
+        "n": 46,
+        "hit_widget": 0.5217,
+        "median_err_px": 21.97
+      },
+      "inbox": {
+        "n": 50,
+        "hit_widget": 0.44,
+        "median_err_px": 45.14
+      },
+      "login": {
+        "n": 41,
+        "hit_widget": 0.3415,
+        "median_err_px": 35.67
+      },
+      "logout": {
+        "n": 40,
+        "hit_widget": 0.55,
+        "median_err_px": 13.77
+      },
+      "pause": {
+        "n": 32,
+        "hit_widget": 0.4375,
+        "median_err_px": 31.14
+      },
+      "play": {
+        "n": 44,
+        "hit_widget": 0.4773,
+        "median_err_px": 45.75
+      },
+      "print": {
+        "n": 46,
+        "hit_widget": 0.4348,
+        "median_err_px": 36.79
+      },
+      "profile": {
+        "n": 44,
+        "hit_widget": 0.4318,
+        "median_err_px": 40.38
+      },
+      "refresh": {
+        "n": 52,
+        "hit_widget": 0.5385,
+        "median_err_px": 18.86
+      },
+      "rename": {
+        "n": 29,
+        "hit_widget": 0.4138,
+        "median_err_px": 21.9
+      },
+      "save": {
+        "n": 29,
+        "hit_widget": 0.3448,
+        "median_err_px": 42.43
+      },
+      "search": {
+        "n": 50,
+        "hit_widget": 0.58,
+        "median_err_px": 15.09
+      },
+      "settings": {
+        "n": 40,
+        "hit_widget": 0.4,
+        "median_err_px": 31.29
+      },
+      "share": {
+        "n": 36,
+        "hit_widget": 0.4444,
+        "median_err_px": 24.82
+      },
+      "submit": {
+        "n": 46,
+        "hit_widget": 0.3696,
+        "median_err_px": 42.95
+      },
+      "upload": {
+        "n": 41,
+        "hit_widget": 0.5122,
+        "median_err_px": 24.93
+      }
+    },
+    "by_theme": {
+      "dark": {
+        "n": 351,
+        "hit_widget": 0.4387,
+        "median_err_px": 30.51
+      },
+      "high_contrast": {
+        "n": 331,
+        "hit_widget": 0.4622,
+        "median_err_px": 32.77
+      },
+      "light": {
+        "n": 318,
+        "hit_widget": 0.4906,
+        "median_err_px": 24.98
+      }
+    },
+    "by_size": {
+      "small": {
+        "n": 733,
+        "hit_widget": 0.4352,
+        "median_err_px": 24.38
+      },
+      "medium": {
+        "n": 197,
+        "hit_widget": 0.5178,
+        "median_err_px": 27.92
+      },
+      "large": {
+        "n": 70,
+        "hit_widget": 0.6,
+        "median_err_px": 39.35
+      }
+    },
+    "latency_ms_per_frame": 8.14,
+    "latency_mean_ms": 8.16,
+    "peak_rss_mb": 1108.47,
+    "params": 441256
+  },
+  "ood": {
+    "n": 500,
+    "hit_widget": 0.276,
+    "hit_point_6px": 0.16,
+    "hit_point_8px": 0.194,
+    "action_acc": 1.0,
+    "median_center_err_px": 57.38,
+    "mean_center_err_px": 67.87,
+    "p90_center_err_px": 151.04,
+    "n_misses": 362,
+    "miss_taxonomy": {
+      "same_role_wrong_label": 83,
+      "wrong_role_widget": 200,
+      "near_miss_border": 7,
+      "background_far": 72
+    },
+    "worst_confusions": {
+      "top_3_pair_confusions": [
+        [
+          "checkbox:profile -> field:home",
+          2
+        ],
+        [
+          "menu:archive -> tab:export",
+          2
+        ],
+        [
+          "menu:export -> icon:play",
+          2
+        ]
+      ],
+      "top_10_pair_confusions": [
+        [
+          "checkbox:profile -> field:home",
+          2
+        ],
+        [
+          "menu:archive -> tab:export",
+          2
+        ],
+        [
+          "menu:export -> icon:play",
+          2
+        ],
+        [
+          "tab:logout -> tab:pause",
+          2
+        ],
+        [
+          "menu:print -> menu:download",
+          2
+        ],
+        [
+          "tab:cancel -> tab:submit",
+          2
+        ],
+        [
+          "menu:upload -> icon:pause",
+          1
+        ],
+        [
+          "icon:print -> menu:filter",
+          1
+        ],
+        [
+          "tab:search -> checkbox:refresh",
+          1
+        ],
+        [
+          "checkbox:filter -> icon:login",
+          1
+        ]
+      ],
+      "label_confusions": [
+        [
+          "logout -> pause",
+          5
+        ],
+        [
+          "archive -> export",
+          4
+        ],
+        [
+          "print -> filter",
+          3
+        ],
+        [
+          "inbox -> upload",
+          3
+        ],
+        [
+          "profile -> home",
+          3
+        ],
+        [
+          "delete -> inbox",
+          3
+        ],
+        [
+          "cart -> rename",
+          3
+        ],
+        [
+          "refresh -> download",
+          3
+        ],
+        [
+          "archive -> home",
+          3
+        ],
+        [
+          "export -> play",
+          3
+        ]
+      ],
+      "role_confusions": [
+        [
+          "tab -> background",
+          30
+        ],
+        [
+          "menu -> icon",
+          25
+        ],
+        [
+          "button -> button",
+          24
+        ],
+        [
+          "menu -> field",
+          23
+        ],
+        [
+          "menu -> menu",
+          20
+        ],
+        [
+          "button -> background",
+          13
+        ],
+        [
+          "tab -> tab",
+          13
+        ],
+        [
+          "icon -> icon",
+          12
+        ],
+        [
+          "icon -> background",
+          11
+        ],
+        [
+          "slider -> background",
+          9
+        ]
+      ]
+    },
+    "by_role": {
+      "button": {
+        "n": 91,
+        "hit_widget": 0.4286,
+        "median_err_px": 39.51
+      },
+      "checkbox": {
+        "n": 37,
+        "hit_widget": 0.1622,
+        "median_err_px": 82.53
+      },
+      "field": {
+        "n": 59,
+        "hit_widget": 0.2034,
+        "median_err_px": 66.54
+      },
+      "icon": {
+        "n": 66,
+        "hit_widget": 0.3182,
+        "median_err_px": 62.49
+      },
+      "menu": {
+        "n": 113,
+        "hit_widget": 0.2389,
+        "median_err_px": 47.59
+      },
+      "slider": {
+        "n": 52,
+        "hit_widget": 0.3269,
+        "median_err_px": 64.75
+      },
+      "tab": {
+        "n": 82,
+        "hit_widget": 0.1951,
+        "median_err_px": 69.23
+      }
+    },
+    "by_label": {
+      "archive": {
+        "n": 22,
+        "hit_widget": 0.3182,
+        "median_err_px": 59.23
+      },
+      "cancel": {
+        "n": 24,
+        "hit_widget": 0.375,
+        "median_err_px": 46.95
+      },
+      "cart": {
+        "n": 22,
+        "hit_widget": 0.0455,
+        "median_err_px": 72.76
+      },
+      "delete": {
+        "n": 19,
+        "hit_widget": 0.2632,
+        "median_err_px": 51.45
+      },
+      "download": {
+        "n": 15,
+        "hit_widget": 0.1333,
+        "median_err_px": 63.16
+      },
+      "export": {
+        "n": 18,
+        "hit_widget": 0.3889,
+        "median_err_px": 38.17
+      },
+      "filter": {
+        "n": 13,
+        "hit_widget": 0.3077,
+        "median_err_px": 31.25
+      },
+      "help": {
+        "n": 16,
+        "hit_widget": 0.25,
+        "median_err_px": 61.68
+      },
+      "home": {
+        "n": 16,
+        "hit_widget": 0.3125,
+        "median_err_px": 83.1
+      },
+      "inbox": {
+        "n": 29,
+        "hit_widget": 0.1379,
+        "median_err_px": 93.87
+      },
+      "login": {
+        "n": 17,
+        "hit_widget": 0.2353,
+        "median_err_px": 57.6
+      },
+      "logout": {
+        "n": 29,
+        "hit_widget": 0.3793,
+        "median_err_px": 37.38
+      },
+      "pause": {
+        "n": 21,
+        "hit_widget": 0.2381,
+        "median_err_px": 60.53
+      },
+      "play": {
+        "n": 20,
+        "hit_widget": 0.25,
+        "median_err_px": 59.02
+      },
+      "print": {
+        "n": 27,
+        "hit_widget": 0.2963,
+        "median_err_px": 49.37
+      },
+      "profile": {
+        "n": 24,
+        "hit_widget": 0.4167,
+        "median_err_px": 30.36
+      },
+      "refresh": {
+        "n": 21,
+        "hit_widget": 0.2381,
+        "median_err_px": 68.48
+      },
+      "rename": {
+        "n": 20,
+        "hit_widget": 0.25,
+        "median_err_px": 75.42
+      },
+      "save": {
+        "n": 19,
+        "hit_widget": 0.3684,
+        "median_err_px": 32.06
+      },
+      "search": {
+        "n": 25,
+        "hit_widget": 0.32,
+        "median_err_px": 63.24
+      },
+      "settings": {
+        "n": 16,
+        "hit_widget": 0.25,
+        "median_err_px": 38.49
+      },
+      "share": {
+        "n": 25,
+        "hit_widget": 0.2,
+        "median_err_px": 64.45
+      },
+      "submit": {
+        "n": 20,
+        "hit_widget": 0.25,
+        "median_err_px": 48.21
+      },
+      "upload": {
+        "n": 22,
+        "hit_widget": 0.3636,
+        "median_err_px": 48.62
+      }
+    },
+    "by_theme": {
+      "high_contrast_amber": {
+        "n": 149,
+        "hit_widget": 0.1342,
+        "median_err_px": 79.08
+      },
+      "nord_slate": {
+        "n": 184,
+        "hit_widget": 0.4728,
+        "median_err_px": 25.22
+      },
+      "solarized_light": {
+        "n": 167,
+        "hit_widget": 0.1856,
+        "median_err_px": 69.1
+      }
+    },
+    "by_size": {
+      "small": {
+        "n": 368,
+        "hit_widget": 0.2853,
+        "median_err_px": 52.54
+      },
+      "medium": {
+        "n": 100,
+        "hit_widget": 0.23,
+        "median_err_px": 70.38
+      },
+      "large": {
+        "n": 32,
+        "hit_widget": 0.3125,
+        "median_err_px": 69.91
+      }
+    },
+    "latency_ms_per_frame": 8.06,
+    "latency_mean_ms": 8.25,
+    "peak_rss_mb": 1108.47,
+    "params": 441256
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "steps": 550,
+  "batch_size": 16,
+  "glyph_mode": {
+    "hit_widget": 0.542,
+    "median_center_err_px": 4.45,
+    "action_acc": 1.0
+  },
+  "text_mode": {
+    "hit_widget": 0.499,
+    "median_center_err_px": 20.3,
+    "action_acc": 1.0,
+    "ood_hit_widget": 0.538
+  }
+}
