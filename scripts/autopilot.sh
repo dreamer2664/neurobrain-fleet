@@ -12,12 +12,7 @@ cd "$(dirname "$0")/.."
 while true; do
   echo "=== cycle $(date -u +%FT%TZ) agent $AGENT_ID ==="
   bash -c "$WORK" 2>&1 | tee -a "agents/$AGENT_ID/run.log"
-  git add -A
-  if ! git diff --cached --quiet; then
-    git -c user.name="agent-$AGENT_ID" -c user.email="agent$AGENT_ID@fleet.local" \
-        commit -q -m "agent $AGENT_ID: $(date -u +%FT%TZ)"
-    git push -q origin "agent-$AGENT_ID" || echo "push failed, will retry next cycle"
-  fi
+  AGENT_ID="$AGENT_ID" ./scripts/sync.sh "agent $AGENT_ID: $(date -u +%FT%TZ)"
   ./scripts/ntfy.sh pub "[$AGENT_ID] status: cycle done $(date -u +%H:%M). $(tail -1 agents/$AGENT_ID/STATUS.md)"
   sleep "$CYCLE"
 done
