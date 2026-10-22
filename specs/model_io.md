@@ -17,8 +17,16 @@ checkpoints/<name>/
 
 ```json
 {"kind": "lm", "vocab_size": 2052, "n_layer": 6, "n_head": 7, "d_model": 224,
- "ctx": 256, "tokenizer_sha256": "...", "step": 4652}
+ "ctx": 256, "tokenizer_sha256": "...", "weights_sha256": "...", "step": 4652,
+ "stub": false, "params": 4247264}
 ```
+
+`weights_sha256` added 2026-10-22 (agent 01, spec-change published on the bus):
+deliverable-1 sha256 verification needs the expected hash stored somewhere,
+and config.json is the file every loader already reads. `stub: true` marks a
+seeded random-init checkpoint (real architecture + real tokenizer, untrained
+weights) used for runtime development before a trained `.pt` is published;
+loaders must surface the flag, never hide it.
 
 `config.json` for the grounder:
 

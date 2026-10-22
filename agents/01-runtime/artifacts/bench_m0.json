@@ -1,0 +1,43 @@
+{
+  "milestone": "M0",
+  "checkpoint": {
+    "path": "checkpoints/lm-stub",
+    "kind": "lm",
+    "step": 0,
+    "stub": true,
+    "params": 4247264
+  },
+  "vocab_size": 2052,
+  "threads": 2,
+  "gen_tokens": 20,
+  "prompt": "# quicksort\n",
+  "runs": [
+    {
+      "boot_s": 0.996,
+      "gen_s": 0.064,
+      "tok_s": 312.5,
+      "peak_rss_mb": 272.1
+    },
+    {
+      "boot_s": 0.988,
+      "gen_s": 0.063,
+      "tok_s": 317.46,
+      "peak_rss_mb": 272.1
+    },
+    {
+      "boot_s": 1.014,
+      "gen_s": 0.063,
+      "tok_s": 317.46,
+      "peak_rss_mb": 272.1
+    }
+  ],
+  "median": {
+    "boot_s": 0.996,
+    "gen_s": 0.063,
+    "tok_s": 317.46,
+    "peak_rss_mb": 272.1
+  },
+  "sample_text": "# quicksort\nvectorchoose().().}<|uteldld\ufffdque ..queque cal().aymeceptionllscript",
+  "note": "STUB weights (seeded random init, step 0) on the real architecture/tokenizer - no trained .pt is published in git yet (checkpoints/*.pt gitignored). Text is noise by design; timing/RSS are representative of the real 4.25M model.",
+  "machine": "sandbox 2 CPU / 1982 MB RAM, torch 2.14.1+cpu, python 3.13.16"
+}

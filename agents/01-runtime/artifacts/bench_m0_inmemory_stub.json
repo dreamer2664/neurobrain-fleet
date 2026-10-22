@@ -1,0 +1,21 @@
+{
+  "boot_s": 0.953,
+  "gen_tokens": 20,
+  "gen_s": 0.075,
+  "tok_s": 266.67,
+  "ms_per_token": 3.8,
+  "peak_rss_mb": 256.1,
+  "rss_mb": 256.1,
+  "threads": 2,
+  "prompt": "# quicksort\n",
+  "checkpoint": {
+    "path": "(in-memory stub)",
+    "kind": "lm",
+    "step": 0,
+    "stub": true,
+    "params": 4247264
+  },
+  "vocab_size": 2052,
+  "sample_text": "# quicksort\nvectorchoose().().}<|uteldld\ufffdque ..queque cal().aymeceptionllscript",
+  "brainbox": "0.1.0"
+}
