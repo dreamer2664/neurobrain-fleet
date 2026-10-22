@@ -55,7 +55,7 @@ flat, documents separated by `<|endoftext|>`. Same as `specs/data_formats.md`.
 | `actions` | int64 | `[N]` | 0 click, 1 type, 2 toggle, 3 drag |
 | `labels` | int64 | `[N]` | **extra**: widget label, index into `ui_world.LABELS` (24) |
 | `roles` | int64 | `[N]` | **extra**: index into `ui_world.ROLES` (7) |
-| `themes` | int64 | `[N]` | **extra**: 0 light, 1 dark |
+| `themes` | int64 | `[N]` | **extra**: 0 light, 1 dark, 2 high-contrast |
 
 The three extras are additive; a loader that only reads the specced keys is
 unaffected. `manifest.json` in each dataset directory carries `version`, `n`,
@@ -73,11 +73,33 @@ img = z["images"][i]      # 49 KB
 On a compressed npz **bind `z["images"]` once** — every subscript decompresses
 the whole 245 MB member again. That mistake cost `stats` 4 minutes once.
 
+## 5b. Hard UI (`hard_ui`) — train on this, not on the seed world
+
+```
+python -m dataforge build --out data/forge-hard --profile smoke \
+    --datasets hard_ui --set hard_ui.samples=10000        # ~100 s
+```
+
+Same keys and dtypes as `ui_seed`. Per-shard difficulty index lives beside the
+shards, one file per attribute, int8, same sample order:
+
+```
+hard_ui/tiers/shard-0000-tier.npy     0/1/2
+hard_ui/tiers/shard-0000-dpi.npy      0..3  -> 100/125/150/200 %
+hard_ui/tiers/shard-0000-section.npy  0..5  -> toolbar,tabs,sidebar,content,dialog,title
+```
+
+Use them for a curriculum (tier 0 first, tier 2 last) and for per-slice
+reporting. Offsets in `hard_ui` are scaled on half a cell, so they only clip at
+the true edge (1.4% vs 51.6% in the seed world) — a regressor trained on the
+seed world learns to saturate and will under-read `hard_ui` offsets.
+
 ## 6. Numbers you can quote
 
 From `artifacts/stats-standard.json` (profile standard, seed 23):
 
 ```
+hard_ui      10,000 imgs   661/1024 cells  clip 1.4%  entropy 5.56 bits  tiers 20/45/35
 code          3,558 docs    14.22M tokens   dup 0.00%
 drive     1,000,000 eps    213.23M tokens   dup 0.03%   terminal 1.000  retry_after_failure 1.000
 ui_protocol 150,000 docs    17.15M tokens   dup 0.00%

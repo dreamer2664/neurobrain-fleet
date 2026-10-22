@@ -79,10 +79,50 @@ UI shards carry the five specced arrays unchanged plus three extras that stats
 needs: `labels` (24-class widget label), `roles` (7), `themes` (2), all int64
 `[N]`. Consumers that only read the specced keys are unaffected.
 
+## M1 — hard world v1 ✅ (10k samples + manifest, verified)
+
+`neurobrain/ui_world_hard.py` + `dataforge` dataset `hard_ui`. Same 24 labels /
+7 roles / 128×128 / 48-char instruction / 4 action classes as the seed world,
+so a checkpoint trained on one reads the other. What is different:
+
+| property | seed world | hard world |
+|---|---|---|
+| text | 6-bit glyph chips | real DejaVu 5.2–7.8 px, 2× supersampled, LANCZOS down |
+| chrome | one title bar | title, menu bar, toolbar, tab strip, sidebar, list headers, status bar |
+| layouts | 4×3 grid | list view / settings grid / form, sidebar + content bands |
+| dialogs | none | modal with veil, title, message, 2–3 buttons (up to 55% of samples) |
+| states | — | disabled, focused, selected, hover |
+| themes | light, dark | light, dark, high-contrast (26%) |
+| degradation | none | JPEG 40–85 quality or ±5..14 noise, optional blur |
+| DPI | — | 100/125/150/200% (scales chrome: fewer, bigger widgets) |
+| tiers | — | 0/1/2 = 20/45/35%, recorded per sample in `tiers/*.npy` |
+| **heat cells used** | **72 / 1024** | **661 / 1024** |
+| **offset clipped** | **51.6%** | **1.4%** |
+| **image entropy** | **2.27 bits** | **5.56 ± 0.74 bits** |
+| dup exact / near | 0.00 / 0.15% | 0.00 / 0.00% |
+
+8 tiles: `artifacts/tiles-hard.png` (green cross = heatmap argmax + offset,
+i.e. exactly what a model reads from the shard; label line = tier, dpi,
+section, theme, action, instruction).
+
+Built with `--set hard_ui.samples=10000` on the smoke profile, seed 23:
+**99 s, 702 MB peak RSS, 181 MB on disk, verify OK, determinism 2/2 shards
+identical.** Action mix click/type/toggle/drag = 74/9/10/7%, themes
+37/37/26%, label H/Hmax 1.000 over 24 classes.
+
+Two failures the gates caught while building it, both fixed in the generator
+rather than the gate:
+1. `drag` was 1.4% of samples (sliders were rare) → a guaranteed slider in
+   ~72% of layouts and a toolbar search field in 55% → drag 7.0%, type 8.6%.
+2. `offset_mean_abs` was 0.497 and the old upper bound was 0.45 → the bound was
+   wrong, not the data: target centres are uniform inside a cell, so mean
+   |offset| is 0.5 by construction. The gate is now two-sided (0.30–0.60):
+   near 1.0 means a saturating regressor target, near 0 means every target sits
+   on a cell centre. Both are broken; 0.5 is healthy.
+
+M2 extends this to 100k (≈16 min at 10 ms/sample) with tiers verified.
+
 ### Next
 
-M1: `ui_world_hard` v1 — real 8–14 px text, toolbars/tabs/sidebars/dialogs,
-disabled/focused/selected states, light/dark/high-contrast, cursor in frame,
-JPEG noise, DPI 100–200%. Deliverable is 8 tiles in this file plus 10k samples
-and a verified manifest. The gates I set for it: heat cells ≥ 150/1024,
-entropy ≥ 2.5 bits, offset clip ≤ 5%, dup ≤ 2%.
+M2: scale the hard world to 100k samples (`--set hard_ui.samples=100000`,
+~16 min), tier mix verified, and hand agent 03 the training directory.
