@@ -1,0 +1,49 @@
+{
+  "milestone": "M0 (real checkpoint rerun, cycle 2)",
+  "source": "github release ckpt-1022 lm_best.pt sha256 0df9f2f6b1ad75de05b25f29c05284522e6a514f9674ea31912d2b0e64f54b7d (matches release digest), migrated via scripts/migrate_checkpoint.py to checkpoints/lm/",
+  "checkpoint": {
+    "path": "checkpoints/lm",
+    "kind": "lm",
+    "step": 4600,
+    "stub": false,
+    "params": 4247264
+  },
+  "vocab_size": 2052,
+  "threads": 2,
+  "gen_tokens": 20,
+  "prompt": "# quicksort\n",
+  "runs": [
+    {
+      "boot_s": 1.003,
+      "gen_s": 0.066,
+      "tok_s": 303.03,
+      "peak_rss_mb": 272.1
+    },
+    {
+      "boot_s": 0.996,
+      "gen_s": 0.06,
+      "tok_s": 333.33,
+      "peak_rss_mb": 272.1
+    },
+    {
+      "boot_s": 1.013,
+      "gen_s": 0.064,
+      "tok_s": 312.5,
+      "peak_rss_mb": 272.3
+    }
+  ],
+  "median": {
+    "boot_s": 1.003,
+    "gen_s": 0.064,
+    "tok_s": 312.5,
+    "peak_rss_mb": 272.1
+  },
+  "stub_median_for_comparison": {
+    "boot_s": 0.996,
+    "gen_s": 0.063,
+    "tok_s": 317.46,
+    "peak_rss_mb": 272.1
+  },
+  "sample_text_20tok": "# quicksort\nfrom numba.core.core.mypy.core.validation import (\n",
+  "machine": "sandbox 2 CPU / 1982 MB RAM, torch 2.14.1+cpu, python 3.13.16"
+}

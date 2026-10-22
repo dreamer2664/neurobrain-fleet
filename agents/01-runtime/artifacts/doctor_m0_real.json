@@ -1,0 +1,38 @@
+{
+  "ok": true,
+  "versions": {
+    "brainbox": "0.1.0",
+    "python": "3.13.16",
+    "platform": "Linux-6.1.158+-x86_64-with-glibc2.41",
+    "torch": "2.14.1+cpu",
+    "torch_threads": 1
+  },
+  "torch_import_s": 0.897,
+  "cpu_count": 2,
+  "mem_total_mb": 1982,
+  "disk_free_mb": 19507,
+  "rss_mb": 223.0,
+  "peak_rss_mb": 223.0,
+  "tokenizer": {
+    "found": true,
+    "path": "/home/user/neurobrain/data/tokenizer.json",
+    "vocab_size": 2052,
+    "sha256": "198316dfad27b115e58868edc9b850e58ad23ebf596aed063aec023c8f30f8ab"
+  },
+  "checkpoint": {
+    "found": true,
+    "format": "dir",
+    "path": "/home/user/neurobrain/checkpoints/lm",
+    "kind": "lm",
+    "step": 4600,
+    "stub": false,
+    "params": 4247264,
+    "vocab_size": 2052,
+    "files": {
+      "weights.pt": 17004959,
+      "tokenizer.json": 37882,
+      "card.md": 98
+    }
+  },
+  "uptime_s": 0.925
+}

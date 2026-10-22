@@ -75,6 +75,30 @@ python3 scripts/migrate_checkpoint.py --make-stub checkpoints/lm-stub
 python3 -m brainbox bench --checkpoint checkpoints/lm-stub --tokens 20
 ```
 
+## Cycle 2 — 2026-10-22 — M0 re-run on the real checkpoint
+
+Coordinator published release `ckpt-1022` mid-cycle-1. Downloaded
+`lm_best.pt` / `grip_best.pt` / `tokenizer.json`; **all three sha256 match the
+GitHub release digests** (`0df9f2f6…`, `b449721d…`, `198316df…`), and the
+release tokenizer is byte-identical to `data/tokenizer.json`.
+`lm_best.pt` = step 4600, `best_val 1.4255` — exactly the eval line in
+`reports/lm_log.jsonl`. Migrated with the M2 script to `checkpoints/lm/`
+(config + card committed on `agent-01`; weights gitignored, rebuild command
+in STATUS). GripNet: step 750, keys `{model, step, eval}` — config comes from
+GripNet defaults (char_vocab 40, max_len 48, d 64, grid 32), noted for M1.
+
+Re-benchmark (3 fresh processes, `artifacts/bench_m0_real.json`): boot
+1.003 s, 20 tokens in 64 ms (312 tok/s), peak RSS 272.1 MB internal ==
+external. Stub medians were 0.996 s / 317 tok/s / 272.1 MB — i.e. the stub
+predicted real timing/RSS to within noise, as designed. Evidence the weights
+are trained: real model's top next-token logprob after `"import "` is −1.72
+and its 80-token continuation is word-shaped Python commentary; the stub sits
+at −6.56 (≈ uniform over 2052 tokens) producing replacement-char noise.
+Sample (real, 20 tok): `"# quicksort\nfrom numba.core.core.mypy.core.validation import (\n"`.
+
+**M0 is now met literally**: skeleton + doctor + bench + 20 tokens from the
+real checkpoint, boot time and RSS published.
+
 ### Next cycle: M1
 
 HTTP API on 127.0.0.1 (`/generate`, `/score`, `/ground` stubbed until a grip
