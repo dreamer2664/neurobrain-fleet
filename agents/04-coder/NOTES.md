@@ -174,3 +174,22 @@ self-repair baseline (running, nice 10) → publish M5 baseline row; when run12k
 codebench + eval_drive + streams + self-repair on it, pack card WITH weights here, publish the
 round table; then launch the v2 training run (one variable: corpus v2 + instruction mix;
 --code-val stays on the v1 val bin for comparability, v2 streams evaluated via eval_streams).
+
+### addendum (cycle 3b): self-repair baseline + KV cache + push
+- **self-repair baseline (M5 row)**: repair_rate **0.000** (0/49 repaired), final_pass 0.000,
+  1545 s, peak 267 MB, reports/self_repair_baseline.json (3 transcripts + all rows). Attempt-1
+  modes: 26 AssertionError (valid syntax, wrong logic), 13 syntax, ~10 timeout/NameError.
+  Attempt-2 is WORSE (33+ syntax fails): the <|try|>2 repair protocol is OOD for a model never
+  trained on drive — exactly what run12k's 25% drive mix should fix. Transcript cb-arith-01:
+  attempt-1 = "__rgba__ = _operator(a, b)" → UI-marker cross-contamination + hallucinated helper.
+- **KV cache in model.generate (60603e6)**: cacheless generate re-ran the full 256-ctx forward
+  per token (~2.2 GFLOP/step) — the 51-min self-repair run was ~2 h projected. Added
+  forward_cached (per-block (k,v), RoPE at absolute offsets, bottom-right tril mask on decode),
+  sliding-window fallback beyond ctx, 4 token-exact parity tests (top_k=1 same seed vs old path;
+  21/21 green). Real-model bench: 3.1x on 32 tok under contention; self-repair CPU/task 38→8.8 s.
+  Remaining cost is Python/op overhead per decode step, not FLOPs.
+- **neurobrain agent-04 pushed through df9c9d9** (6 commits incl. corpus v2 builder, self-repair,
+  packer, EI-on-codebench adapter, KV cache, reports). Note: `oauth2:` URL form works for push;
+  `x-access-token:` intermittently 401s on write (reads fine).
+- Training at step ~6.5k/12k during the above; budget stop ~00:45Z (may need one short final
+  resume leg if it lands just under 12k).
