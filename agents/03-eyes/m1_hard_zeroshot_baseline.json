@@ -1,0 +1,361 @@
+{
+  "n": 1000,
+  "hit_widget": 0.05,
+  "hit_point_6px": 0.004,
+  "hit_point_8px": 0.007,
+  "action_acc": 0.746,
+  "median_center_err_px": 92.48,
+  "mean_center_err_px": 101.45,
+  "p90_center_err_px": 180.31,
+  "n_misses": 950,
+  "miss_taxonomy": {
+    "same_role_wrong_label": 64,
+    "wrong_role_widget": 401,
+    "near_miss_border": 46,
+    "background_far": 439
+  },
+  "worst_confusions": {
+    "top_3_pair_confusions": [
+      [
+        "button:refresh -> tab:help",
+        2
+      ],
+      [
+        "field:cart -> button:archive",
+        2
+      ],
+      [
+        "icon:upload -> button:print",
+        2
+      ]
+    ],
+    "top_10_pair_confusions": [
+      [
+        "button:refresh -> tab:help",
+        2
+      ],
+      [
+        "field:cart -> button:archive",
+        2
+      ],
+      [
+        "icon:upload -> button:print",
+        2
+      ],
+      [
+        "field:inbox -> field:delete",
+        2
+      ],
+      [
+        "menu:rename -> button:profile",
+        2
+      ],
+      [
+        "button:upload -> field:logout",
+        2
+      ],
+      [
+        "tab:search -> tab:inbox",
+        2
+      ],
+      [
+        "slider:play -> button:pause",
+        2
+      ],
+      [
+        "tab:inbox -> button:search",
+        2
+      ],
+      [
+        "icon:archive -> button:logout",
+        2
+      ]
+    ],
+    "label_confusions": [
+      [
+        "upload -> print",
+        6
+      ],
+      [
+        "help -> play",
+        4
+      ],
+      [
+        "share -> save",
+        4
+      ],
+      [
+        "play -> print",
+        4
+      ],
+      [
+        "print -> home",
+        3
+      ],
+      [
+        "refresh -> cancel",
+        3
+      ],
+      [
+        "submit -> inbox",
+        3
+      ],
+      [
+        "delete -> upload",
+        3
+      ],
+      [
+        "archive -> help",
+        3
+      ],
+      [
+        "cart -> inbox",
+        3
+      ]
+    ],
+    "role_confusions": [
+      [
+        "menu -> background",
+        90
+      ],
+      [
+        "tab -> background",
+        82
+      ],
+      [
+        "checkbox -> background",
+        63
+      ],
+      [
+        "button -> background",
+        60
+      ],
+      [
+        "field -> background",
+        57
+      ],
+      [
+        "icon -> button",
+        49
+      ],
+      [
+        "icon -> background",
+        45
+      ],
+      [
+        "slider -> background",
+        42
+      ],
+      [
+        "menu -> button",
+        35
+      ],
+      [
+        "button -> near_border",
+        27
+      ]
+    ]
+  },
+  "by_role": {
+    "button": {
+      "n": 181,
+      "hit_widget": 0.116,
+      "median_err_px": 68.15
+    },
+    "checkbox": {
+      "n": 97,
+      "hit_widget": 0.0412,
+      "median_err_px": 88.54
+    },
+    "field": {
+      "n": 105,
+      "hit_widget": 0.0667,
+      "median_err_px": 96.86
+    },
+    "icon": {
+      "n": 152,
+      "hit_widget": 0.0329,
+      "median_err_px": 90.02
+    },
+    "menu": {
+      "n": 196,
+      "hit_widget": 0.0102,
+      "median_err_px": 106.44
+    },
+    "slider": {
+      "n": 91,
+      "hit_widget": 0.0659,
+      "median_err_px": 92.0
+    },
+    "tab": {
+      "n": 178,
+      "hit_widget": 0.0281,
+      "median_err_px": 100.67
+    }
+  },
+  "by_label": {
+    "archive": {
+      "n": 42,
+      "hit_widget": 0.0238,
+      "median_err_px": 125.97
+    },
+    "cancel": {
+      "n": 42,
+      "hit_widget": 0.0238,
+      "median_err_px": 95.27
+    },
+    "cart": {
+      "n": 43,
+      "hit_widget": 0.0233,
+      "median_err_px": 81.33
+    },
+    "delete": {
+      "n": 41,
+      "hit_widget": 0.0976,
+      "median_err_px": 93.36
+    },
+    "download": {
+      "n": 41,
+      "hit_widget": 0.0732,
+      "median_err_px": 90.75
+    },
+    "export": {
+      "n": 39,
+      "hit_widget": 0.0769,
+      "median_err_px": 89.03
+    },
+    "filter": {
+      "n": 47,
+      "hit_widget": 0.0426,
+      "median_err_px": 111.79
+    },
+    "help": {
+      "n": 39,
+      "hit_widget": 0.0769,
+      "median_err_px": 93.42
+    },
+    "home": {
+      "n": 46,
+      "hit_widget": 0.0652,
+      "median_err_px": 92.37
+    },
+    "inbox": {
+      "n": 50,
+      "hit_widget": 0.04,
+      "median_err_px": 88.73
+    },
+    "login": {
+      "n": 41,
+      "hit_widget": 0.0,
+      "median_err_px": 74.83
+    },
+    "logout": {
+      "n": 40,
+      "hit_widget": 0.025,
+      "median_err_px": 88.05
+    },
+    "pause": {
+      "n": 32,
+      "hit_widget": 0.0938,
+      "median_err_px": 80.07
+    },
+    "play": {
+      "n": 44,
+      "hit_widget": 0.0455,
+      "median_err_px": 92.77
+    },
+    "print": {
+      "n": 46,
+      "hit_widget": 0.087,
+      "median_err_px": 86.32
+    },
+    "profile": {
+      "n": 44,
+      "hit_widget": 0.0455,
+      "median_err_px": 94.45
+    },
+    "refresh": {
+      "n": 52,
+      "hit_widget": 0.0192,
+      "median_err_px": 105.07
+    },
+    "rename": {
+      "n": 29,
+      "hit_widget": 0.0,
+      "median_err_px": 118.14
+    },
+    "save": {
+      "n": 29,
+      "hit_widget": 0.069,
+      "median_err_px": 86.42
+    },
+    "search": {
+      "n": 50,
+      "hit_widget": 0.06,
+      "median_err_px": 86.35
+    },
+    "settings": {
+      "n": 40,
+      "hit_widget": 0.075,
+      "median_err_px": 72.97
+    },
+    "share": {
+      "n": 36,
+      "hit_widget": 0.0278,
+      "median_err_px": 108.86
+    },
+    "submit": {
+      "n": 46,
+      "hit_widget": 0.087,
+      "median_err_px": 107.04
+    },
+    "upload": {
+      "n": 41,
+      "hit_widget": 0.0244,
+      "median_err_px": 73.43
+    }
+  },
+  "by_theme": {
+    "dark": {
+      "n": 351,
+      "hit_widget": 0.0199,
+      "median_err_px": 88.91
+    },
+    "high_contrast": {
+      "n": 331,
+      "hit_widget": 0.0574,
+      "median_err_px": 96.98
+    },
+    "light": {
+      "n": 318,
+      "hit_widget": 0.0755,
+      "median_err_px": 87.3
+    }
+  },
+  "by_size": {
+    "small": {
+      "n": 733,
+      "hit_widget": 0.0368,
+      "median_err_px": 94.37
+    },
+    "medium": {
+      "n": 197,
+      "hit_widget": 0.0812,
+      "median_err_px": 78.63
+    },
+    "large": {
+      "n": 70,
+      "hit_widget": 0.1,
+      "median_err_px": 103.48
+    }
+  },
+  "latency_ms_per_frame": 8.16,
+  "latency_mean_ms": 8.27,
+  "peak_rss_mb": 460.81,
+  "params": 441256,
+  "world": "hard",
+  "step": 750,
+  "ckpt": "checkpoints/grip_release_1022.pt",
+  "gallery_tiles": 100,
+  "gallery_path": "/home/user/fleet/agents/03-eyes/galleries/m1_hard_zeroshot_failures_100.png"
+}

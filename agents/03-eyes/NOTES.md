@@ -33,3 +33,26 @@ Out of **550 misses** (from-scratch baseline; **497 misses** on `ckpt-1022`):
 1. **Position-locked text encoder (`Flatten + Linear(48*32, 96)`)**: `{label}` appears at character offset 6 (`"press save"`), 8 (`"turn on save"`), 10 (`"click the save button"`), or 14 (`"type into the save field"`). Flattening maps identical words at different offsets to disjoint weights, while the verb at index 0 makes role/action trivial (100% action acc). Thus the model matches **role color** and guesses nearly uniformly among same-role widgets (`~1 / 2.2 ≈ 45%`).
 2. **Additive `1x1` matcher & narrow effective RF**: `Conv2d(96+d, 64, 1)` lacks multiplicative query-vision conditioning (FiLM / cross-attention / cosine similarity) and has too narrow an effective receptive field around widget centers when labels are left-aligned inside wide (`55 px`) widgets.
 3. **Sub-pixel bottleneck on real UIs**: Downsampling screens with 8–14 px text to `128x128` blurs small glyphs; a Stage-2 native-resolution crop refiner/re-ranker around top-K Stage-1 candidates will directly read 8–14 px text and achieve sub-4px center precision.
+
+---
+
+## Cycle 1 (M1) — Hard UI World v1 + 50,000 Shards + SHA-256 Manifest
+
+### 1. Hard World v1 Specification (`neurobrain/ui_world_hard.py`)
+
+- **Native canvas**: `256x256` RGB with TrueType typography at **8–14 px** (DPI 100%–200%), plus anti-aliased `128x128` shard export matching `specs/data_formats.md` (`images uint8 [N,128,128,3]`, `tasks int64 [N,48]`, `heat float16 [N,32,32]`, `offsets float32 [N,2]`, `actions int64 [N]`).
+- **5 Desktop Archetypes**: `toolbar_workspace`, `tabbed_dialog`, `file_manager`, `settings_panel`, `editor_split` (toolbars, tab strips, navigation sidebars, modal dialogs with drop shadows, dense list/grid rows).
+- **Widget States**: `normal`, `focused` (accent border + caret), `selected` (active fill / checkmark / tab underline), `disabled` (muted distractors).
+- **Seen vs Disjoint OOD Generalisation Splits**:
+  - **Seen (`split="seen"`)**: `light`, `dark`, `high_contrast` themes; `DejaVuSans`, `DejaVuSans-Bold`, `DejaVuSansMono`, `DejaVuSerif` fonts.
+  - **OOD (`split="ood"`)**: `solarized_light`, `nord_slate`, `high_contrast_amber` themes; `LiberationSans`, `LiberationSansNarrow`, `LiberationMono`, `FreeSans`, `FreeSerif` fonts. Zero overlap in font files or theme palettes.
+- **Realism Perturbations**: pointer cursor arrow in frame (80% prob), deterministic JPEG compression quality `55..92` (75% prob), difficulty tiers `easy` (4–6 widgets), `medium` (7–10), `crowded` (11–16).
+- **Ablation Switch**: `label_mode="text"` vs `label_mode="glyph"` on identical geometry.
+
+### 2. 50k Shard Build & Zero-Shot Baseline Measurement
+
+- Built `data/ui_hard_v1/shard-0000.npz .. shard-0009.npz` (`n = 50,000`, `10 x 5,000`, `391.04 MB` compressed) in **131.1 s** on 2 workers (`460.8 MB` peak RSS). All 10 SHA-256 digests verified (`verify_hard_shards` green).
+- **Zero-shot `ckpt-1022` on Hard World (`N = 1000`, `seed = 202604`)**:
+  - `hit_widget = 5.0%` (`0.0500`), `median_center_err_px = 92.48 px`, `action_acc = 74.6%`.
+  - Next (M2): train the unmodified 0.44M `GripNet` baseline directly on the 50k Hard World shards so our M2 `+10 pts over baseline` comparison is against an **in-domain trained** baseline (not just the 5.0% zero-shot transfer), then introduce our shift-invariant char-CNN/BiGRU text encoder + FiLM/cosine spatial matcher!
+
