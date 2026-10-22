@@ -215,3 +215,46 @@ for `delete`-class actions; raw `os.remove` in task code paths is a bug.
 
 Next: M3 drive loop (plan→ground→act→observe→verify→ladder→terminal) on 10
 scripted tasks.
+
+## Cycle 6 — 2026-10-22 — M3: drive loop with the ladder
+
+- `brainbox/drive.py`: `TaskStore` (JSON per task under `~/.brainbox/tasks`,
+  run records + per-attempt frames under `~/.brainbox/runs`, atomic writes,
+  history saved after every attempt), `DriveLoop` (rungs 0–6 exactly per
+  specs/drive.md, step/second budgets checked per attempt, governor park),
+  `ScriptedPlanner` + `LMPlanner` (LM parse-or-ground-the-instruction
+  fallback, raw text kept on the task), `SimulatedDesktop` (reactive
+  ui_world; verifier judges activated-vs-required ground truth, never the
+  planner's believed target — that distinction is what makes the wrong-plan
+  task recover at replan instead of "succeeding" wrongly), `ShellWorld`
+  (checks-driven; deletes enforced through M4 trash), oracle/RealGrounder
+  adapters, `idle_cycle()` (verify last-10 checkable done tasks, prune
+  frames >7 d, self-check, recorded). CLI: `run / tasks / logs` live (`kill`
+  is the only stub left, M6). `run` without `--script` executes against a
+  **labelled simulated desktop** — no real display is attached in the
+  sandbox; a deskhands-backed world lands with M8 integration.
+- Acceptance `scripts/drive_suite.py` → `artifacts/drive_m3.json`, 10
+  scripted tasks (click, flaky, relocating widget, wrong plan, two-target,
+  unreachable×2, shell write via tool-switch, shell delete via decompose,
+  budget-starved), each run with oracle and real (step-750) grounders:
+
+  | metric (specs/drive.md) | oracle | real grip |
+  |---|---|---|
+  | terminal_rate (done/all) | 0.70 | 0.60 |
+  | closed_rate (any terminal) | **1.00** | **1.00** |
+  | recovery_rate | 0.625 | 0.60 |
+  | retry_depth (non-done) | 4.67 | 5.0 |
+  | mean attempts | 5.2 | 7.0 |
+
+  Every designed failure fails the right way (06 done-partial at exactly
+  progress 0.5, 07/10 failed with blocked records). Real-vs-oracle delta is
+  exactly one task (05: GripNet persistently misses the second target) —
+  loop mechanics cost nothing; perception at step 750 costs 1/10. Suite
+  bug found+fixed en route: modes initially shared workspaces/trash, which
+  pre-satisfied checks and collided trash slots across modes.
+- `spec-change` (bus first): task_schema status += `parked | done-partial`.
+- Tests 45/45 (`artifacts/tests_m3.txt`).
+
+Next: M5 packaging (zipapp + pip clean-venv timing, Windows doc), then M6
+watch/autostart/crash recovery, M7 int8+governor, M8 suite (needs agent 03's
+20 tasks — if unpublished, I'll extend drive_suite to 20 and flag it).

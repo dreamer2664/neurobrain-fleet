@@ -1,8 +1,8 @@
 # agent 01 — runtime & integration: STATUS
 
-**M0 + M1 + M2 + M4 done** (2026-10-22, cycles 1–5). Code: `neurobrain` repo, branch
-`agent-01` (fast-forwarded onto main after the M0 merge). brainbox 0.3.0.
-Next: M3 (drive loop, 10 scripted tasks), then M5 packaging.
+**M0–M4 done** (2026-10-22, cycles 1–6; M4 landed before M3 by design). Code: `neurobrain` repo, branch
+`agent-01` (fast-forwarded onto main after the M0 merge). brainbox 0.4.0.
+Next: M5 packaging, M6 watch/crash-recovery, M7 int8, M8 20-task suite.
 
 ## M1 numbers (`artifacts/api_m1_stress.json`, real ckpts, 2 threads)
 
@@ -14,7 +14,7 @@ Next: M3 (drive loop, 10 scripted tasks), then M5 packaging.
 | /score p50 · /ground p50 | 5.0 ms · 15.0 ms | — |
 | server peak RSS (LM+grip) | 299.5 MB (VmHWM) | < 1600 MB sandbox |
 | /ground parity vs lab evaluate (n=256) | 0.531 vs 0.523 | — |
-| tests | **34/34** (M0–M2+M4) | — |
+| tests | **45/45** | — |
 
 API: `brainbox serve` → http://127.0.0.1:8321 (spec-change published:
 default port). Wire keys spec-exact; 429 from governor with `reason`;
@@ -40,3 +40,16 @@ reports both with `verified=True` and fails (exit 1) on corruption.
 100 delete/restore cycles (80 files + 20 dir trees): **100/100 byte-identical**
 (sha256 verified both directions), p50 0.97 ms/cycle. `brainbox undo <task-id>`
 restores from `~/.brainbox/trash/<task-id>/`; overwrite only with `--force`.
+
+## M3 numbers (`artifacts/drive_m3.json`, 10 scripted tasks)
+
+| | oracle grounder | real GripNet step 750 |
+|---|---|---|
+| terminal_rate (done/all) | 0.70 | 0.60 |
+| closed_rate (any terminal state) | **1.00** | **1.00** |
+| recovery_rate | 0.625 | 0.60 |
+| retry_depth (non-done) | 4.67 | 5.0 |
+
+The 3 non-done tasks are designed failures (unreachable widget ×2, starved
+budget) plus a half-completed two-target task (done-partial, progress 0.5).
+Perception gap oracle→real = exactly 1 task. Only remaining CLI stub: `kill` (M6).

@@ -9,7 +9,7 @@ codes against.
   "id": "t-0001",
   "instruction": "open my downloads folder and delete the iso files",
   "created_at": 1760000000.0,
-  "status": "pending | planning | acting | verifying | done | failed",
+  "status": "pending | planning | acting | verifying | parked | done | done-partial | failed",
   "plan": [
     {"step": 1, "intent": "open file manager", "action": {"type": "key", "keys": ["win", "e"]}},
     {"step": 2, "intent": "go to downloads", "action": {"type": "type", "text": "%USERPROFILE%\\Downloads"}}
@@ -38,3 +38,10 @@ Rules:
 4. A task that exceeds its budget is `failed`, never silently retried forever.
 5. Recoverable destructive steps (delete, overwrite, send) take a snapshot first:
    the file is moved to `~/.brainbox/trash/<task-id>/` before removal.
+
+Status set amended 2026-10-22 (agent 01, spec-change on the bus): `parked`
+(escalated, awaiting an idle window; always carries a `blocked_records`
+entry) and `done-partial` were already required by specs/drive.md. Terminal
+states remain exactly `done | done-partial | failed`. brainbox also persists
+`plan_index`, `checks`, `workspace`, `blocked_records` and `metrics`
+({steps_used, max_rung, failures, recovered}) alongside the fields above.

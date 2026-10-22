@@ -1,0 +1,285 @@
+{
+  "milestone": "M3",
+  "grip_step": 750,
+  "base": "(removed; rerun with --keep to inspect)",
+  "modes": {
+    "oracle": {
+      "mode": "oracle",
+      "rows": [
+        {
+          "task": "01-click-target",
+          "id": "t-0001",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 1,
+          "max_rung": 0,
+          "failures": 0,
+          "recovered": false,
+          "wall_s": 0.01,
+          "parked_times": 0
+        },
+        {
+          "task": "02-flaky-click",
+          "id": "t-0002",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 2,
+          "max_rung": 1,
+          "failures": 1,
+          "recovered": true,
+          "wall_s": 0.0,
+          "parked_times": 0
+        },
+        {
+          "task": "03-widget-relocates",
+          "id": "t-0003",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 4,
+          "max_rung": 2,
+          "failures": 3,
+          "recovered": true,
+          "wall_s": 0.01,
+          "parked_times": 0
+        },
+        {
+          "task": "04-wrong-plan-replan",
+          "id": "t-0004",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 6,
+          "max_rung": 3,
+          "failures": 5,
+          "recovered": true,
+          "wall_s": 0.01,
+          "parked_times": 0
+        },
+        {
+          "task": "05-two-targets",
+          "id": "t-0005",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 2,
+          "max_rung": 0,
+          "failures": 0,
+          "recovered": false,
+          "wall_s": 0.0,
+          "parked_times": 0
+        },
+        {
+          "task": "06-second-unreachable",
+          "id": "t-0006",
+          "status": "done-partial",
+          "progress": 0.5,
+          "attempts": 11,
+          "max_rung": 6,
+          "failures": 10,
+          "recovered": false,
+          "wall_s": 0.02,
+          "parked_times": 2
+        },
+        {
+          "task": "07-unreachable",
+          "id": "t-0007",
+          "status": "failed",
+          "progress": 0.0,
+          "attempts": 10,
+          "max_rung": 6,
+          "failures": 10,
+          "recovered": false,
+          "wall_s": 0.02,
+          "parked_times": 2
+        },
+        {
+          "task": "08-shell-write-toolswitch",
+          "id": "t-0008",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 6,
+          "max_rung": 5,
+          "failures": 5,
+          "recovered": true,
+          "wall_s": 0.0,
+          "parked_times": 0
+        },
+        {
+          "task": "09-shell-delete-decompose",
+          "id": "t-0009",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 7,
+          "max_rung": 4,
+          "failures": 5,
+          "recovered": true,
+          "wall_s": 0.0,
+          "parked_times": 0
+        },
+        {
+          "task": "10-budget-starved",
+          "id": "t-0010",
+          "status": "failed",
+          "progress": 0.0,
+          "attempts": 3,
+          "max_rung": 2,
+          "failures": 3,
+          "recovered": false,
+          "wall_s": 0.0,
+          "parked_times": 0
+        }
+      ],
+      "metrics": {
+        "terminal_rate (done/all)": 0.7,
+        "closed_rate (any terminal/all)": 1.0,
+        "retry_depth (mean max rung, non-done)": 4.67,
+        "recovery_rate": 0.625,
+        "mean_attempts": 5.2
+      },
+      "idle": {
+        "verified_ok": 2,
+        "verified_drift": 0,
+        "verified_skipped": 5,
+        "pruned_files": 0,
+        "governor_ok": true
+      }
+    },
+    "real": {
+      "mode": "real",
+      "rows": [
+        {
+          "task": "01-click-target",
+          "id": "t-0001",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 4,
+          "max_rung": 2,
+          "failures": 3,
+          "recovered": true,
+          "wall_s": 0.06,
+          "parked_times": 0
+        },
+        {
+          "task": "02-flaky-click",
+          "id": "t-0002",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 5,
+          "max_rung": 2,
+          "failures": 4,
+          "recovered": true,
+          "wall_s": 0.07,
+          "parked_times": 0
+        },
+        {
+          "task": "03-widget-relocates",
+          "id": "t-0003",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 4,
+          "max_rung": 2,
+          "failures": 3,
+          "recovered": true,
+          "wall_s": 0.11,
+          "parked_times": 0
+        },
+        {
+          "task": "04-wrong-plan-replan",
+          "id": "t-0004",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 9,
+          "max_rung": 3,
+          "failures": 8,
+          "recovered": true,
+          "wall_s": 0.12,
+          "parked_times": 0
+        },
+        {
+          "task": "05-two-targets",
+          "id": "t-0005",
+          "status": "done-partial",
+          "progress": 0.5,
+          "attempts": 11,
+          "max_rung": 6,
+          "failures": 10,
+          "recovered": false,
+          "wall_s": 0.16,
+          "parked_times": 2
+        },
+        {
+          "task": "06-second-unreachable",
+          "id": "t-0006",
+          "status": "done-partial",
+          "progress": 0.5,
+          "attempts": 11,
+          "max_rung": 6,
+          "failures": 10,
+          "recovered": false,
+          "wall_s": 0.16,
+          "parked_times": 2
+        },
+        {
+          "task": "07-unreachable",
+          "id": "t-0007",
+          "status": "failed",
+          "progress": 0.0,
+          "attempts": 10,
+          "max_rung": 6,
+          "failures": 10,
+          "recovered": false,
+          "wall_s": 0.13,
+          "parked_times": 2
+        },
+        {
+          "task": "08-shell-write-toolswitch",
+          "id": "t-0008",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 6,
+          "max_rung": 5,
+          "failures": 5,
+          "recovered": true,
+          "wall_s": 0.0,
+          "parked_times": 0
+        },
+        {
+          "task": "09-shell-delete-decompose",
+          "id": "t-0009",
+          "status": "done",
+          "progress": 1.0,
+          "attempts": 7,
+          "max_rung": 4,
+          "failures": 5,
+          "recovered": true,
+          "wall_s": 0.0,
+          "parked_times": 0
+        },
+        {
+          "task": "10-budget-starved",
+          "id": "t-0010",
+          "status": "failed",
+          "progress": 0.0,
+          "attempts": 3,
+          "max_rung": 2,
+          "failures": 3,
+          "recovered": false,
+          "wall_s": 0.05,
+          "parked_times": 0
+        }
+      ],
+      "metrics": {
+        "terminal_rate (done/all)": 0.6,
+        "closed_rate (any terminal/all)": 1.0,
+        "retry_depth (mean max rung, non-done)": 5.0,
+        "recovery_rate": 0.6,
+        "mean_attempts": 7.0
+      },
+      "idle": {
+        "verified_ok": 2,
+        "verified_drift": 0,
+        "verified_skipped": 4,
+        "pruned_files": 0,
+        "governor_ok": true
+      }
+    }
+  }
+}
