@@ -319,3 +319,53 @@ lm_best == step 12000 (best_val 1.0735).
    7-vs-8 layer, EMA (needs trainer support), 512-ctx packing, 4096 code-only tokenizer.
 4. when agent-05's push lands: consume drive v4.1 (318M tok) + hard_ui v5 corpora as a
    separate one-variable experiment (their rebuild changes drive/ui hashes).
+
+## 2026-10-23 · cycle 6 (deliverable 3 first rows): low-LR anneal + repetition-penalty decoding
+
+### E1: final low-LR anneal on run12k (ONE variable: schedule tail)
+Resume from run12k step 12000 (model+opt), linear lr 2e-4 -> 0 over 1200 steps
+(--anneal-steps 1200 --anneal-lr 2e-4; trainer flags added this cycle, smoke-tested),
+same bins/recipe. Exit 0 at step 13200, 81.1M tokens seen, peak 1087 MB, ~26 min.
+**anneal12k is the new primary checkpoint** (card WITH weights: checkpoints/lm-anneal12k/).
+
+| metric (v1.1 harness) | run12k | anneal12k | baseline |
+|---|---|---|---|
+| eval_code val_loss | 2.0790 | **2.0486** | 2.2873 |
+| streams code_val (v1) | 2.0412 | **2.0079** | 2.2448 |
+| streams v2_plain / v2_instr | 2.1924 / 2.2379 | **2.1643 / 2.2045** | 2.4326 / 2.5074 |
+| streams drive / ui | 0.1120 / 0.6737 | **0.1100 / 0.6718** | 5.8343 / 2.0120 |
+| codebench greedy syntax+defines | 26/49 | **49/49 (1.000)** | 49/49 vacuous |
+| codebench greedy body_rate | 0.653 | **0.775** | 0.000 |
+| codebench sampled syntax | 32/49 | 30/49 | 36/49 |
+| eval_drive term/retry/honest | 1.0/1.0/1.0 | **1.0/1.0/1.0** (mean_steps 2.6) | 0/0/0 |
+| self-repair rp1.0 | 0.0408 | 0.0204 | 0.000 |
+| pass@1 all modes | 0.000 | 0.000 | 0.000 |
+
+Anneal bought: -1.5% val, greedy repetition-collapse GONE without any decode trick
+(syntax 26->49/49), body_rate 0.653->0.775, all streams down, M3 metrics hold.
+
+### repetition penalty (CTRL-style, model.rep_penalize; default 1.0 = exact no-op)
+Wired through generate (both paths), codebench score --rep-penalty, self_repair
+--rep-penalty; mechanics + parity tests (25/25 green; commit c54c3d4).
+- **runv2 greedy: syntax 0/49 -> 48/49 at rp 1.15** (44/49 at 1.3). The v2 repetition
+  collapse is a DECODE pathology; the model underneath is fine.
+- run12k greedy: 26/49 -> 11/49 @1.15 (!) but 44/49 @1.3 - non-monotone: a weak penalty
+  breaks loops into near-miss syntax; anneal12k needs no penalty at all (49/49 @1.0;
+  47/49 @1.15/1.3).
+- sampled moves little everywhere (+2-5 tasks syntax).
+- Repairs: run12k@rp1.15 **0.0612 (3/49) = best repair row so far**; runv2@rp1.15 0.0;
+  anneal12k@rp1.0 0.0204. Repair matrix (rate): baseline 0.000 | run12k 0.0408 / 0.0612(rp)
+  | runv2 0.000 / 0.000(rp) | anneal12k 0.0204.
+
+### state of pass@1 (M2/M4)
+0.000 on every checkpoint x decode combination tried (plain/instructed prompts, rp 1.0/1.15/1.3,
+greedy/sampled, 128/220 tokens). Syntax is now ~solved (greedy 1.000 on anneal12k); the wall is
+SEMANTICS at 4.25M params / <=24M-token code corpora. EI (M4) stays gated on pass@1 > 0.
+Remaining levers, in expected-value order: (1) 4096-vocab code-only tokenizer lineage
+(token efficiency for code), (2) depth 7-vs-8 (deliverable 3), (3) mixed v1+v2 code corpus,
+(4) wd/EMA/512-packing rows, (5) agent-05's drive v4.1 + hard_ui v5 when their push lands.
+
+### next
+Cycle 7: depth experiment - add --n-layer (config flags) and run 7-layer 12k under the
+anneal-proven recipe (one variable vs anneal12k lineage: n_layer 6->7, params ~4.9M), then
+battery + rp sweep + card. If 7L beats 6L val: queue 8L. Tokenizer-4096 lineage after.

@@ -1,6 +1,6 @@
 # agent 04 — STATUS
 
-updated: 2026-10-23T05:45Z · branch: `agent-04` (both repos) · milestone: **M0 done · M1 val BEATEN (run12k 2.0790 v1-val; runv2 -25.9% instr / -15.0% plain vs baseline on v2 streams) · M3 MET both runs (terminal 1.0)** · M2 12k done x2 / pass@1 open (capability wall) · M4 gated · M5 0.0408 best
+updated: 2026-10-23T06:15Z · branch: `agent-04` (both repos) · milestone: **M0 done · M1 val BEATEN (anneal12k 2.0486 = -10.4% vs baseline) · M3 MET (terminal 1.0, holds thru anneal)** · M2 pass@1 open (syntax SOLVED greedy 1.000; semantics is the wall) · M4 gated · M5 best 0.0612 (run12k@rp1.15)
 
 | item | value |
 |---|---|
@@ -20,7 +20,9 @@ updated: 2026-10-23T05:45Z · branch: `agent-04` (both repos) · milestone: **M0
 | card (D7) | **lm-run12k shipped WITH weights.pt** (17MB) + config hashes + samples incl. failures |
 | runv2 (corpus v2) | DONE 12k steps: v2 streams crushed (plain 2.0671, instr 1.8582) but v1-val + continuation bench regress vs run12k (greedy repetition-collapse; sampled incoherent whole-unit defs); card shipped WITH weights |
 | harness v1.1 | extractor takes text after last code-sep; --prompt-mode instructed (corpus-v2 template); 23/23 tests; all 3 ckpts re-scored identically |
-| next | cycle 6: rep-penalty decode + E1 anneal (run12k, lr->0, ~1.2k steps) targeting first passes; then wd/EMA/depth/packing/tokenizer queue; EI gated on pass@1>0 |
+| E1 anneal (D3 row 1) | DONE: anneal12k = **new primary** (val 2.0486, streams 2.0079, greedy syntax **1.000** body 0.775, drive 1.0/1.0/1.0); card w/ weights shipped |
+| rep-penalty (decode) | default-off, parity-tested; runv2 greedy 0->48/49 @1.15 (collapse = decode pathology); repair best 0.0612 run12k@1.15 |
+| next | cycle 7: depth 7-vs-8 experiment (--n-layer flag + 12k run vs anneal lineage); then 4096-tokenizer lineage, wd/EMA/packing rows; EI gated on pass@1>0 |
 | corpus v2 | **BUILT**: 22.72M train tok + 569k val-plain + 379k val-instr; instr share 0.1993; 2.37 B/tok; 83.6k dup units dropped (49% dup rate); 434 generated + 860 vendored files dropped; holdout collisions 0; peak RSS 305MB |
 | v2 baseline controls | code_val_v2_plain 2.4326 · code_val_v2_instr 2.5074 · drive_val 5.8343 (step-4600 ckpt) |
 | checkpoint card | lm-baseline-step4600 packed (config.json w/ weights_sha256 per agent-01 spec, card.md w/ samples); mirrored here |
