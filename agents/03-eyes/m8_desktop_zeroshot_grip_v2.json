@@ -1,0 +1,236 @@
+{
+  "commit": "d5028c9",
+  "model": {
+    "grip_step": 3550,
+    "checkpoint": "checkpoints/grip_v2"
+  },
+  "n": 40,
+  "passed": 9,
+  "success": 0.225,
+  "by_category": {
+    "adversarial_desktop": {
+      "n": 10,
+      "passed": 1,
+      "success": 0.1,
+      "median_steps": 9.5,
+      "median_seconds": 0.7302
+    },
+    "desktop_nav": {
+      "n": 10,
+      "passed": 5,
+      "success": 0.5,
+      "median_steps": 5.5,
+      "median_seconds": 0.4461
+    },
+    "google_search": {
+      "n": 10,
+      "passed": 3,
+      "success": 0.3,
+      "median_steps": 8.0,
+      "median_seconds": 0.6459
+    },
+    "research_workflow": {
+      "n": 10,
+      "passed": 0,
+      "success": 0.0,
+      "median_steps": 12.0,
+      "median_seconds": 0.9625
+    }
+  },
+  "median_steps": 8.0,
+  "median_seconds": 0.6672,
+  "ram_peak_mb": 308.8,
+  "recovery_stats": {
+    "tasks_triggering_retry": 35,
+    "tasks_recovered_to_done": 4,
+    "recovery_rate": 0.1143
+  },
+  "failures": [
+    {
+      "id": "dn-002",
+      "category": "desktop_nav",
+      "why": "clicked background at (179,15) on 'click the run button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/dn-002.png"
+    },
+    {
+      "id": "dn-006",
+      "category": "desktop_nav",
+      "why": "clicked button:paste at (105,190) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/dn-006.png"
+    },
+    {
+      "id": "dn-007",
+      "category": "desktop_nav",
+      "why": "clicked button:paste at (107,172) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/dn-007.png"
+    },
+    {
+      "id": "dn-008",
+      "category": "desktop_nav",
+      "why": "clicked background at (121,16) on 'click the export button'; check 'file_exists' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/dn-008.png"
+    },
+    {
+      "id": "dn-009",
+      "category": "desktop_nav",
+      "why": "clicked button:start at (24,246) on 'click the run button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/dn-009.png"
+    },
+    {
+      "id": "gs-001",
+      "category": "google_search",
+      "why": "clicked button:paste at (106,184) on 'choose postgres 5432 from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/gs-001.png"
+    },
+    {
+      "id": "gs-003",
+      "category": "google_search",
+      "why": "clicked field:notes at (146,51) on 'choose http 429 from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/gs-003.png"
+    },
+    {
+      "id": "gs-004",
+      "category": "google_search",
+      "why": "clicked field:notes at (121,49) on 'choose git bisect from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/gs-004.png"
+    },
+    {
+      "id": "gs-005",
+      "category": "google_search",
+      "why": "clicked field:notes at (171,50) on 'choose sqlite wal from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/gs-005.png"
+    },
+    {
+      "id": "gs-008",
+      "category": "google_search",
+      "why": "clicked field:notes at (121,50) on 'choose redis 6379 from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/gs-008.png"
+    },
+    {
+      "id": "gs-009",
+      "category": "google_search",
+      "why": "clicked icon:files at (23,99) on 'choose dijkstra path from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/gs-009.png"
+    },
+    {
+      "id": "gs-010",
+      "category": "google_search",
+      "why": "clicked icon:notes at (22,63) on 'choose sqlite wal from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/gs-010.png"
+    },
+    {
+      "id": "rw-001",
+      "category": "research_workflow",
+      "why": "clicked button:start at (24,246) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/rw-001.png"
+    },
+    {
+      "id": "rw-002",
+      "category": "research_workflow",
+      "why": "clicked background at (146,23) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/rw-002.png"
+    },
+    {
+      "id": "rw-003",
+      "category": "research_workflow",
+      "why": "clicked button:start at (24,246) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/rw-003.png"
+    },
+    {
+      "id": "rw-004",
+      "category": "research_workflow",
+      "why": "clicked tab:notes at (124,246) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/rw-004.png"
+    },
+    {
+      "id": "rw-005",
+      "category": "research_workflow",
+      "why": "clicked button:copy at (100,160) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/rw-005.png"
+    },
+    {
+      "id": "rw-006",
+      "category": "research_workflow",
+      "why": "clicked button:start at (24,246) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/rw-006.png"
+    },
+    {
+      "id": "rw-007",
+      "category": "research_workflow",
+      "why": "clicked button:copy at (99,160) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/rw-007.png"
+    },
+    {
+      "id": "rw-008",
+      "category": "research_workflow",
+      "why": "clicked tab:notes at (124,246) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/rw-008.png"
+    },
+    {
+      "id": "rw-009",
+      "category": "research_workflow",
+      "why": "clicked tab:notes at (124,246) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/rw-009.png"
+    },
+    {
+      "id": "rw-010",
+      "category": "research_workflow",
+      "why": "clicked button:copy at (99,160) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/rw-010.png"
+    },
+    {
+      "id": "ad-001",
+      "category": "adversarial_desktop",
+      "why": "clicked button:paste at (106,184) on 'choose postgres 5432 from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/ad-001.png"
+    },
+    {
+      "id": "ad-002",
+      "category": "adversarial_desktop",
+      "why": "clicked field:notes at (129,50) on 'choose chmod 600 from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/ad-002.png"
+    },
+    {
+      "id": "ad-003",
+      "category": "adversarial_desktop",
+      "why": "clicked background at (135,67) on 'click the bookmark button'; check 'bookmark_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/ad-003.png"
+    },
+    {
+      "id": "ad-005",
+      "category": "adversarial_desktop",
+      "why": "clicked background at (157,15) on 'click the run button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/ad-005.png"
+    },
+    {
+      "id": "ad-006",
+      "category": "adversarial_desktop",
+      "why": "clicked icon:files at (24,98) on 'choose btree index from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/ad-006.png"
+    },
+    {
+      "id": "ad-007",
+      "category": "adversarial_desktop",
+      "why": "clicked button:browser at (122,14) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/ad-007.png"
+    },
+    {
+      "id": "ad-008",
+      "category": "adversarial_desktop",
+      "why": "clicked tab:notes at (124,247) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/ad-008.png"
+    },
+    {
+      "id": "ad-009",
+      "category": "adversarial_desktop",
+      "why": "clicked background at (192,154) on 'click the bookmark button'; check 'bookmark_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/ad-009.png"
+    },
+    {
+      "id": "ad-010",
+      "category": "adversarial_desktop",
+      "why": "clicked button:paste at (104,183) on 'choose lsof listen from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips/ad-010.png"
+    }
+  ]
+}

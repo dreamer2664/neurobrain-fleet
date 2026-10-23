@@ -1,0 +1,578 @@
+{
+  "suite": "m10_unscripted_autonomous_desktop_and_googling_x11",
+  "n_tasks": 30,
+  "passed": 24,
+  "success_rate": 0.8,
+  "seen_phrasing": {
+    "n": 20,
+    "passed": 18,
+    "success_rate": 0.9
+  },
+  "ood_phrasing": {
+    "n": 10,
+    "passed": 6,
+    "success_rate": 0.6
+  },
+  "median_steps": 6.5,
+  "median_seconds": 0.509,
+  "ram_peak_mb": 1348.0,
+  "by_family": {
+    "files_cleanup_export": {
+      "n": 3,
+      "passed": 3,
+      "success_rate": 1.0,
+      "median_steps": 3.0
+    },
+    "google_bookmark": {
+      "n": 5,
+      "passed": 4,
+      "success_rate": 0.8,
+      "median_steps": 6.0
+    },
+    "google_lookup": {
+      "n": 6,
+      "passed": 5,
+      "success_rate": 0.8333,
+      "median_steps": 4.5
+    },
+    "google_to_notes": {
+      "n": 8,
+      "passed": 5,
+      "success_rate": 0.625,
+      "median_steps": 9.0
+    },
+    "popup_then_google": {
+      "n": 4,
+      "passed": 4,
+      "success_rate": 1.0,
+      "median_steps": 5.0
+    },
+    "terminal_to_notes": {
+      "n": 4,
+      "passed": 3,
+      "success_rate": 0.75,
+      "median_steps": 7.0
+    }
+  },
+  "tasks": [
+    {
+      "id": "ug-001",
+      "family": "google_lookup",
+      "split": "seen_phrasing",
+      "goal": "search minigoogle for postgres 5432",
+      "passed": true,
+      "steps": 4,
+      "seconds": 0.3619,
+      "ops_executed": [
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT"
+      ]
+    },
+    {
+      "id": "ug-002",
+      "family": "google_lookup",
+      "split": "seen_phrasing",
+      "goal": "google git bisect in browser",
+      "passed": true,
+      "steps": 5,
+      "seconds": 0.3822,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT"
+      ]
+    },
+    {
+      "id": "ug-003",
+      "family": "google_lookup",
+      "split": "seen_phrasing",
+      "goal": "search minigoogle for redis 6379",
+      "passed": true,
+      "steps": 4,
+      "seconds": 0.3152,
+      "ops_executed": [
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT"
+      ]
+    },
+    {
+      "id": "ug-004",
+      "family": "google_lookup",
+      "split": "seen_phrasing",
+      "goal": "google dijkstra path in browser",
+      "passed": true,
+      "steps": 5,
+      "seconds": 0.3948,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT"
+      ]
+    },
+    {
+      "id": "ug-005",
+      "family": "google_bookmark",
+      "split": "seen_phrasing",
+      "goal": "google ssh port 22 and bookmark the article",
+      "passed": true,
+      "steps": 5,
+      "seconds": 0.3868,
+      "ops_executed": [
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "BOOKMARK_ARTICLE"
+      ]
+    },
+    {
+      "id": "ug-006",
+      "family": "google_bookmark",
+      "split": "seen_phrasing",
+      "goal": "search minigoogle for tar extract and bookmark page",
+      "passed": true,
+      "steps": 6,
+      "seconds": 0.5527,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "BOOKMARK_ARTICLE"
+      ]
+    },
+    {
+      "id": "ug-007",
+      "family": "google_bookmark",
+      "split": "seen_phrasing",
+      "goal": "google sha256 bits and bookmark the article",
+      "passed": true,
+      "steps": 5,
+      "seconds": 0.3775,
+      "ops_executed": [
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "BOOKMARK_ARTICLE"
+      ]
+    },
+    {
+      "id": "ug-008",
+      "family": "google_to_notes",
+      "split": "seen_phrasing",
+      "goal": "google dns port 53 copy the fact and save it in notes",
+      "passed": true,
+      "steps": 9,
+      "seconds": 0.6737,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "COPY_ARTICLE_FACT",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-009",
+      "family": "google_to_notes",
+      "split": "seen_phrasing",
+      "goal": "google chmod 755 copy the fact and save it in notes",
+      "passed": false,
+      "steps": 9,
+      "seconds": 0.66,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "COPY_ARTICLE_FACT",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-010",
+      "family": "google_to_notes",
+      "split": "seen_phrasing",
+      "goal": "search minigoogle for python gil copy fact and save in notes",
+      "passed": false,
+      "steps": 9,
+      "seconds": 0.6787,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "COPY_ARTICLE_FACT",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-011",
+      "family": "google_to_notes",
+      "split": "seen_phrasing",
+      "goal": "google tls alpn copy the fact and save it in notes",
+      "passed": true,
+      "steps": 9,
+      "seconds": 0.7053,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "COPY_ARTICLE_FACT",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-012",
+      "family": "google_to_notes",
+      "split": "seen_phrasing",
+      "goal": "search minigoogle for quicksort pivot copy fact and save in notes",
+      "passed": true,
+      "steps": 9,
+      "seconds": 0.7084,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "COPY_ARTICLE_FACT",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-013",
+      "family": "popup_then_google",
+      "split": "seen_phrasing",
+      "goal": "dismiss the alert popup and google ntp port 123",
+      "passed": true,
+      "steps": 5,
+      "seconds": 0.3729,
+      "ops_executed": [
+        "DISMISS_ALERT",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT"
+      ]
+    },
+    {
+      "id": "ug-014",
+      "family": "popup_then_google",
+      "split": "seen_phrasing",
+      "goal": "dismiss the alert popup and google btree index",
+      "passed": true,
+      "steps": 5,
+      "seconds": 0.3833,
+      "ops_executed": [
+        "DISMISS_ALERT",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT"
+      ]
+    },
+    {
+      "id": "ug-015",
+      "family": "popup_then_google",
+      "split": "seen_phrasing",
+      "goal": "dismiss the alert popup and google utf8 variable",
+      "passed": true,
+      "steps": 5,
+      "seconds": 0.3758,
+      "ops_executed": [
+        "DISMISS_ALERT",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT"
+      ]
+    },
+    {
+      "id": "ug-016",
+      "family": "terminal_to_notes",
+      "split": "seen_phrasing",
+      "goal": "open terminal run uname and save the output in notes",
+      "passed": true,
+      "steps": 7,
+      "seconds": 0.508,
+      "ops_executed": [
+        "OPEN_TERMINAL_ICON",
+        "FOCUS_COMMAND",
+        "TYPE_COMMAND",
+        "RUN_COMMAND",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-017",
+      "family": "terminal_to_notes",
+      "split": "seen_phrasing",
+      "goal": "open terminal run df and save the output in notes",
+      "passed": true,
+      "steps": 7,
+      "seconds": 0.5143,
+      "ops_executed": [
+        "OPEN_TERMINAL_ICON",
+        "FOCUS_COMMAND",
+        "TYPE_COMMAND",
+        "RUN_COMMAND",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-018",
+      "family": "terminal_to_notes",
+      "split": "seen_phrasing",
+      "goal": "open terminal run ports and save the output in notes",
+      "passed": true,
+      "steps": 7,
+      "seconds": 0.5089,
+      "ops_executed": [
+        "OPEN_TERMINAL_ICON",
+        "FOCUS_COMMAND",
+        "TYPE_COMMAND",
+        "RUN_COMMAND",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-019",
+      "family": "files_cleanup_export",
+      "split": "seen_phrasing",
+      "goal": "open files delete temp iso and export the file index",
+      "passed": true,
+      "steps": 3,
+      "seconds": 0.2547,
+      "ops_executed": [
+        "OPEN_FILES_ICON",
+        "DELETE_TEMP_FILES",
+        "EXPORT_FILES_INDEX"
+      ]
+    },
+    {
+      "id": "ug-020",
+      "family": "files_cleanup_export",
+      "split": "seen_phrasing",
+      "goal": "open files delete temp iso and export the file index",
+      "passed": true,
+      "steps": 3,
+      "seconds": 0.255,
+      "ops_executed": [
+        "OPEN_FILES_ICON",
+        "DELETE_TEMP_FILES",
+        "EXPORT_FILES_INDEX"
+      ]
+    },
+    {
+      "id": "ug-021",
+      "family": "google_lookup",
+      "split": "ood_phrasing",
+      "goal": "on the web look up ed25519 key right now",
+      "passed": true,
+      "steps": 4,
+      "seconds": 0.3248,
+      "ops_executed": [
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT"
+      ]
+    },
+    {
+      "id": "ug-022",
+      "family": "google_lookup",
+      "split": "ood_phrasing",
+      "goal": "use web search to inspect sqlite vacuum",
+      "passed": false,
+      "steps": 7,
+      "seconds": 0.5344,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "CLICK_BROWSER_BACK",
+        "CHOOSE_SERP_RESULT"
+      ]
+    },
+    {
+      "id": "ug-023",
+      "family": "google_bookmark",
+      "split": "ood_phrasing",
+      "goal": "please find functools lru online and bookmark it",
+      "passed": false,
+      "steps": 7,
+      "seconds": 0.5378,
+      "ops_executed": [
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "CLICK_BROWSER_BACK",
+        "CHOOSE_SERP_RESULT",
+        "BOOKMARK_ARTICLE"
+      ]
+    },
+    {
+      "id": "ug-024",
+      "family": "google_bookmark",
+      "split": "ood_phrasing",
+      "goal": "browse for asyncio gather and add a bookmark",
+      "passed": true,
+      "steps": 6,
+      "seconds": 0.5087,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "BOOKMARK_ARTICLE"
+      ]
+    },
+    {
+      "id": "ug-025",
+      "family": "google_to_notes",
+      "split": "ood_phrasing",
+      "goal": "research smtp 587 online then paste and store in notes",
+      "passed": true,
+      "steps": 9,
+      "seconds": 0.6935,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "COPY_ARTICLE_FACT",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-026",
+      "family": "google_to_notes",
+      "split": "ood_phrasing",
+      "goal": "find ieee754 float on browser and record fact into notes",
+      "passed": true,
+      "steps": 9,
+      "seconds": 0.7096,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "COPY_ARTICLE_FACT",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-027",
+      "family": "google_to_notes",
+      "split": "ood_phrasing",
+      "goal": "check collections deque on web and write result to notes",
+      "passed": false,
+      "steps": 9,
+      "seconds": 0.7068,
+      "ops_executed": [
+        "OPEN_BROWSER_ICON",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "COPY_ARTICLE_FACT",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-028",
+      "family": "popup_then_google",
+      "split": "ood_phrasing",
+      "goal": "clear warning dialog then look up kill sigterm online",
+      "passed": true,
+      "steps": 7,
+      "seconds": 0.5276,
+      "ops_executed": [
+        "DISMISS_ALERT",
+        "FOCUS_SEARCH",
+        "TYPE_SEARCH_QUERY",
+        "SUBMIT_SEARCH",
+        "CHOOSE_SERP_RESULT",
+        "CLICK_BROWSER_BACK",
+        "CHOOSE_SERP_RESULT"
+      ]
+    },
+    {
+      "id": "ug-029",
+      "family": "terminal_to_notes",
+      "split": "ood_phrasing",
+      "goal": "launch terminal execute whoami then store output into notes",
+      "passed": false,
+      "steps": 7,
+      "seconds": 0.5371,
+      "ops_executed": [
+        "OPEN_TERMINAL_ICON",
+        "FOCUS_COMMAND",
+        "TYPE_COMMAND",
+        "RUN_COMMAND",
+        "OPEN_NOTES_TAB",
+        "PASTE_INTO_NOTES",
+        "SAVE_NOTES"
+      ]
+    },
+    {
+      "id": "ug-030",
+      "family": "files_cleanup_export",
+      "split": "ood_phrasing",
+      "goal": "in file manager purge iso files and dump index",
+      "passed": true,
+      "steps": 3,
+      "seconds": 0.2471,
+      "ops_executed": [
+        "OPEN_FILES_ICON",
+        "DELETE_TEMP_FILES",
+        "EXPORT_FILES_INDEX"
+      ]
+    }
+  ]
+}

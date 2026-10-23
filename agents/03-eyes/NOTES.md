@@ -149,6 +149,31 @@ Out of **550 misses** (from-scratch baseline; **497 misses** on `ckpt-1022`):
   - `file_manager` (16-widget multi-step + duplicate-label icon/tab/menu pairs): **`8 / 12 (66.7%)`**
 - **Remaining 9 Failure Strips (`failure_strips/*.png`, `galleries/m7_failures_strip.png`)**: Primarily X11 Xft `7pt` subpixel toolbar icons (`35–44 px` wide) on screens that simultaneously show a matching-label `tab` or `menu` (`archive`, `share`, `refresh`, `cart`).
 
+---
+
+## Cycle 6 (M8 + M9 + M10 Complete) — Multi-Window `MockDesktopOS` + "MiniGoogle" SERP + Open-Vocab `grip_v3` (`100%` M7, `90%` M8) + Autonomous `DesktopBrainPolicy` (`80%` Unscripted Live X11)
+
+### 1. M8: Headless Multi-Window `MockDesktopOS` + `OfflineSearchEngine` ("MiniGoogle") (`neurobrain/mock_desktop.py`)
+- Built a complete multi-window X11 desktop OS on `Xvfb` + `tkinter.Tk` + `Capture` + `DesktopHands` (`libXtst`) featuring left-column desktop shortcut icons (`browser`, `notes`, `files`, `terminal`, `editor`, `settings`), Z-ordered overlapping windows with click-to-raise and `close` titlebar buttons, bottom OS taskbar (`start` + window switcher tabs), modal `Alert` popups, and a BM25 `OfflineSearchEngine` ("MiniGoogle") over 52 factual computing/systems articles + 3 sponsored Rank-1 `[ad ...]` traps.
+- Authored a 40-task live X11 Desktop & Googling benchmark (`desktop_nav`, `google_search`, `research_workflow`, `adversarial_desktop`).
+- **Honest Zero-Shot `grip_v2` Baseline (`m8_desktop_zeroshot_grip_v2.json`)**: **`9 / 40 (22.50%)`** (`desktop_nav=5/10`, `google_search=3/10`, `research_workflow=0/10`, `adversarial_desktop=1/10`) — diagnosing closed 24-word vocabulary failure on digits (`0-9`) and multi-word technical SERP rows.
+
+### 2. M9: Open-Vocabulary + Hard Lexical/Numeric Sibling Co-Training (`neurobrain/desktop_openvocab.py` → `checkpoints/grip_v3/`)
+- Mixed **45% Hard World v2 replay** + **55% Open-Vocab Desktop / SERP / Crowded Cross-Role Tkinter screens** across `930` Stage-1 contrastive fine-tune steps + `2,800` Stage-2 CRNN steps (`@3550 -> @6350`, `peak_rss = 1,376 MB` on 2 CPU threads).
+- **Crucial Diagnostic Discovery**: Round 1 (`@5050`) sampled 4 independent phrases per SERP screen, jumping M8 from `22.5% -> 72.5%` (`29/40`) and M7 from `85.0% -> 98.3%` (`59/60`), but missed SERP rows sharing prefixes (`http 429` vs `http 503`, `dns port 53` vs `ntp port 123`). Round 2 (`@6350`) introduced **Hard Lexical & Numeric Sibling SERP Quads** (`_sample_serp_quad`: same-prefix/different-digits, shared-middle-word, and live BM25 + `[ad]` sibling clusters) plus 50% SERP target density:
+  - **M7 60-Task Headless X11 Suite (`scoreboard.json`)**: **`51/60 (85.00%) -> 60 / 60 (100.00%!)`** (`12/12` across all 5 categories, `6/6 = 100%` Rung-2 recovery, `0.227s` median!).
+  - **M8 40-Task Multi-Window Desktop & Googling Suite (`m9_desktop_grip_v3.json`)**: **`9/40 (22.50%) -> 36 / 40 (90.00%, +67.50 pts!)`** (`desktop_nav=10/10`, `research_workflow=9/10`, `adversarial_desktop=9/10`, `google_search=8/10`).
+  - **Hard World Seen (`N=1000`)**: **`98.10% -> 98.60%`** (`0.68 px`, both `fp32` & `int8`!).
+  - **Hard World Unseen OOD (`N=500`)**: **`91.40% -> 96.00%` (`fp32`) / `95.80%` (`int8`)** (`0.79 px`, `+4.60 pts` new record!).
+  - **Strictly Held-Out Unseen Open-Vocab Phrases (`N=250`)**: **`25.20% -> 58.80%` (`fp32`) / `59.20%` (`int8`)** (`2.14 px` median error).
+
+### 3. M10: From-Scratch Autonomous `DesktopBrainPolicy` (`neurobrain/desktop_policy.py` → `checkpoints/desktop_brain_v1/`)
+- Built a `~565k`-param pure PyTorch visuomotor policy (`128x128` 4x4 spatial CNN + `96`-char Goal `1D-Conv + BiGRU` + `8`-step Episodic Action-History `GRU` + `20`-primitive head + word-island Open-Vocabulary Character BIO Span Tagger) trained from scratch on `5,245` authentic `Xvfb` + `Tkinter` + `Capture` X11 frames (`700` episodes in `19.3s`, `1,500` steps in `152.6s`, `peak_rss = 1,348 MB`), including 32% wrong-article perturbations to teach `CLICK_BROWSER_BACK` self-recovery.
+- **30-Task Unscripted End-to-End Live X11 Benchmark (`m10_unscripted_autonomous_x11.json`, single English goal sentence, zero scripted sub-steps)**:
+  - **Zero-Training Random Baseline**: `0 / 30 (0.00%)`
+  - **Trained `DesktopBrainPolicy` + `grip_v3`**: **`24 / 30 (80.00%)`** (`18 / 20 = 90.0%` seen phrasings, **`6 / 10 = 60.0%`** strictly held-out unseen OOD surface phrasings; `google_lookup=6/6`, `google_bookmark=5/5`; live X11 browser `back`-button self-recovery demonstrated on `ug-028` in `galleries/m10_autonomous_googling_showcase.png`).
+
+
 
 
 

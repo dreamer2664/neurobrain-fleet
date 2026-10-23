@@ -1,0 +1,74 @@
+{
+  "commit": "d5028c9",
+  "model": {
+    "grip_step": 4850,
+    "checkpoint": "checkpoints/grip_v3"
+  },
+  "n": 40,
+  "passed": 36,
+  "success": 0.9,
+  "by_category": {
+    "adversarial_desktop": {
+      "n": 10,
+      "passed": 9,
+      "success": 0.9,
+      "median_steps": 4.0,
+      "median_seconds": 0.3821
+    },
+    "desktop_nav": {
+      "n": 10,
+      "passed": 10,
+      "success": 1.0,
+      "median_steps": 2.0,
+      "median_seconds": 0.2056
+    },
+    "google_search": {
+      "n": 10,
+      "passed": 8,
+      "success": 0.8,
+      "median_steps": 3.0,
+      "median_seconds": 0.3088
+    },
+    "research_workflow": {
+      "n": 10,
+      "passed": 9,
+      "success": 0.9,
+      "median_steps": 7.0,
+      "median_seconds": 0.6056
+    }
+  },
+  "median_steps": 4.0,
+  "median_seconds": 0.379,
+  "ram_peak_mb": 308.7,
+  "recovery_stats": {
+    "tasks_triggering_retry": 5,
+    "tasks_recovered_to_done": 1,
+    "recovery_rate": 0.2
+  },
+  "failures": [
+    {
+      "id": "gs-003",
+      "category": "google_search",
+      "why": "clicked background at (203,126) on 'choose http 429 from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips_v3/gs-003.png"
+    },
+    {
+      "id": "gs-006",
+      "category": "google_search",
+      "why": "clicked icon:files at (24,98) on 'click the bookmark button'; check 'bookmark_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips_v3/gs-006.png"
+    },
+    {
+      "id": "rw-009",
+      "category": "research_workflow",
+      "why": "clicked button:browser at (184,35) on 'click the save button'; check 'file_substr' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips_v3/rw-009.png"
+    },
+    {
+      "id": "ad-002",
+      "category": "adversarial_desktop",
+      "why": "clicked button:start at (25,247) on 'choose chmod 600 from the menu'; check 'article_fact' failed",
+      "strip": "/home/user/fleet/agents/03-eyes/desktop_failure_strips_v3/ad-002.png"
+    }
+  ]
+}
