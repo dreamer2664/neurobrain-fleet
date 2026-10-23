@@ -193,3 +193,68 @@ round table; then launch the v2 training run (one variable: corpus v2 + instruct
   `x-access-token:` intermittently 401s on write (reads fine).
 - Training at step ~6.5k/12k during the above; budget stop ~00:45Z (may need one short final
   resume leg if it lands just under 12k).
+
+## 2026-10-23 · cycle 4 (M2/M3/M5): run12k complete + full battery + card shipped WITH weights
+
+### run12k training (M2 schedule leg)
+12,000 steps exactly (budget-stopped at 11,922 + 78-step final resume leg, clean exits, cosine
+to 2.0e-4 floor). 73.7M tokens seen (22.7M code x ~1.8 epochs would be v2; this run = v1 code
+53.4M bin at 55% mix ~ 0.75 epoch). Peak RSS 1124 MB (leg 2: 951 MB). 5.3-5.9k tok/s solo.
+lm_best == final step (best_val 1.04050 = eval_mean at 12000).
+
+### ROUND TABLE (same bins, same protocol, battery 6/6 rc=0)
+| metric | baseline step4600 | run12k step12000 | delta |
+|---|---|---|---|
+| eval_code val_loss (v1 code_val) | 2.2873 | **2.0790** (ppl 8.0) | **-9.1%** |
+| streams code_val | 2.2448 | **2.0412** | -9.1% |
+| streams code_val_v2_plain | 2.4326 | **2.1924** | -9.9% |
+| streams code_val_v2_instr | 2.5074 | **2.2379** | -10.7% |
+| streams drive_val | 5.8343 | **0.1120** | 52x better |
+| streams ui_val | 2.0120 | **0.6737** | 3.0x better |
+| eval_drive terminal_rate | 0.0 | **1.0** | M3 MET (>=0.5 rising; done-criterion >=0.8 too) |
+| eval_drive retry_after_failure | 0.0 | **1.0** | n=48 held-out episodes, mean_steps 2.7 |
+| eval_drive honest_completion | 0.0 | **1.0** | |
+| codebench pass@1 greedy/sampled | 0.000/0.000 | 0.000/0.000 | M2 pass@1 goal NOT met; EI stays gated |
+| codebench body_rate greedy/sampled | 0.000/0.388 | **0.653/0.735** | the real sub-pass@1 signal |
+| codebench parses greedy/sampled | -/- | 0.531/0.653 | |
+| self-repair rate | 0.000 | **0.0408** | first repairs (M5) |
+
+Interpretation notes:
+- Baseline "syntax_valid 1.000 greedy" was VACUOUS: empty completions still exec the prompt's
+  def line, so parses+defines held trivially. body_rate is the honest metric; on it run12k went
+  0.000 -> 0.653 greedy. The apparent syntax-rate "drop" (1.000 -> 0.531) is that artifact ending.
+- **val_loss 2.0790 beats the published lineage's 2.09-2.12** on comparable measurement, and
+  beats the baseline ckpt by 9.1% on identical bins -> M1's "beat baseline val loss" is MET by
+  run12k already; the v2-corpus run (one variable: corpus) now has to beat run12k.
+- M3 is MET with margin: every one of 48 held-out drive episodes terminates in the terminal
+  marker, retries after failure, and completes honestly (mean 2.7 steps).
+
+### self-repair receipts (deliverable 5: rate + transcripts)
+rate 0.0408 = 2/49 repaired (first_pass 0). Both are genuine one-shot repairs after error
+feedback (attempt 1 failed AssertionError, attempt 2 passes):
+1. cb-dict-02 keys_positive(d): attempt 2 returned the list comprehension over d with d[k] > 0.
+2. cb-misc-06 summarize(items): attempt 2 returned the ok/n dict built from len(items).
+3. (failure transcript kept in the report) cb-arith family: attempt 2 stayed syntactically
+   broken - full transcripts incl. failures: reports/self_repair_run12k.json (all_rows).
+Baseline comparison: repair context was OOD for the no-drive baseline (attempt-2 degraded);
+with 25% drive mix the protocol is in-distribution and repair starts working.
+
+### card shipped (deliverable 7) - WITH weights this time
+checkpoints/lm-run12k/ here = card.md + config.json (weights_sha256, tokenizer_sha256,
+source sha 7f0a17fc..., steps/losses) + tokenizer.json + weights.pt (17 MB). Sample
+generations incl. failures embedded in card.md. neurobrain repo: checkpoints/run12k/.
+
+### infra that made this cycle fast
+KV-cached generate (60603e6, token-exact parity, 21/21 tests) + idle-box battery: codebench
+428 tok/s (30 s stage), streams 6 s, self-repair 22.5 s (vs 1545 s under contention).
+score_battery.sh smoke-validated 6/6 rc=0 on baseline before the real run (numbers matched
+published reports exactly - deterministic evals).
+
+### next
+v2-corpus run launching now (scripts/run_v2.sh: ONE variable = code corpus v1->v2 w/ 20%
+instruction mix; v1 code_val kept for lineage-comparable selection; 12k steps; budget 10800s
++ final leg if needed). Then: M1 comparison vs run12k (val + v2 streams + instructed-vs-plain),
+battery + card, and the experiment queue (low-LR anneal, 7-vs-8 layer, EMA, LR/warmup, wd,
+4096 code tokenizer, 512-ctx packing). EI (M4) runs the moment pass@1 > 0; v2's instruction
+mix is the designed lever (baseline greedy emits no body; instructed format teaches
+task->code completion).
