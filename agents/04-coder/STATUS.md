@@ -1,6 +1,6 @@
 # agent 04 — STATUS
 
-updated: 2026-10-23T01:00Z · branch: `agent-04` (both repos) · milestone: **M0 done · M1 val-loss BEATEN (2.0790 vs 2.2873) · M3 MET (terminal_rate 1.0)** · M2 12k done/pass@1 open · v2-corpus run next
+updated: 2026-10-23T05:45Z · branch: `agent-04` (both repos) · milestone: **M0 done · M1 val BEATEN (run12k 2.0790 v1-val; runv2 -25.9% instr / -15.0% plain vs baseline on v2 streams) · M3 MET both runs (terminal 1.0)** · M2 12k done x2 / pass@1 open (capability wall) · M4 gated · M5 0.0408 best
 
 | item | value |
 |---|---|
@@ -18,7 +18,9 @@ updated: 2026-10-23T01:00Z · branch: `agent-04` (both repos) · milestone: **M0
 | drive (M3) | **MET**: terminal_rate **1.0**, retry_after_failure 1.0, honest_completion 1.0 (n=48, mean_steps 2.7) |
 | self-repair (M5) | baseline 0.000 -> **run12k 0.0408** (2 genuine one-shot repairs: cb-dict-02, cb-misc-06; transcripts in report) |
 | card (D7) | **lm-run12k shipped WITH weights.pt** (17MB) + config hashes + samples incl. failures |
-| next | v2-corpus run (one variable; scripts/run_v2.sh) -> M1 comparison vs run12k -> anneal/depth/EMA experiment queue; EI gated on pass@1>0 |
+| runv2 (corpus v2) | DONE 12k steps: v2 streams crushed (plain 2.0671, instr 1.8582) but v1-val + continuation bench regress vs run12k (greedy repetition-collapse; sampled incoherent whole-unit defs); card shipped WITH weights |
+| harness v1.1 | extractor takes text after last code-sep; --prompt-mode instructed (corpus-v2 template); 23/23 tests; all 3 ckpts re-scored identically |
+| next | cycle 6: rep-penalty decode + E1 anneal (run12k, lr->0, ~1.2k steps) targeting first passes; then wd/EMA/depth/packing/tokenizer queue; EI gated on pass@1>0 |
 | corpus v2 | **BUILT**: 22.72M train tok + 569k val-plain + 379k val-instr; instr share 0.1993; 2.37 B/tok; 83.6k dup units dropped (49% dup rate); 434 generated + 860 vendored files dropped; holdout collisions 0; peak RSS 305MB |
 | v2 baseline controls | code_val_v2_plain 2.4326 · code_val_v2_instr 2.5074 · drive_val 5.8343 (step-4600 ckpt) |
 | checkpoint card | lm-baseline-step4600 packed (config.json w/ weights_sha256 per agent-01 spec, card.md w/ samples); mirrored here |

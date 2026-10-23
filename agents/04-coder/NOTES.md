@@ -258,3 +258,64 @@ battery + card, and the experiment queue (low-LR anneal, 7-vs-8 layer, EMA, LR/w
 4096 code tokenizer, 512-ctx packing). EI (M4) runs the moment pass@1 > 0; v2's instruction
 mix is the designed lever (baseline greedy emits no body; instructed format teaches
 task->code completion).
+
+## 2026-10-23 · cycle 5 (M1): corpus-v2 run complete + instructed eval mode + harness v1.1
+
+### runv2 training (ONE variable vs run12k: code corpus v1 -> v2)
+12,000 steps (budget stop 9297 + 2703-step resume leg, both exit 0), same recipe
+(batch8 accum3 ctx256 lr2e-3 warmup150 cosine->2e-4, mix 55/25/20, drive/ui bins unchanged v1).
+Code tokens: 22.72M v2 bin = ~1.77 epochs (run12k: 53.4M v1 = ~0.75). Peak RSS 1079 MB.
+lm_best == step 12000 (best_val 1.0735).
+
+### ROUND TABLE v1.1-harness (all three ckpts re-scored identically; reports here + neurobrain)
+| metric | baseline 4.6k | run12k (v1) 12k | runv2 (v2) 12k |
+|---|---|---|---|
+| streams code_val (v1) | 2.2448 | **2.0412** | 2.2246 |
+| streams code_val_v2_plain | 2.4326 | 2.1924 | **2.0671** |
+| streams code_val_v2_instr | 2.5074 | 2.2379 | **1.8582** |
+| streams drive_val / ui_val | 5.8343 / 2.0120 | 0.1120 / 0.6737 | 0.1127 / 0.6736 |
+| eval_code val_loss | 2.2873 | **2.0790** | 2.2149 |
+| eval_drive terminal/retry/honest | 0/0/0 | **1.0/1.0/1.0** | **1.0/1.0/1.0** (mean_steps 2.5) |
+| codebench pass@1 greedy/sampled | 0/0 | 0/0 | 0/0 |
+| body_rate greedy/sampled | 0.000/0.388 | 0.653/0.735 | **1.000**/0.796 |
+| syntax+defines greedy/sampled | 1.000*/0.735 | **0.531/0.653** | 0.000/0.204 |
+| self-repair rate | 0.000 | **0.0408** | 0.000 |
+* vacuous (empty completions still define fn via prompt) - body_rate is the honest metric.
+
+### honest reading
+- **M1 on the v2 distribution: decisive.** v2 plain -15.0% and instructed -25.9% vs baseline
+  controls; vs run12k: plain -5.7%, **instructed -17.0%** - the 20% instruction mix works
+  exactly as designed on its own eval stream (deliverable 6: instructed and plain evaluated
+  separately, both val-stream level and bench prompt-mode level).
+- **On v1 file-level val + continuation-style bench: runv2 regresses vs run12k**
+  (2.2246 vs 2.0412; greedy syntax 0/49 vs 26/49). Diagnosis from transcripts:
+  (a) greedy decode = repetition collapse (name-token loops, e.g. def X_X_X_...);
+  (b) sampled emits def scaffolding (docstrings, type hints, numpydoc sections!) but
+  semantically incoherent and often truncated - the model tries to write WHOLE units
+  (its training format) incl. its own docstring, eating the token budget;
+  (c) function-unit distribution != continuation-prompt distribution (v1 files and
+  codebench prompts are header-then-body).
+- Primary checkpoint stays **run12k** for v1-comparable numbers; runv2 wins for
+  instructed/unit-style generation. Both cards shipped WITH weights (checkpoints/
+  lm-run12k, lm-runv2 here; source shas in config.json).
+- pass@1 0.000 across the board at 4.25M params / <=24M-token code corpora: capability
+  wall, not harness. EI (M4) remains gated on pass@1 > 0.
+
+### harness v1.1 (committed, pushed b2abfa9)
+- extract_completion now takes text after the LAST code-sep marker (corpus-v2 models
+  announce code with the separator; v1 models unaffected - run12k scores identical).
+- codebench score --prompt-mode plain|instructed: instructed replicates the corpus-v2
+  template (task marker + 'write a function that ' + one-line docstring summary +
+  code-sep + LF); whole-def candidates exec standalone, body-glue fallback otherwise.
+  Probes: instructed@128tok 0/6, instructed@220tok 0/6 (truncation was NOT the main
+  blocker - incoherence is). 23/23 tests green; bench field bumped codebench-v1.1.
+
+### next (cycle 6): decoding + anneal levers for pass@1
+1. repetition penalty option in generate (default 1.0 = bit-identical, parity-tested) ->
+   re-score sampled with 1.15/1.3; repetition collapse is the biggest sampled-syntax killer.
+2. E1 low-LR anneal (deliverable 3): resume run12k best, lr 2e-4 -> 0 over ~1.2k steps;
+   re-battery. Cheapest real shot at sharper decoding + lower val.
+3. queue after: LR/warmup sweep, wd sweep (needs --wd flag; currently hardcoded 0.1),
+   7-vs-8 layer, EMA (needs trainer support), 512-ctx packing, 4096 code-only tokenizer.
+4. when agent-05's push lands: consume drive v4.1 (318M tok) + hard_ui v5 corpora as a
+   separate one-variable experiment (their rebuild changes drive/ui hashes).
